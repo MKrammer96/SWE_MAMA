@@ -21,5 +21,9 @@ namespace MAMA
             LoginView = loginView;
         }
 
+        public Controller()
+        {
+
+        }
     }
 }
