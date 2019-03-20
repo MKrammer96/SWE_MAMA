@@ -13,30 +13,70 @@ namespace MAMA
 {
     public partial class MainView : Form
     {
-        private Controller Controller;
+        public Controller Controller;
 
         public MainView()
         {
             InitializeComponent();
         }
 
-        public void GetContoller(Controller controller)
+        public void SetContoller(Controller controller)
         {
             Controller = controller;
         }
 
 
-        public void UpdateDataGridview(object sender, EventArgs e)
+        public void UpdateDataGridview(List<Customer> customerList)
         {
 
+ 
             //Skalierung 
             DataGridViewCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //DataGridViewCustomers.DataSource = customerList;
+            //DataGridViewCustomers.Refresh();
+            DataGridViewCustomers.Columns.Clear();
+            //
+            for (int i = 0; i < ; i++)
+            {
+                
+            }
+
+
+
+            DataGridViewCustomers.Rows.Clear();
+            for (int i = 0; i < customerList.Count; i++)
+            {
+                int number = DataGridViewCustomers.Rows.Add();
+                DataGridViewCustomers.Rows[number].Cells[0].Value = customerList[i]._customerNumber;
+                DataGridViewCustomers.Rows[number].Cells[1].Value = customerList[i]._firstName;
+                DataGridViewCustomers.Rows[number].Cells[2].Value = customerList[i]._lastName;
+                DataGridViewCustomers.Rows[number].Cells[3].Value = customerList[i]._eMail;
+                DataGridViewCustomers.Rows[number].Cells[4].Value = customerList[i].DateOfChange;
+                DataGridViewCustomers.Rows[number].Cells[5].Value = customerList[i].MoneyBalance;
+            }
+
+
+
 
 
         }
 
-        
-        //Check the Name of the ButtonClicked and to reference to the functions
+
+
+
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// Check the Name of the ButtonClicked and to reference to the functions
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonClicked(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(Button))
@@ -72,8 +112,12 @@ namespace MAMA
 
         }
 
+        /// <summary>
         /// Clicked Item Handeling of the Menustrip
         /// OpenFiler Handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OpenfileHandler(object sender, EventArgs e)
         {
             string filepath = string.Empty;
@@ -85,8 +129,9 @@ namespace MAMA
             if (openFileDialog1.ShowDialog()==DialogResult.OK)
             {
                 filepath = openFileDialog1.FileName;
-                //Readfile via controller CSV Reader
+                Controller.GetCustomerList(filepath);
             }
+            
             
         }
 

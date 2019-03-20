@@ -22,17 +22,14 @@ namespace MAMA
             LoginView loginView = new LoginView();
             
             Controller controller = new Controller(mainView, csvHandler,loginView);
-            mainView.GetContoller(controller);
+            mainView.SetContoller(controller);
 
             //Start Login View with PasswordBox
 
 
             
             //Start MainView after positiiv Login
-
-
-
-            Application.Run(new MainView());
+            Application.Run(mainView);
         }
     }
 }

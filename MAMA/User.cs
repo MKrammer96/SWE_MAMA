@@ -9,7 +9,7 @@ namespace MAMA
     public class User
     {
         public string _firstName, _lastName, _username;
-        public int _usernumber;
+        public int _customerNumber;
         public Password _password;
         public DateTime _dateOfCreate;
         public EMailAdress _eMail;
@@ -27,12 +27,12 @@ namespace MAMA
         /// <param name="eMailAdress">E-Mail Adress</param>
         /// <param name="username">Username</param>
         /// <param name="password">Password</param>
-        /// <param name="usernumber">Usernumber</param>
-        public User (string firstName, string lastName, string eMailAdress, string username, string password, int usernumber)
+        /// <param name="customerNumber">Usernumber</param>
+        public User (string firstName, string lastName, string eMailAdress, string username, string password, int customerNumber)
         {
             _username = username;
             _password = new Password(password);
-            _usernumber = usernumber;
+            _customerNumber = customerNumber;
             _dateOfCreate = DateTime.Now;
             _eMail = new EMailAdress(eMailAdress);
             _firstName = firstName;

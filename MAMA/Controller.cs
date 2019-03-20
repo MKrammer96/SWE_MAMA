@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data;
 
 namespace MAMA
 {
@@ -20,14 +22,31 @@ namespace MAMA
             MainView = mainView;
             CSVHandler = csv_Handler;
             LoginView = loginView;
-            
-            
         }
 
         public Controller()
         {
 
         }
+        /// <summary>
+        /// This methode gets the ListofCustomers and updates the view
+        /// </summary>
+        /// <param name="filepath"></param>
+        public void GetCustomerList(string filepath)
+        {
+            //Test List
+            List<Customer> testCustomers = new List<Customer>();
+            testCustomers.Add(new Customer("Manuel", "Krammer", "manuel.krammer@gmail.com", 1, 120));
+            testCustomers.Add(new Customer("Matthias", "Farveleder", "farveleder@gmail.com", 5, 160));
+            testCustomers.Add(new Customer("Markus", "Farveleder", "m.farv@gmail.com", 7, -167));
+            
+            
+            MainView.UpdateDataGridview(testCustomers);
+
+
+
+        }
+
 
     }
 }
