@@ -20,18 +20,30 @@ namespace MAMA
             InitializeComponent();
         }
 
-        public void GetContoller(Controller controller)
+        public void SetContoller(Controller controller)
         {
             Controller = controller;
         }
 
 
-        public void UpdateDataGridview(object sender, EventArgs e)
+        public void UpdateDataGridview(List<Customer> customers)
         {
 
             //Skalierung 
+            //DataGridViewCustomers = customers;
             DataGridViewCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DataGridViewCustomers.Update();
 
+            for (int i = 0; i < customers.Count; i++)
+            {
+                int number = DataGridViewCustomers.Rows.Add();
+                DataGridViewCustomers.Rows[number].Cells[0].Value = customers[i]._customerNumber;
+                DataGridViewCustomers.Rows[number].Cells[1].Value = customers[i]._firstName;
+                DataGridViewCustomers.Rows[number].Cells[2].Value = customers[i]._lastName;
+                DataGridViewCustomers.Rows[number].Cells[3].Value = customers[i]._eMail;
+                DataGridViewCustomers.Rows[number].Cells[4].Value = customers[i].DateOfChange;
+                DataGridViewCustomers.Rows[number].Cells[5].Value = customers[i].MoneyBalance;
+            }
 
         }
 
@@ -85,11 +97,9 @@ namespace MAMA
             if (openFileDialog1.ShowDialog()==DialogResult.OK)
             {
                 filepath = openFileDialog1.FileName;
-                //Readfile via controller CSV Reader
+                
+                Controller.GetCustomerList(filepath);
 
-                CSV_Handler myHandler = new CSV_Handler();
-
-                DataGridViewCustomers = myHandler.readCSV(filepath);
             }
             
         }
