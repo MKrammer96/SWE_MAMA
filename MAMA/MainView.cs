@@ -31,27 +31,27 @@ namespace MAMA
             {
                 Button btn = (Button) sender;
 
-                if (btn.Name == ButtonSaveNewBalance.Name)
+                if (btn == ButtonSaveNewBalance)
                 {
 
                 }
-                if (btn.Name == ButtonCancelNewBalance.Name)
+                if (btn == ButtonCancelNewBalance)
                 {
 
                 }
-                if (btn.Name == ButtonSaveEditItems.Name)
+                if (btn == ButtonSaveEditItems)
                 {
 
                 }
-                if (btn.Name == ButtonCancelEditItems.Name)
+                if (btn == ButtonCancelEditItems)
                 {
 
                 }
-                if(btn.Name == ButtonAddNewAmount.Name)
+                if(btn == ButtonAddNewAmount)
                 {
 
                 }
-                if (btn.Name == ButtonSubNewAmount.Name)
+                if (btn == ButtonSubNewAmount)
                 {
 
                 }
