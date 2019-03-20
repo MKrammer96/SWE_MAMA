@@ -23,9 +23,7 @@ namespace MAMA
             _mySheet = null;
         }
         
-        /// <summary> 
-        /// Exports the datagridview values to Excel. 
-        /// </summary> 
+
         public void ExportToExcel(DataGridView gridData)
         {
             try
