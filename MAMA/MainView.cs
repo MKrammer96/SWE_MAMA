@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,17 @@ namespace MAMA
             Controller = controller;
         }
 
+
+        public void UpdateDataGridview(object sender, EventArgs e)
+        {
+
+            //Skalierung 
+            DataGridViewCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+
+        }
+
+        
         //Check the Name of the ButtonClicked and to reference to the functions
         private void ButtonClicked(object sender, EventArgs e)
         {
@@ -60,18 +72,83 @@ namespace MAMA
 
         }
 
-        private void MenuStripClicked(object sender, EventArgs e)
+        /// Clicked Item Handeling of the Menustrip
+        /// OpenFiler Handler
+        private void OpenfileHandler(object sender, EventArgs e)
         {
+            string filepath = string.Empty;
+            openFileDialog1.Filter = "CSV files (*.csv)|*.csv";
+            openFileDialog1.FilterIndex = 2;
+            openFileDialog1.RestoreDirectory = true;
 
-            if (sender.GetType() == typeof(MenuStrip))
+            // only for csv 
+            if (openFileDialog1.ShowDialog()==DialogResult.OK)
             {
-                MenuStrip menuStrip = (MenuStrip)sender;
-                
+                filepath = openFileDialog1.FileName;
+                //Readfile via controller CSV Reader
+            }
+            
+        }
+
+        /// SaveFile Handler for a new File 
+        private void SavefileHandler(object sender, EventArgs e)
+        {
+            Stream myStream; 
+            saveFileDialog1.Filter = "CSV files (*.csv)|*.csv";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if ((myStream = saveFileDialog1.OpenFile()) != null)
+                {
+                    // Code to write the stream goes here.
+                    // Attention new CSV Handler
+                    
+                }
             }
 
         }
 
-        private void TabControlTextBoxChanged(object sender, EventArgs e)
+        /// Save File Handler for existing File
+        private void SaveCurrentFile(object sender, EventArgs e)
+        {
+
+        }
+
+        
+        private void TextBoxChangedMainTabControll(object sender, EventArgs e)
+        {
+            if (sender.GetType() == typeof(TextBox))
+            {
+                TextBox txBox = (TextBox)sender;
+
+                if (txBox == TextBoxAddFirstName)
+                {
+
+                }
+                if (txBox == TextBoxAddLastName)
+                {
+
+                }
+                if (txBox == TextBoxAddE_Mail)
+                {
+
+                }
+                if (txBox == TextBoxAddCreationDate)
+                {
+
+                }
+                if (txBox == TextBoxAddNewAmount)
+                {
+
+                }
+            }
+
+
+        }
+        ///Is responsible for a listed user to change the items
+        private void TextBoxChangedTabControllEditItems(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(TextBox))
             {
@@ -101,6 +178,8 @@ namespace MAMA
                 }
             }
         }
+
+
 
 
 
