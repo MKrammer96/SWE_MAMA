@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace MAMA
 {
-    // Testcomment
 
     public class CSV_Handler
     {
-        string test = "Test";
     }
 }
