@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Windows.Forms;
+using System.IO;
 
 namespace MAMA
 {
@@ -80,5 +81,95 @@ namespace MAMA
 
         }
         
+        public void ExportToCSV(string path, DataGridView GridData)
+        {
+            try
+            {
+                StreamWriter csvFileWriter = new StreamWriter(path, false);
+
+                string columnHeaderText = "";
+
+                int countColumn = GridData.ColumnCount - 1;
+
+                if (countColumn >= 0)
+                {
+                    columnHeaderText = GridData.Columns[0].HeaderText;
+                }
+
+                for (int i = 1; i <= countColumn; i++)
+                {
+                    columnHeaderText = columnHeaderText + ',' + GridData.Columns[i].HeaderText;
+                }
+
+
+                csvFileWriter.WriteLine(columnHeaderText);
+
+                foreach (DataGridViewRow dataRowObject in GridData.Rows)
+                {
+                    if (!dataRowObject.IsNewRow)
+                    {
+                        string dataFromGrid = "";
+
+                        dataFromGrid = dataRowObject.Cells[0].Value.ToString();
+
+                        for (int i = 1; i <= countColumn; i++)
+                        {
+                            dataFromGrid = dataFromGrid + ',' + dataRowObject.Cells[i].Value.ToString();
+
+                            csvFileWriter.WriteLine(dataFromGrid);
+                        }
+                    }
+                }
+
+
+                csvFileWriter.Flush();
+                csvFileWriter.Close();
+            }
+            catch (Exception exceptionObject)
+            {
+                MessageBox.Show(exceptionObject.ToString());
+            }
+        }
+
+        public DataGridView readCSV(string path)
+        {
+            try
+            {
+                string textLine = string.Empty;
+                string[] splitLine;
+                DataGridView accountsDataGridView = new DataGridView();
+
+                path = "";
+
+                if (File.Exists(path))
+                {
+                    StreamReader myReader = new StreamReader(path);
+
+                    do
+                    {
+                        textLine = myReader.ReadLine();
+                        if (textLine != "")
+                        {
+                            splitLine = textLine.Split(',');
+                            accountsDataGridView.Rows.Add(splitLine);
+                        }
+                    } while (myReader.Peek() != -1);
+                }
+                return accountsDataGridView;
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message.Contains("The process cannot access the file"))
+                {
+                    MessageBox.Show("The file you are importing is open.", "Import Account", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+                return null;
+            }
+        }
     }
 }
