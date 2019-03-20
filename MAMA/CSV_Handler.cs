@@ -146,7 +146,8 @@ namespace MAMA
                         textLine = myReader.ReadLine();
                         if (textLine != "")
                         {
-                            splitLine = textLine.Split(',');
+                            splitLine = textLine.Split(';');
+                            accountsDataGridView.ColumnCount = splitLine.GetLength(0);
                             accountsDataGridView.Rows.Add(splitLine);
                         }
                     } while (myReader.Peek() != -1);

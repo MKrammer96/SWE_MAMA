@@ -86,6 +86,10 @@ namespace MAMA
             {
                 filepath = openFileDialog1.FileName;
                 //Readfile via controller CSV Reader
+
+                CSV_Handler myHandler = new CSV_Handler();
+
+                DataGridViewCustomers = myHandler.readCSV(filepath);
             }
             
         }
