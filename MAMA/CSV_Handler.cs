@@ -136,9 +136,7 @@ namespace MAMA
                 string textLine = string.Empty;
                 string[] splitLine;
                 DataGridView accountsDataGridView = new DataGridView();
-
-                path = "";
-
+                
                 if (File.Exists(path))
                 {
                     StreamReader myReader = new StreamReader(path);
