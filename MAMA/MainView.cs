@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -100,6 +102,7 @@ namespace MAMA
                 
                 Controller.GetCustomerList(filepath);
 
+
             }
             
         }
@@ -139,29 +142,62 @@ namespace MAMA
 
                 if (txBox == TextBoxAddFirstName)
                 {
+                    bool textOk = CheckforLettersonly(TextBoxAddFirstName.Text);
+
+                    if (textOk && TextBoxAddFirstName.Text.Length > 2)
+                    {
+                        TextBoxAddFirstName.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        TextBoxAddFirstName.BackColor = Color.Red;
+                    }
 
                 }
-                if (txBox == TextBoxAddLastName)
+                else if (txBox == TextBoxAddLastName)
                 {
+                    bool textOk = CheckforLettersonly(TextBoxAddLastName.Text);
+
+                    if (textOk && TextBoxAddLastName.Text.Length > 2)
+                    {
+                        TextBoxAddLastName.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        TextBoxAddLastName.BackColor = Color.Red;
+                    }
 
                 }
-                if (txBox == TextBoxAddE_Mail)
+                else if (txBox == TextBoxAddE_Mail)
                 {
+                    EMailAdress eMailAdress = new EMailAdress(TextBoxAddE_Mail.Text);
+                    if (eMailAdress.Address != string.Empty)
+                    {
+                        TextBoxAddE_Mail.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        TextBoxAddE_Mail.BackColor = Color.Red;
+                    }
+
 
                 }
-                if (txBox == TextBoxAddCreationDate)
+                else if (txBox == TextBoxAddNewAmount)
                 {
 
-                }
-                if (txBox == TextBoxAddNewAmount)
-                {
 
+
+                    decimal moneyBalance = Decimal.Parse(TextBoxAddNewAmount.Text, NumberStyles.Currency);
                 }
             }
 
 
         }
-        ///Is responsible for a listed user to change the items
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TextBoxChangedTabControllEditItems(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(TextBox))
@@ -193,8 +229,42 @@ namespace MAMA
             }
         }
 
+        private void DataGridviewSelectedRow(object sender, EventArgs e)
+        {
+            if (sender.GetType() == typeof(DataGridView))
+            {
+                if ((DataGridView) sender == DataGridViewCustomers)
+                {
+                    
+                }
+
+            }
 
 
+        }
+
+
+
+        private bool CheckforLettersonly(string textbox)
+        {
+            if (!Regex.IsMatch(textbox, @"^[\p{L}]+$"))
+            {
+                return false;
+            }
+            
+            return true;
+        }
+
+        private bool CheckforNumbersonly(string textbox)
+        {
+            
+            if (!Regex.IsMatch(textbox, @"(\D)\s * ([.\d,] +)"))
+            {
+                return false;
+            }
+
+            return true;
+        }
 
 
 

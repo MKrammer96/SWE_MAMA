@@ -15,6 +15,8 @@ namespace MAMA
         private MainView MainView;
         private CSV_Handler CSVHandler;
         private LoginView LoginView;
+
+        public List<Customer> CustomerList;
         
 
         public Controller(MainView mainView, CSV_Handler csv_Handler, LoginView loginView)
@@ -28,6 +30,8 @@ namespace MAMA
         {
 
         }
+
+
         /// <summary>
         /// This methode gets the ListofCustomers and updates the view
         /// </summary>
@@ -43,12 +47,64 @@ namespace MAMA
             testCustomers.Add(new Customer("Manuel", "Krammer", "manuel.krammer@gmail.com", 1, 120));
             testCustomers.Add(new Customer("Matthias", "Farveleder", "farveleder@gmail.com", 5, 160));
             testCustomers.Add(new Customer("Markus", "Farveleder", "m.farv@gmail.com", 7, -167));
-            
+
+
+            CustomerList = testCustomers;
             MainView.UpdateDataGridview(testCustomers);
 
 
 
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SaveCurrentCustomerList()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="savefilepath"></param>
+        public void SavenewCustomerList(string savefilepath)
+        {
+
+        }
+
+        /// <summary>
+        /// add a new customer to list
+        /// </summary>
+        /// <param name="newCustomer"></param>
+        public void AddCustomer(Customer newCustomer)
+        {
+
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="customertoChange"></param>
+        /// <param name="newlastName"></param>
+        /// <param name="newEMailAddress"></param>
+        public void EditCustomeritems(Customer customertoChange, string newlastName, EMailAdress newEMailAddress)
+        {
+
+
+        }
+
+
+        /// <summary>
+        /// When there doesn't exist a list
+        /// </summary>
+        /// <param name="customer"></param>
+        private void NewCustomerList(Customer customer)
+        {
+
+        }
+
 
 
     }

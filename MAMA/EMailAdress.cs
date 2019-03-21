@@ -8,17 +8,17 @@ namespace MAMA
 {
     public class EMailAdress
     {
-        string _adress;
+        public string Address { get; private set; }
 
         public EMailAdress(string adress)
         {
             if (verifyEmailAdress(adress))
             {
-                _adress = adress;
+                Address = adress;
             }
             else
             {
-                _adress = "";
+                Address = "";
             }
         }
 
@@ -30,11 +30,11 @@ namespace MAMA
         {
             if (verifyEmailAdress(adress))
             {
-                _adress = adress;
+                Address = adress;
             }
             else
             {
-                _adress = "";
+                Address = "";
             }
         }
 
@@ -44,7 +44,7 @@ namespace MAMA
         /// <returns></returns>
         public string getEmailAdress()
         {
-            return _adress;
+            return Address;
         }
 
         /// <summary>
