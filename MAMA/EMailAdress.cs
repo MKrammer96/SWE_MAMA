@@ -72,8 +72,15 @@ namespace MAMA
             if (cond1)
             {
                 string[] splitAdress = eMailAdress.Split('@');
-                cond2 = checkAfterAT(splitAdress[1]);
-                cond3 = checkBeforeAT(splitAdress[0]);
+                if (splitAdress[0] == string.Empty || splitAdress[1] == string.Empty)
+                {
+                    return false;
+                }
+                else
+                {
+                    cond2 = checkAfterAT(splitAdress[1]);
+                    cond3 = checkBeforeAT(splitAdress[0]);
+                }
             }
 
             if (cond0 && cond1 && cond2 && cond3)
