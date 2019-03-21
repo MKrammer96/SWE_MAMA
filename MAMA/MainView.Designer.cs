@@ -68,12 +68,10 @@
             this.ButtonCancelNewBalance = new System.Windows.Forms.Button();
             this.ButtonSaveNewBalance = new System.Windows.Forms.Button();
             this.ButtonAddNewAmount = new System.Windows.Forms.Button();
-            this.TextBoxNewBalance = new System.Windows.Forms.TextBox();
             this.TextBoxNewAmount = new System.Windows.Forms.TextBox();
-            this.LabelNewBalance = new System.Windows.Forms.Label();
-            this.TextBoxCurrentBalance = new System.Windows.Forms.TextBox();
-            this.LabelNewAmount = new System.Windows.Forms.Label();
-            this.LabelCurrentBalance = new System.Windows.Forms.Label();
+            this.LabelNewBalanceHeader = new System.Windows.Forms.Label();
+            this.LabelNewAmountHeader = new System.Windows.Forms.Label();
+            this.LabelCurrentBalanceHeader = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.LabelDateofChangeEditBalance = new System.Windows.Forms.Label();
@@ -112,12 +110,14 @@
             this.TextBoxAddE_Mail = new System.Windows.Forms.TextBox();
             this.TextBoxAddLastName = new System.Windows.Forms.TextBox();
             this.TextBoxAddFirstName = new System.Windows.Forms.TextBox();
-            this.CancelNewCustomer = new System.Windows.Forms.Button();
-            this.ButtonSaveNewCustomer = new System.Windows.Forms.Button();
+            this.ButtonCancelNewCustomer = new System.Windows.Forms.Button();
+            this.ButtonAddNewCustomer = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.LabelCurrentBalanceShow = new System.Windows.Forms.Label();
+            this.LabelNewBalanceShow = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.EditItemsofCustomer.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -404,12 +404,10 @@
             this.tabPage1.Controls.Add(this.ButtonCancelNewBalance);
             this.tabPage1.Controls.Add(this.ButtonSaveNewBalance);
             this.tabPage1.Controls.Add(this.ButtonAddNewAmount);
-            this.tabPage1.Controls.Add(this.TextBoxNewBalance);
             this.tabPage1.Controls.Add(this.TextBoxNewAmount);
-            this.tabPage1.Controls.Add(this.LabelNewBalance);
-            this.tabPage1.Controls.Add(this.TextBoxCurrentBalance);
-            this.tabPage1.Controls.Add(this.LabelNewAmount);
-            this.tabPage1.Controls.Add(this.LabelCurrentBalance);
+            this.tabPage1.Controls.Add(this.LabelNewBalanceHeader);
+            this.tabPage1.Controls.Add(this.LabelNewAmountHeader);
+            this.tabPage1.Controls.Add(this.LabelCurrentBalanceHeader);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.LabelDateofChangeEditBalance);
@@ -417,6 +415,8 @@
             this.tabPage1.Controls.Add(this.LabelE_MailAddressEditBalance);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.LabelLastNameEditBalance);
+            this.tabPage1.Controls.Add(this.LabelNewBalanceShow);
+            this.tabPage1.Controls.Add(this.LabelCurrentBalanceShow);
             this.tabPage1.Controls.Add(this.LabelFirstNameEditBalance);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -434,7 +434,7 @@
             this.ButtonSubNewAmount.TabIndex = 6;
             this.ButtonSubNewAmount.Text = "-";
             this.ButtonSubNewAmount.UseVisualStyleBackColor = true;
-            this.ButtonSubNewAmount.Click += new System.EventHandler(this.ButtonClicked);
+            this.ButtonSubNewAmount.Click += new System.EventHandler(this.ButtonClickedEditItemsofCustomer);
             // 
             // ButtonCancelNewBalance
             // 
@@ -444,7 +444,7 @@
             this.ButtonCancelNewBalance.TabIndex = 6;
             this.ButtonCancelNewBalance.Text = "Cancel";
             this.ButtonCancelNewBalance.UseVisualStyleBackColor = true;
-            this.ButtonCancelNewBalance.Click += new System.EventHandler(this.ButtonClicked);
+            this.ButtonCancelNewBalance.Click += new System.EventHandler(this.ButtonClickedEditItemsofCustomer);
             // 
             // ButtonSaveNewBalance
             // 
@@ -454,7 +454,7 @@
             this.ButtonSaveNewBalance.TabIndex = 6;
             this.ButtonSaveNewBalance.Text = "Save";
             this.ButtonSaveNewBalance.UseVisualStyleBackColor = true;
-            this.ButtonSaveNewBalance.Click += new System.EventHandler(this.ButtonClicked);
+            this.ButtonSaveNewBalance.Click += new System.EventHandler(this.ButtonClickedEditItemsofCustomer);
             // 
             // ButtonAddNewAmount
             // 
@@ -464,14 +464,7 @@
             this.ButtonAddNewAmount.TabIndex = 6;
             this.ButtonAddNewAmount.Text = "+";
             this.ButtonAddNewAmount.UseVisualStyleBackColor = true;
-            this.ButtonAddNewAmount.Click += new System.EventHandler(this.ButtonClicked);
-            // 
-            // TextBoxNewBalance
-            // 
-            this.TextBoxNewBalance.Location = new System.Drawing.Point(190, 273);
-            this.TextBoxNewBalance.Name = "TextBoxNewBalance";
-            this.TextBoxNewBalance.Size = new System.Drawing.Size(142, 20);
-            this.TextBoxNewBalance.TabIndex = 5;
+            this.ButtonAddNewAmount.Click += new System.EventHandler(this.ButtonClickedEditItemsofCustomer);
             // 
             // TextBoxNewAmount
             // 
@@ -479,46 +472,40 @@
             this.TextBoxNewAmount.Name = "TextBoxNewAmount";
             this.TextBoxNewAmount.Size = new System.Drawing.Size(142, 20);
             this.TextBoxNewAmount.TabIndex = 5;
+            this.TextBoxNewAmount.TextChanged += new System.EventHandler(this.TextBoxChangedTabControllEditItems);
             // 
-            // LabelNewBalance
+            // LabelNewBalanceHeader
             // 
-            this.LabelNewBalance.AutoSize = true;
-            this.LabelNewBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelNewBalance.Location = new System.Drawing.Point(187, 252);
-            this.LabelNewBalance.Name = "LabelNewBalance";
-            this.LabelNewBalance.Size = new System.Drawing.Size(95, 18);
-            this.LabelNewBalance.TabIndex = 4;
-            this.LabelNewBalance.Text = "New Balance";
-            this.LabelNewBalance.Click += new System.EventHandler(this.label1_Click);
+            this.LabelNewBalanceHeader.AutoSize = true;
+            this.LabelNewBalanceHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelNewBalanceHeader.Location = new System.Drawing.Point(187, 252);
+            this.LabelNewBalanceHeader.Name = "LabelNewBalanceHeader";
+            this.LabelNewBalanceHeader.Size = new System.Drawing.Size(131, 18);
+            this.LabelNewBalanceHeader.TabIndex = 4;
+            this.LabelNewBalanceHeader.Text = "New Balance Euro";
+            this.LabelNewBalanceHeader.Click += new System.EventHandler(this.label1_Click);
             // 
-            // TextBoxCurrentBalance
+            // LabelNewAmountHeader
             // 
-            this.TextBoxCurrentBalance.Location = new System.Drawing.Point(9, 192);
-            this.TextBoxCurrentBalance.Name = "TextBoxCurrentBalance";
-            this.TextBoxCurrentBalance.Size = new System.Drawing.Size(128, 20);
-            this.TextBoxCurrentBalance.TabIndex = 5;
+            this.LabelNewAmountHeader.AutoSize = true;
+            this.LabelNewAmountHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelNewAmountHeader.Location = new System.Drawing.Point(187, 171);
+            this.LabelNewAmountHeader.Name = "LabelNewAmountHeader";
+            this.LabelNewAmountHeader.Size = new System.Drawing.Size(129, 18);
+            this.LabelNewAmountHeader.TabIndex = 4;
+            this.LabelNewAmountHeader.Text = "New Amount Euro";
+            this.LabelNewAmountHeader.Click += new System.EventHandler(this.label1_Click);
             // 
-            // LabelNewAmount
+            // LabelCurrentBalanceHeader
             // 
-            this.LabelNewAmount.AutoSize = true;
-            this.LabelNewAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelNewAmount.Location = new System.Drawing.Point(187, 171);
-            this.LabelNewAmount.Name = "LabelNewAmount";
-            this.LabelNewAmount.Size = new System.Drawing.Size(97, 18);
-            this.LabelNewAmount.TabIndex = 4;
-            this.LabelNewAmount.Text = "New Amount ";
-            this.LabelNewAmount.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // LabelCurrentBalance
-            // 
-            this.LabelCurrentBalance.AutoSize = true;
-            this.LabelCurrentBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelCurrentBalance.Location = new System.Drawing.Point(6, 171);
-            this.LabelCurrentBalance.Name = "LabelCurrentBalance";
-            this.LabelCurrentBalance.Size = new System.Drawing.Size(114, 18);
-            this.LabelCurrentBalance.TabIndex = 4;
-            this.LabelCurrentBalance.Text = "Current Balance";
-            this.LabelCurrentBalance.Click += new System.EventHandler(this.label1_Click);
+            this.LabelCurrentBalanceHeader.AutoSize = true;
+            this.LabelCurrentBalanceHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelCurrentBalanceHeader.Location = new System.Drawing.Point(6, 171);
+            this.LabelCurrentBalanceHeader.Name = "LabelCurrentBalanceHeader";
+            this.LabelCurrentBalanceHeader.Size = new System.Drawing.Size(150, 18);
+            this.LabelCurrentBalanceHeader.TabIndex = 4;
+            this.LabelCurrentBalanceHeader.Text = "Current Balance Euro";
+            this.LabelCurrentBalanceHeader.Click += new System.EventHandler(this.label1_Click);
             // 
             // label6
             // 
@@ -636,6 +623,7 @@
             this.TextBoxEMailEditItems.Name = "TextBoxEMailEditItems";
             this.TextBoxEMailEditItems.Size = new System.Drawing.Size(199, 20);
             this.TextBoxEMailEditItems.TabIndex = 11;
+            this.TextBoxEMailEditItems.TextChanged += new System.EventHandler(this.TextBoxChangedTabControllEditItems);
             // 
             // ButtonCancelEditItems
             // 
@@ -645,7 +633,7 @@
             this.ButtonCancelEditItems.TabIndex = 6;
             this.ButtonCancelEditItems.Text = "Cancel";
             this.ButtonCancelEditItems.UseVisualStyleBackColor = true;
-            this.ButtonCancelEditItems.Click += new System.EventHandler(this.ButtonClicked);
+            this.ButtonCancelEditItems.Click += new System.EventHandler(this.ButtonClickedEditItemsofCustomer);
             // 
             // TextBoxLastNameEditItems
             // 
@@ -653,6 +641,7 @@
             this.TextBoxLastNameEditItems.Name = "TextBoxLastNameEditItems";
             this.TextBoxLastNameEditItems.Size = new System.Drawing.Size(199, 20);
             this.TextBoxLastNameEditItems.TabIndex = 11;
+            this.TextBoxLastNameEditItems.TextChanged += new System.EventHandler(this.TextBoxChangedTabControllEditItems);
             // 
             // ButtonSaveEditItems
             // 
@@ -662,7 +651,7 @@
             this.ButtonSaveEditItems.TabIndex = 6;
             this.ButtonSaveEditItems.Text = "Save";
             this.ButtonSaveEditItems.UseVisualStyleBackColor = true;
-            this.ButtonSaveEditItems.Click += new System.EventHandler(this.ButtonClicked);
+            this.ButtonSaveEditItems.Click += new System.EventHandler(this.ButtonClickedEditItemsofCustomer);
             // 
             // label1
             // 
@@ -838,8 +827,8 @@
             this.AddCustomer.Controls.Add(this.TextBoxAddE_Mail);
             this.AddCustomer.Controls.Add(this.TextBoxAddLastName);
             this.AddCustomer.Controls.Add(this.TextBoxAddFirstName);
-            this.AddCustomer.Controls.Add(this.CancelNewCustomer);
-            this.AddCustomer.Controls.Add(this.ButtonSaveNewCustomer);
+            this.AddCustomer.Controls.Add(this.ButtonCancelNewCustomer);
+            this.AddCustomer.Controls.Add(this.ButtonAddNewCustomer);
             this.AddCustomer.Controls.Add(this.label15);
             this.AddCustomer.Controls.Add(this.label12);
             this.AddCustomer.Controls.Add(this.label13);
@@ -884,25 +873,25 @@
             this.TextBoxAddFirstName.TabIndex = 12;
             this.TextBoxAddFirstName.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControll);
             // 
-            // CancelNewCustomer
+            // ButtonCancelNewCustomer
             // 
-            this.CancelNewCustomer.Location = new System.Drawing.Point(220, 180);
-            this.CancelNewCustomer.Name = "CancelNewCustomer";
-            this.CancelNewCustomer.Size = new System.Drawing.Size(68, 23);
-            this.CancelNewCustomer.TabIndex = 10;
-            this.CancelNewCustomer.Text = "Cancel";
-            this.CancelNewCustomer.UseVisualStyleBackColor = true;
-            this.CancelNewCustomer.Click += new System.EventHandler(this.ButtonClicked);
+            this.ButtonCancelNewCustomer.Location = new System.Drawing.Point(220, 180);
+            this.ButtonCancelNewCustomer.Name = "ButtonCancelNewCustomer";
+            this.ButtonCancelNewCustomer.Size = new System.Drawing.Size(68, 23);
+            this.ButtonCancelNewCustomer.TabIndex = 10;
+            this.ButtonCancelNewCustomer.Text = "Cancel";
+            this.ButtonCancelNewCustomer.UseVisualStyleBackColor = true;
+            this.ButtonCancelNewCustomer.Click += new System.EventHandler(this.ButtonClickedEditItemsofCustomer);
             // 
-            // ButtonSaveNewCustomer
+            // ButtonAddNewCustomer
             // 
-            this.ButtonSaveNewCustomer.Location = new System.Drawing.Point(146, 180);
-            this.ButtonSaveNewCustomer.Name = "ButtonSaveNewCustomer";
-            this.ButtonSaveNewCustomer.Size = new System.Drawing.Size(68, 23);
-            this.ButtonSaveNewCustomer.TabIndex = 11;
-            this.ButtonSaveNewCustomer.Text = "Save";
-            this.ButtonSaveNewCustomer.UseVisualStyleBackColor = true;
-            this.ButtonSaveNewCustomer.Click += new System.EventHandler(this.ButtonClicked);
+            this.ButtonAddNewCustomer.Location = new System.Drawing.Point(146, 180);
+            this.ButtonAddNewCustomer.Name = "ButtonAddNewCustomer";
+            this.ButtonAddNewCustomer.Size = new System.Drawing.Size(68, 23);
+            this.ButtonAddNewCustomer.TabIndex = 11;
+            this.ButtonAddNewCustomer.Text = "Add";
+            this.ButtonAddNewCustomer.UseVisualStyleBackColor = true;
+            this.ButtonAddNewCustomer.Click += new System.EventHandler(this.ButtonClickedEditItemsofCustomer);
             // 
             // label15
             // 
@@ -943,6 +932,28 @@
             this.label14.Size = new System.Drawing.Size(78, 18);
             this.label14.TabIndex = 8;
             this.label14.Text = "Firstname:";
+            // 
+            // LabelCurrentBalanceShow
+            // 
+            this.LabelCurrentBalanceShow.AutoSize = true;
+            this.LabelCurrentBalanceShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelCurrentBalanceShow.Location = new System.Drawing.Point(14, 194);
+            this.LabelCurrentBalanceShow.Name = "LabelCurrentBalanceShow";
+            this.LabelCurrentBalanceShow.Size = new System.Drawing.Size(46, 18);
+            this.LabelCurrentBalanceShow.TabIndex = 4;
+            this.LabelCurrentBalanceShow.Text = "label1";
+            this.LabelCurrentBalanceShow.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // LabelNewBalanceShow
+            // 
+            this.LabelNewBalanceShow.AutoSize = true;
+            this.LabelNewBalanceShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelNewBalanceShow.Location = new System.Drawing.Point(194, 275);
+            this.LabelNewBalanceShow.Name = "LabelNewBalanceShow";
+            this.LabelNewBalanceShow.Size = new System.Drawing.Size(46, 18);
+            this.LabelNewBalanceShow.TabIndex = 4;
+            this.LabelNewBalanceShow.Text = "label1";
+            this.LabelNewBalanceShow.Click += new System.EventHandler(this.label1_Click);
             // 
             // MainView
             // 
@@ -1013,12 +1024,10 @@
         private System.Windows.Forms.Button ButtonCancelNewBalance;
         private System.Windows.Forms.Button ButtonSaveNewBalance;
         private System.Windows.Forms.Button ButtonAddNewAmount;
-        private System.Windows.Forms.TextBox TextBoxNewBalance;
         private System.Windows.Forms.TextBox TextBoxNewAmount;
-        private System.Windows.Forms.Label LabelNewBalance;
-        private System.Windows.Forms.TextBox TextBoxCurrentBalance;
-        private System.Windows.Forms.Label LabelNewAmount;
-        private System.Windows.Forms.Label LabelCurrentBalance;
+        private System.Windows.Forms.Label LabelNewBalanceHeader;
+        private System.Windows.Forms.Label LabelNewAmountHeader;
+        private System.Windows.Forms.Label LabelCurrentBalanceHeader;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label LabelDateofChangeEditBalance;
@@ -1055,14 +1064,16 @@
         private System.Windows.Forms.TextBox TextBoxAddE_Mail;
         private System.Windows.Forms.TextBox TextBoxAddLastName;
         private System.Windows.Forms.TextBox TextBoxAddFirstName;
-        private System.Windows.Forms.Button CancelNewCustomer;
-        private System.Windows.Forms.Button ButtonSaveNewCustomer;
+        private System.Windows.Forms.Button ButtonCancelNewCustomer;
+        private System.Windows.Forms.Button ButtonAddNewCustomer;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerID;
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
         private System.Windows.Forms.DataGridViewTextBoxColumn E_Mail;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateofChange;
         private System.Windows.Forms.DataGridViewTextBoxColumn MoneyBalance;
+        private System.Windows.Forms.Label LabelNewBalanceShow;
+        private System.Windows.Forms.Label LabelCurrentBalanceShow;
     }
 }
 
