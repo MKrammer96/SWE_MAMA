@@ -52,8 +52,8 @@ namespace MAMA
                 DataGridViewCustomers.Rows[number].Cells[1].Value = customers[i]._firstName;
                 DataGridViewCustomers.Rows[number].Cells[2].Value = customers[i]._lastName;
                 DataGridViewCustomers.Rows[number].Cells[3].Value = customers[i]._eMail;
-                DataGridViewCustomers.Rows[number].Cells[4].Value = customers[i].DateOfChange;
-                DataGridViewCustomers.Rows[number].Cells[5].Value = customers[i].MoneyBalance;
+                DataGridViewCustomers.Rows[number].Cells[4].Value = customers[i]._DateOfChange;
+                DataGridViewCustomers.Rows[number].Cells[5].Value = customers[i]._MoneyBalance;
             }
 
         }
@@ -165,7 +165,8 @@ namespace MAMA
                 }
                 else if (txBox == TextBoxAddNewAmount)
                 {
-                    if (decimal.TryParse(TextBoxAddNewAmount.Text,out decimal moneyBalance))
+                    decimal moneyBalance;
+                    if (decimal.TryParse(TextBoxAddNewAmount.Text,out moneyBalance))
                     {
                         TextBoxAddNewAmount.BackColor = Color.Green;
                     }
@@ -192,7 +193,8 @@ namespace MAMA
                 //Check Input Balance
                 if (txBox== TextBoxNewAmount)
                 {
-                    if (decimal.TryParse(TextBoxNewAmount.Text, out decimal moneyBalance))
+                    decimal moneyBalance;
+                    if (decimal.TryParse(TextBoxNewAmount.Text, out moneyBalance))
                     {
                         TextBoxNewAmount.BackColor = Color.Green;
                     }

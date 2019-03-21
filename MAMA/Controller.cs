@@ -38,22 +38,18 @@ namespace MAMA
         /// <param name="filepath"></param>
         public void GetCustomerList(string filepath)
         {
-
-            CSVHandler.readCSV(filepath);
-
-
-            //Test List
-            List<Customer> testCustomers = new List<Customer>();
-            testCustomers.Add(new Customer("Manuel", "Krammer", "manuel.krammer@gmail.com", 1, 120));
-            testCustomers.Add(new Customer("Matthias", "Farveleder", "farveleder@gmail.com", 5, 160));
-            testCustomers.Add(new Customer("Markus", "Farveleder", "m.farv@gmail.com", 7, -167));
+            List<Customer> myCustomers = CSVHandler.readCSV(filepath);
 
 
-            CustomerList = testCustomers;
-            MainView.UpdateDataGridview(testCustomers);
+            ////Test List
+            //List<Customer> testCustomers = new List<Customer>();
+            //testCustomers.Add(new Customer("Manuel", "Krammer", "manuel.krammer@gmail.com", 1, 120));
+            //testCustomers.Add(new Customer("Matthias", "Farveleder", "farveleder@gmail.com", 5, 160));
+            //testCustomers.Add(new Customer("Markus", "Farveleder", "m.farv@gmail.com", 7, -167));
 
 
-
+            CustomerList = myCustomers;
+            MainView.UpdateDataGridview(myCustomers);
         }
 
         /// <summary>

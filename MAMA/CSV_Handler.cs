@@ -129,13 +129,16 @@ namespace MAMA
             }
         }
 
-        public List<string[]> readCSV(string path)
+        public List<Customer> readCSV(string path)
         {
+            
+
             try
             {
                 string textLine = string.Empty;
                 string[] splitLine;
-                List<string[]> customerData = new List<string[]>();
+                List<string[]> customerDataAsString = new List<string[]>();
+                List<Customer> customerData = new List<Customer>();
 
                 if (File.Exists(path))
                 {
@@ -147,10 +150,30 @@ namespace MAMA
                         if (textLine != "")
                         {
                             splitLine = textLine.Split(';');
-                            customerData.Add(splitLine);
+                            customerDataAsString.Add(splitLine);
                         }
                     }
                 }
+
+                // Start at 1 - Line1 = Header
+                for (int i = 1; i < customerDataAsString.Count; i++)
+                {
+                    string[] data = customerDataAsString[i];
+
+                    int customerNumber = Convert.ToInt16(data[0]);
+                    string firstName = data[1];
+                    string lastName = data[2];
+                    string eMailAdress = data[3];                    
+                    DateTime DateOfChange = Convert.ToDateTime(data[4]);
+                    string moneyBalanceAsString = data[5];
+
+                    float moneyBalance;
+                    float.TryParse(moneyBalanceAsString, out moneyBalance);
+                    Customer myCustomer = new Customer(firstName, lastName, eMailAdress, customerNumber, moneyBalance, DateOfChange);
+
+                    customerData.Add(myCustomer);
+                }
+
                 return customerData;
             }
             catch (Exception ex)

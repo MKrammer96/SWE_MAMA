@@ -8,8 +8,8 @@ namespace MAMA
 {
     public class Customer : User
     {
-        public float MoneyBalance;
-        public DateTime DateOfChange;
+        public float _MoneyBalance;
+        public DateTime _DateOfChange;
 
 
         /// <summary>
@@ -19,12 +19,12 @@ namespace MAMA
         /// <param name="lastName">Last Name</param>
         /// <param name="eMailAdress">E-Mail Adress</param>
         /// <param name="customerNumber">Usernumber</param>
-        public Customer(string firstName, string lastName, string eMailAdress, int customerNumber, float moneyBalance)
+        public Customer(string firstName, string lastName, string eMailAdress, int customerNumber, float moneyBalance, DateTime DateOfChange)
         {
-            MoneyBalance = moneyBalance;
+            _MoneyBalance = moneyBalance;
             _customerNumber = customerNumber;
             _dateOfCreate = DateTime.Now;
-            DateOfChange = DateTime.Now;
+            _DateOfChange = DateOfChange;
             _eMail = new EMailAdress(eMailAdress);
             _firstName = firstName;
             _lastName = lastName;
@@ -36,13 +36,13 @@ namespace MAMA
         //}
 
         /// <summary>
-        /// Updates the Balance of the user
+        /// Adds moneyBalance to the actual Balance
         /// </summary>
         /// <param name="moneyBalance">Put in Money</param>
         public void UpdateBalance(int moneyBalance)
         {
-            MoneyBalance = MoneyBalance + moneyBalance;
-            DateOfChange = DateTime.Now;
+            _MoneyBalance = _MoneyBalance + moneyBalance;
+            _DateOfChange = DateTime.Now;
         }
     }
 }
