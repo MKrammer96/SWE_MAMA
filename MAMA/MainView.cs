@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,34 +16,55 @@ namespace MAMA
     public partial class MainView : Form
     {
         private Controller Controller;
+        private bool EnableButtonSaveNewBalance = false;
+        private bool EnableButtonSaveEditItems = false;
+        private bool EnableButtonAddNewCustomer = false;
 
         public MainView()
         {
             InitializeComponent();
+            ButtonAddNewCustomer.Enabled = false;
+            ButtonSaveEditItems.Enabled = false;
+            ButtonSaveNewBalance.Enabled = false;
         }
 
-        public void GetContoller(Controller controller)
+        public void SetContoller(Controller controller)
         {
             Controller = controller;
         }
 
-
-        public void UpdateDataGridview(object sender, EventArgs e)
+        /// <summary>
+        /// still to finish
+        /// </summary>
+        /// <param name="customers"></param>
+        public void UpdateDataGridview(List<Customer> customers)
         {
 
             //Skalierung 
+            //DataGridViewCustomers = customers;
             DataGridViewCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DataGridViewCustomers.Update();
 
+            for (int i = 0; i < customers.Count; i++)
+            {
+                int number = DataGridViewCustomers.Rows.Add();
+                DataGridViewCustomers.Rows[number].Cells[0].Value = customers[i]._customerNumber;
+                DataGridViewCustomers.Rows[number].Cells[1].Value = customers[i]._firstName;
+                DataGridViewCustomers.Rows[number].Cells[2].Value = customers[i]._lastName;
+                DataGridViewCustomers.Rows[number].Cells[3].Value = customers[i]._eMail;
+                DataGridViewCustomers.Rows[number].Cells[4].Value = customers[i].DateOfChange;
+                DataGridViewCustomers.Rows[number].Cells[5].Value = customers[i].MoneyBalance;
+            }
 
         }
 
         
         //Check the Name of the ButtonClicked and to reference to the functions
-        private void ButtonClicked(object sender, EventArgs e)
+        private void ButtonClickedEditItemsofCustomer(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(Button))
             {
-                Button btn = (Button) sender;
+                Button btn = (Button)sender;
 
                 if (btn == ButtonSaveNewBalance)
                 {
@@ -71,9 +94,147 @@ namespace MAMA
             }
 
         }
+        
+        //to do
+        private void ButtonClickedAddCustomer(object sender, EventArgs e)
+        {
+            if (sender.GetType() == typeof(Button))
+            {
+                Button btn = (Button) sender;
+
+                if (btn == ButtonAddNewCustomer)
+                {
+
+                }
+                else if (btn == ButtonCancelNewCustomer)
+                {
+                    
+                }
+            }
+
+        }
+        
+        //to finish
+        private void TextBoxChangedMainTabControll(object sender, EventArgs e)
+        {
+            if (sender.GetType() == typeof(TextBox))
+            {
+                TextBox txBox = (TextBox)sender;
+
+                if (txBox == TextBoxAddFirstName)
+                {
+                    bool textOk = CheckforLettersonly(TextBoxAddFirstName.Text);
+
+                    if (textOk && TextBoxAddFirstName.Text.Length > 2)
+                    {
+                        TextBoxAddFirstName.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        TextBoxAddFirstName.BackColor = Color.Red;
+                    }
+
+                }
+                else if (txBox == TextBoxAddLastName)
+                {
+                    bool textOk = CheckforLettersonly(TextBoxAddLastName.Text);
+
+                    if (textOk && TextBoxAddLastName.Text.Length > 2)
+                    {
+                        TextBoxAddLastName.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        TextBoxAddLastName.BackColor = Color.Red;
+                    }
+
+                }
+                else if (txBox == TextBoxAddE_Mail)
+                {
+                    EMailAdress eMailAdress = new EMailAdress(TextBoxAddE_Mail.Text);
+                    if (eMailAdress.Address != string.Empty && eMailAdress.Address != string.Empty)
+                    {
+                        TextBoxAddE_Mail.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        TextBoxAddE_Mail.BackColor = Color.Red;
+                    }
+
+
+                }
+                else if (txBox == TextBoxAddNewAmount)
+                {
+                    if (decimal.TryParse(TextBoxAddNewAmount.Text,out decimal moneyBalance))
+                    {
+                        TextBoxAddNewAmount.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        TextBoxAddNewAmount.BackColor = Color.Red;
+                    }
+                    
+                }
+
+                
+            }
+
+
+        }
+
+        // to finish
+        private void TextBoxChangedTabControllEditItems(object sender, EventArgs e)
+        {
+            if (sender.GetType() == typeof(TextBox))
+            {
+                TextBox txBox = (TextBox) sender;
+
+                //Check Input Balance
+                if (txBox== TextBoxNewAmount)
+                {
+                    if (decimal.TryParse(TextBoxNewAmount.Text, out decimal moneyBalance))
+                    {
+                        TextBoxNewAmount.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        TextBoxNewAmount.BackColor = Color.Red;
+                    }
+
+                }
+
+                //Check Input Edit Items 
+                else if (txBox == TextBoxLastNameEditItems)
+                {
+                    if (CheckforLettersonly(TextBoxLastNameEditItems.Text) && TextBoxLastNameEditItems.Text.Length > 2)
+                    {
+                        TextBoxLastNameEditItems.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        TextBoxLastNameEditItems.BackColor = Color.Red;
+                    }
+
+                }
+                else if (txBox == TextBoxEMailEditItems)
+                {
+                    EMailAdress eMailAdress = new EMailAdress(TextBoxEMailEditItems.Text);
+                    if (eMailAdress.Address != string.Empty && eMailAdress.Address != string.Empty)
+                    {
+                        TextBoxEMailEditItems.BackColor = Color.Green;
+                    }
+                    else
+                    {
+                        TextBoxEMailEditItems.BackColor = Color.Red;
+                    }
+
+                }
+            }
+        }
 
         /// Clicked Item Handeling of the Menustrip
         /// OpenFiler Handler
+        /// good
         private void OpenfileHandler(object sender, EventArgs e)
         {
             string filepath = string.Empty;
@@ -82,22 +243,22 @@ namespace MAMA
             openFileDialog1.RestoreDirectory = true;
 
             // only for csv 
-            if (openFileDialog1.ShowDialog()==DialogResult.OK)
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 filepath = openFileDialog1.FileName;
-                //Readfile via controller CSV Reader
 
-                CSV_Handler myHandler = new CSV_Handler();
+                Controller.GetCustomerList(filepath);
 
-                DataGridViewCustomers = myHandler.readCSV(filepath);
+
             }
-            
+
         }
 
-        /// SaveFile Handler for a new File 
+        /// SaveFile Handler for a new File
+        /// to finish 
         private void SavefileHandler(object sender, EventArgs e)
         {
-            Stream myStream; 
+            Stream myStream;
             saveFileDialog1.Filter = "CSV files (*.csv)|*.csv";
             saveFileDialog1.FilterIndex = 2;
             saveFileDialog1.RestoreDirectory = true;
@@ -108,82 +269,45 @@ namespace MAMA
                 {
                     // Code to write the stream goes here.
                     // Attention new CSV Handler
-                    
+
                 }
             }
 
         }
 
         /// Save File Handler for existing File
+        /// to do
         private void SaveCurrentFile(object sender, EventArgs e)
         {
 
         }
 
-        
-        private void TextBoxChangedMainTabControll(object sender, EventArgs e)
+        //to do
+        private void DataGridviewSelectedRow(object sender, EventArgs e)
         {
-            if (sender.GetType() == typeof(TextBox))
+            if (sender.GetType() == typeof(DataGridView))
             {
-                TextBox txBox = (TextBox)sender;
-
-                if (txBox == TextBoxAddFirstName)
+                if ((DataGridView) sender == DataGridViewCustomers)
                 {
-
+                    
                 }
-                if (txBox == TextBoxAddLastName)
-                {
 
-                }
-                if (txBox == TextBoxAddE_Mail)
-                {
-
-                }
-                if (txBox == TextBoxAddCreationDate)
-                {
-
-                }
-                if (txBox == TextBoxAddNewAmount)
-                {
-
-                }
             }
 
 
         }
-        ///Is responsible for a listed user to change the items
-        private void TextBoxChangedTabControllEditItems(object sender, EventArgs e)
+
+
+        //good
+        private bool CheckforLettersonly(string textbox)
         {
-            if (sender.GetType() == typeof(TextBox))
+            if (!Regex.IsMatch(textbox, @"^[\p{L}]+$"))
             {
-                TextBox txBox = (TextBox) sender;
-
-                //Check Input Balance
-                if (txBox.Name == TextBoxNewAmount.Name)
-                {
-
-                }
-                if (txBox.Name == TextBoxNewBalance.Name)
-                {
-
-                }
-                if (txBox.Name == TextBoxCurrentBalance.Name)
-                {
-
-                }
-                //Check Input Edit Items 
-                if (txBox.Name == TextBoxLastNameEditItems.Name)
-                {
-
-                }
-                if (txBox.Name == TextBoxEMailEditItems.Name)
-                {
-
-                }
+                return false;
             }
+            
+            return true;
         }
-
-
 
 
 
