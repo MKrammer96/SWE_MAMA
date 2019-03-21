@@ -129,14 +129,14 @@ namespace MAMA
             }
         }
 
-        public DataGridView readCSV(string path)
+        public List<string[]> readCSV(string path)
         {
             try
             {
                 string textLine = string.Empty;
                 string[] splitLine;
-                DataGridView accountsDataGridView = new DataGridView();
-                
+                List<string[]> customerData = new List<string[]>();
+
                 if (File.Exists(path))
                 {
                     StreamReader myReader = new StreamReader(path);
@@ -147,12 +147,11 @@ namespace MAMA
                         if (textLine != "")
                         {
                             splitLine = textLine.Split(';');
-                            accountsDataGridView.ColumnCount = splitLine.GetLength(0);
-                            accountsDataGridView.Rows.Add(splitLine);
+                            customerData.Add(splitLine);
                         }
                     }
                 }
-                return accountsDataGridView;
+                return customerData;
             }
             catch (Exception ex)
             {
