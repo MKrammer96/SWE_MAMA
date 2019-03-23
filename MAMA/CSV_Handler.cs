@@ -82,10 +82,11 @@ namespace MAMA
         public void ExportToCSV(string path, List<Customer> customerData)
         {
             List<string> dataToWrite = new List<string>();
-            StreamWriter csvFileWriter = new StreamWriter(path);
+            StreamWriter csvFileWriter = StreamWriter.Null;
             
             try
             {
+                csvFileWriter = new StreamWriter(path);
                 string header = "CustomerID;FirstName;LastName;E-Mail;DateofChange;MoneyBalance";
 
                 dataToWrite.Add(header);
@@ -97,19 +98,22 @@ namespace MAMA
                     int customerNumber = myCustomer._customerNumber;
                     string firstName = myCustomer._firstName;
                     string lastName = myCustomer._lastName;
-                    string eMailAdressAsString = myCustomer._eMail.ToString();
-                    string dateOfChangeAsString = myCustomer._DateOfChange.ToString();
-                    string moneyBalanceAsString = Convert.ToString(myCustomer._MoneyBalance);
+                    string eMailAdress = myCustomer._eMail.getEmailAdress();
+                    string dateOfChange = myCustomer._DateOfChange.ToString();
+                    string moneyBalance = Convert.ToString(myCustomer._MoneyBalance);
 
-                    string text = Convert.ToString(customerNumber) + ";" + firstName + ";" + lastName + ";" + eMailAdressAsString + ";" + dateOfChangeAsString;
+                    string text = Convert.ToString(customerNumber) + ";" + firstName + ";" + lastName + ";" + eMailAdress + ";" + dateOfChange + ";" + moneyBalance;
                     dataToWrite.Add(text);
                 }
 
-
+                
                 foreach (string text in dataToWrite)
                 {
                     csvFileWriter.WriteLine(text);
                 }
+
+                MessageBox.Show("Save successful");
+
             }
             catch (Exception exceptionObject)
             {

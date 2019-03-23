@@ -71,7 +71,7 @@ namespace MAMA
         /// Saves the data to the file at savefilepath
         /// </summary>
         /// <param name="savefilepath">Put in the Path</param>
-        public void SavenewCustomerList(string savefilepath)
+        public void SaveNewCustomerList(string savefilepath)
         {
             CSVHandler.ExportToCSV(savefilepath, CustomerList);
         }

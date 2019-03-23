@@ -273,18 +273,25 @@ namespace MAMA
         /// to finish 
         private void SavefileHandler(object sender, EventArgs e)
         {
-            Stream myStream;
+            //Stream myStream;
+            string filepath = string.Empty;
             saveFileDialog1.Filter = "CSV files (*.csv)|*.csv";
             saveFileDialog1.FilterIndex = 2;
             saveFileDialog1.RestoreDirectory = true;
 
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                if ((myStream = saveFileDialog1.OpenFile()) != null)
-                {
-                    // Code to write the stream goes here.
-                    // Attention new CSV Handler
-                }
+
+                filepath = saveFileDialog1.FileName;
+                Controller.SaveNewCustomerList(filepath);
+
+                //if ((myStream = saveFileDialog1.OpenFile()) != null)
+                //{
+                //    // Code to write the stream goes here.
+                //    // Attention new CSV Handler
+                //    filepath = saveFileDialog1.FileName;
+                //    Controller.SaveNewCustomerList(filepath);
+                //}
             }
 
         }
@@ -322,13 +329,50 @@ namespace MAMA
             
             return true;
         }
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
         private void label1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
