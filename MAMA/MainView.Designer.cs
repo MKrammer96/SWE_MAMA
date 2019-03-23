@@ -79,6 +79,8 @@
             this.LabelE_MailAddressEditBalance = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.LabelLastNameEditBalance = new System.Windows.Forms.Label();
+            this.LabelNewBalanceShow = new System.Windows.Forms.Label();
+            this.LabelCurrentBalanceShow = new System.Windows.Forms.Label();
             this.LabelFirstNameEditBalance = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.TextBoxEMailEditItems = new System.Windows.Forms.TextBox();
@@ -116,8 +118,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.LabelCurrentBalanceShow = new System.Windows.Forms.Label();
-            this.LabelNewBalanceShow = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.EditItemsofCustomer.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -132,14 +132,15 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(19, 19);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
             this.editToolStripMenuItem,
+            this.fileToolStripMenuItem,
             this.toolsToolStripMenuItem,
             this.viewToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1105, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1473, 28);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -157,7 +158,7 @@
             this.toolStripSeparator2,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // newToolStripMenuItem
@@ -165,8 +166,9 @@
             this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
             this.newToolStripMenuItem.Text = "&New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
@@ -174,14 +176,14 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenfileHandler);
             // 
             // toolStripSeparator
             // 
             this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator.Size = new System.Drawing.Size(173, 6);
             // 
             // saveToolStripMenuItem
             // 
@@ -189,19 +191,21 @@
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
             this.saveToolStripMenuItem.Text = "&Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
             this.saveAsToolStripMenuItem.Text = "Save &As";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
             // 
             // printToolStripMenuItem
             // 
@@ -209,7 +213,7 @@
             this.printToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
             this.printToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
             this.printToolStripMenuItem.Text = "&Print";
             // 
             // printPreviewToolStripMenuItem
@@ -217,18 +221,18 @@
             this.printPreviewToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("printPreviewToolStripMenuItem.Image")));
             this.printPreviewToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
-            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
             this.printPreviewToolStripMenuItem.Text = "Print Pre&view";
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(173, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(176, 26);
             this.exitToolStripMenuItem.Text = "E&xit";
             // 
             // editToolStripMenuItem
@@ -243,27 +247,27 @@
             this.toolStripSeparator4,
             this.selectAllToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(47, 24);
             this.editToolStripMenuItem.Text = "&Edit";
             // 
             // undoToolStripMenuItem
             // 
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(174, 26);
             this.undoToolStripMenuItem.Text = "&Undo";
             // 
             // redoToolStripMenuItem
             // 
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(174, 26);
             this.redoToolStripMenuItem.Text = "&Redo";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(141, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(171, 6);
             // 
             // cutToolStripMenuItem
             // 
@@ -271,7 +275,7 @@
             this.cutToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
             this.cutToolStripMenuItem.Text = "Cu&t";
             // 
             // copyToolStripMenuItem
@@ -280,7 +284,7 @@
             this.copyToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(174, 26);
             this.copyToolStripMenuItem.Text = "&Copy";
             // 
             // pasteToolStripMenuItem
@@ -289,18 +293,18 @@
             this.pasteToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(174, 26);
             this.pasteToolStripMenuItem.Text = "&Paste";
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(141, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(171, 6);
             // 
             // selectAllToolStripMenuItem
             // 
             this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(174, 26);
             this.selectAllToolStripMenuItem.Text = "Select &All";
             // 
             // toolsToolStripMenuItem
@@ -309,25 +313,25 @@
             this.customizeToolStripMenuItem,
             this.optionsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(56, 24);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // customizeToolStripMenuItem
             // 
             this.customizeToolStripMenuItem.Name = "customizeToolStripMenuItem";
-            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.customizeToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.customizeToolStripMenuItem.Text = "&Customize";
             // 
             // optionsToolStripMenuItem
             // 
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(152, 26);
             this.optionsToolStripMenuItem.Text = "&Options";
             // 
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // helpToolStripMenuItem
@@ -339,51 +343,53 @@
             this.toolStripSeparator5,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(53, 24);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // contentsToolStripMenuItem
             // 
             this.contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
-            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
             this.contentsToolStripMenuItem.Text = "&Contents";
             // 
             // indexToolStripMenuItem
             // 
             this.indexToolStripMenuItem.Name = "indexToolStripMenuItem";
-            this.indexToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.indexToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
             this.indexToolStripMenuItem.Text = "&Index";
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
             this.searchToolStripMenuItem.Text = "&Search";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(119, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(138, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(141, 26);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
             // SearchbyLastNameTextBox
             // 
-            this.SearchbyLastNameTextBox.Location = new System.Drawing.Point(515, 28);
+            this.SearchbyLastNameTextBox.Location = new System.Drawing.Point(687, 34);
+            this.SearchbyLastNameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.SearchbyLastNameTextBox.Name = "SearchbyLastNameTextBox";
-            this.SearchbyLastNameTextBox.Size = new System.Drawing.Size(212, 20);
+            this.SearchbyLastNameTextBox.Size = new System.Drawing.Size(281, 22);
             this.SearchbyLastNameTextBox.TabIndex = 3;
             // 
             // SearchName
             // 
             this.SearchName.AutoSize = true;
-            this.SearchName.Location = new System.Drawing.Point(512, 12);
+            this.SearchName.Location = new System.Drawing.Point(683, 15);
+            this.SearchName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SearchName.Name = "SearchName";
-            this.SearchName.Size = new System.Drawing.Size(101, 13);
+            this.SearchName.Size = new System.Drawing.Size(135, 17);
             this.SearchName.TabIndex = 4;
             this.SearchName.Text = "Search for lastname";
             this.SearchName.Click += new System.EventHandler(this.label1_Click);
@@ -392,10 +398,11 @@
             // 
             this.EditItemsofCustomer.Controls.Add(this.tabPage1);
             this.EditItemsofCustomer.Controls.Add(this.tabPage2);
-            this.EditItemsofCustomer.Location = new System.Drawing.Point(733, 6);
+            this.EditItemsofCustomer.Location = new System.Drawing.Point(977, 7);
+            this.EditItemsofCustomer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.EditItemsofCustomer.Name = "EditItemsofCustomer";
             this.EditItemsofCustomer.SelectedIndex = 0;
-            this.EditItemsofCustomer.Size = new System.Drawing.Size(346, 503);
+            this.EditItemsofCustomer.Size = new System.Drawing.Size(461, 619);
             this.EditItemsofCustomer.TabIndex = 5;
             // 
             // tabPage1
@@ -418,19 +425,21 @@
             this.tabPage1.Controls.Add(this.LabelNewBalanceShow);
             this.tabPage1.Controls.Add(this.LabelCurrentBalanceShow);
             this.tabPage1.Controls.Add(this.LabelFirstNameEditBalance);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(338, 477);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Size = new System.Drawing.Size(453, 590);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Balance";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // ButtonSubNewAmount
             // 
-            this.ButtonSubNewAmount.Location = new System.Drawing.Point(229, 218);
+            this.ButtonSubNewAmount.Location = new System.Drawing.Point(305, 268);
+            this.ButtonSubNewAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonSubNewAmount.Name = "ButtonSubNewAmount";
-            this.ButtonSubNewAmount.Size = new System.Drawing.Size(33, 23);
+            this.ButtonSubNewAmount.Size = new System.Drawing.Size(44, 28);
             this.ButtonSubNewAmount.TabIndex = 6;
             this.ButtonSubNewAmount.Text = "-";
             this.ButtonSubNewAmount.UseVisualStyleBackColor = true;
@@ -438,9 +447,10 @@
             // 
             // ButtonCancelNewBalance
             // 
-            this.ButtonCancelNewBalance.Location = new System.Drawing.Point(264, 299);
+            this.ButtonCancelNewBalance.Location = new System.Drawing.Point(352, 368);
+            this.ButtonCancelNewBalance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonCancelNewBalance.Name = "ButtonCancelNewBalance";
-            this.ButtonCancelNewBalance.Size = new System.Drawing.Size(68, 23);
+            this.ButtonCancelNewBalance.Size = new System.Drawing.Size(91, 28);
             this.ButtonCancelNewBalance.TabIndex = 6;
             this.ButtonCancelNewBalance.Text = "Cancel";
             this.ButtonCancelNewBalance.UseVisualStyleBackColor = true;
@@ -448,9 +458,10 @@
             // 
             // ButtonSaveNewBalance
             // 
-            this.ButtonSaveNewBalance.Location = new System.Drawing.Point(190, 299);
+            this.ButtonSaveNewBalance.Location = new System.Drawing.Point(253, 368);
+            this.ButtonSaveNewBalance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonSaveNewBalance.Name = "ButtonSaveNewBalance";
-            this.ButtonSaveNewBalance.Size = new System.Drawing.Size(68, 23);
+            this.ButtonSaveNewBalance.Size = new System.Drawing.Size(91, 28);
             this.ButtonSaveNewBalance.TabIndex = 6;
             this.ButtonSaveNewBalance.Text = "Save";
             this.ButtonSaveNewBalance.UseVisualStyleBackColor = true;
@@ -458,9 +469,10 @@
             // 
             // ButtonAddNewAmount
             // 
-            this.ButtonAddNewAmount.Location = new System.Drawing.Point(190, 218);
+            this.ButtonAddNewAmount.Location = new System.Drawing.Point(253, 268);
+            this.ButtonAddNewAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonAddNewAmount.Name = "ButtonAddNewAmount";
-            this.ButtonAddNewAmount.Size = new System.Drawing.Size(33, 23);
+            this.ButtonAddNewAmount.Size = new System.Drawing.Size(44, 28);
             this.ButtonAddNewAmount.TabIndex = 6;
             this.ButtonAddNewAmount.Text = "+";
             this.ButtonAddNewAmount.UseVisualStyleBackColor = true;
@@ -468,9 +480,10 @@
             // 
             // TextBoxNewAmount
             // 
-            this.TextBoxNewAmount.Location = new System.Drawing.Point(190, 192);
+            this.TextBoxNewAmount.Location = new System.Drawing.Point(253, 236);
+            this.TextBoxNewAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TextBoxNewAmount.Name = "TextBoxNewAmount";
-            this.TextBoxNewAmount.Size = new System.Drawing.Size(142, 20);
+            this.TextBoxNewAmount.Size = new System.Drawing.Size(188, 22);
             this.TextBoxNewAmount.TabIndex = 5;
             this.TextBoxNewAmount.TextChanged += new System.EventHandler(this.TextBoxChangedTabControllEditItems);
             // 
@@ -478,9 +491,10 @@
             // 
             this.LabelNewBalanceHeader.AutoSize = true;
             this.LabelNewBalanceHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelNewBalanceHeader.Location = new System.Drawing.Point(187, 252);
+            this.LabelNewBalanceHeader.Location = new System.Drawing.Point(249, 310);
+            this.LabelNewBalanceHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelNewBalanceHeader.Name = "LabelNewBalanceHeader";
-            this.LabelNewBalanceHeader.Size = new System.Drawing.Size(131, 18);
+            this.LabelNewBalanceHeader.Size = new System.Drawing.Size(159, 22);
             this.LabelNewBalanceHeader.TabIndex = 4;
             this.LabelNewBalanceHeader.Text = "New Balance Euro";
             this.LabelNewBalanceHeader.Click += new System.EventHandler(this.label1_Click);
@@ -489,9 +503,10 @@
             // 
             this.LabelNewAmountHeader.AutoSize = true;
             this.LabelNewAmountHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelNewAmountHeader.Location = new System.Drawing.Point(187, 171);
+            this.LabelNewAmountHeader.Location = new System.Drawing.Point(249, 210);
+            this.LabelNewAmountHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelNewAmountHeader.Name = "LabelNewAmountHeader";
-            this.LabelNewAmountHeader.Size = new System.Drawing.Size(129, 18);
+            this.LabelNewAmountHeader.Size = new System.Drawing.Size(155, 22);
             this.LabelNewAmountHeader.TabIndex = 4;
             this.LabelNewAmountHeader.Text = "New Amount Euro";
             this.LabelNewAmountHeader.Click += new System.EventHandler(this.label1_Click);
@@ -500,9 +515,10 @@
             // 
             this.LabelCurrentBalanceHeader.AutoSize = true;
             this.LabelCurrentBalanceHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelCurrentBalanceHeader.Location = new System.Drawing.Point(6, 171);
+            this.LabelCurrentBalanceHeader.Location = new System.Drawing.Point(8, 210);
+            this.LabelCurrentBalanceHeader.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelCurrentBalanceHeader.Name = "LabelCurrentBalanceHeader";
-            this.LabelCurrentBalanceHeader.Size = new System.Drawing.Size(150, 18);
+            this.LabelCurrentBalanceHeader.Size = new System.Drawing.Size(183, 22);
             this.LabelCurrentBalanceHeader.TabIndex = 4;
             this.LabelCurrentBalanceHeader.Text = "Current Balance Euro";
             this.LabelCurrentBalanceHeader.Click += new System.EventHandler(this.label1_Click);
@@ -511,9 +527,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 118);
+            this.label6.Location = new System.Drawing.Point(8, 145);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(115, 18);
+            this.label6.Size = new System.Drawing.Size(141, 22);
             this.label6.TabIndex = 4;
             this.label6.Text = "Date of Change:";
             this.label6.Click += new System.EventHandler(this.label1_Click);
@@ -522,9 +539,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(6, 85);
+            this.label5.Location = new System.Drawing.Point(8, 105);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 18);
+            this.label5.Size = new System.Drawing.Size(65, 22);
             this.label5.TabIndex = 4;
             this.label5.Text = "E-Mail:";
             this.label5.Click += new System.EventHandler(this.label1_Click);
@@ -533,9 +551,10 @@
             // 
             this.LabelDateofChangeEditBalance.AutoSize = true;
             this.LabelDateofChangeEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelDateofChangeEditBalance.Location = new System.Drawing.Point(153, 118);
+            this.LabelDateofChangeEditBalance.Location = new System.Drawing.Point(204, 145);
+            this.LabelDateofChangeEditBalance.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelDateofChangeEditBalance.Name = "LabelDateofChangeEditBalance";
-            this.LabelDateofChangeEditBalance.Size = new System.Drawing.Size(46, 18);
+            this.LabelDateofChangeEditBalance.Size = new System.Drawing.Size(58, 22);
             this.LabelDateofChangeEditBalance.TabIndex = 4;
             this.LabelDateofChangeEditBalance.Text = "label1";
             this.LabelDateofChangeEditBalance.Click += new System.EventHandler(this.label1_Click);
@@ -544,9 +563,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(6, 52);
+            this.label4.Location = new System.Drawing.Point(8, 64);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 18);
+            this.label4.Size = new System.Drawing.Size(93, 22);
             this.label4.TabIndex = 4;
             this.label4.Text = "Lastname:";
             this.label4.Click += new System.EventHandler(this.label1_Click);
@@ -555,9 +575,10 @@
             // 
             this.LabelE_MailAddressEditBalance.AutoSize = true;
             this.LabelE_MailAddressEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelE_MailAddressEditBalance.Location = new System.Drawing.Point(153, 85);
+            this.LabelE_MailAddressEditBalance.Location = new System.Drawing.Point(204, 105);
+            this.LabelE_MailAddressEditBalance.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelE_MailAddressEditBalance.Name = "LabelE_MailAddressEditBalance";
-            this.LabelE_MailAddressEditBalance.Size = new System.Drawing.Size(46, 18);
+            this.LabelE_MailAddressEditBalance.Size = new System.Drawing.Size(58, 22);
             this.LabelE_MailAddressEditBalance.TabIndex = 4;
             this.LabelE_MailAddressEditBalance.Text = "label1";
             this.LabelE_MailAddressEditBalance.Click += new System.EventHandler(this.label1_Click);
@@ -566,9 +587,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(6, 19);
+            this.label3.Location = new System.Drawing.Point(8, 23);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 18);
+            this.label3.Size = new System.Drawing.Size(94, 22);
             this.label3.TabIndex = 4;
             this.label3.Text = "Firstname:";
             // 
@@ -576,20 +598,46 @@
             // 
             this.LabelLastNameEditBalance.AutoSize = true;
             this.LabelLastNameEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelLastNameEditBalance.Location = new System.Drawing.Point(153, 52);
+            this.LabelLastNameEditBalance.Location = new System.Drawing.Point(204, 64);
+            this.LabelLastNameEditBalance.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelLastNameEditBalance.Name = "LabelLastNameEditBalance";
-            this.LabelLastNameEditBalance.Size = new System.Drawing.Size(46, 18);
+            this.LabelLastNameEditBalance.Size = new System.Drawing.Size(58, 22);
             this.LabelLastNameEditBalance.TabIndex = 4;
             this.LabelLastNameEditBalance.Text = "label1";
             this.LabelLastNameEditBalance.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // LabelNewBalanceShow
+            // 
+            this.LabelNewBalanceShow.AutoSize = true;
+            this.LabelNewBalanceShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelNewBalanceShow.Location = new System.Drawing.Point(259, 338);
+            this.LabelNewBalanceShow.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LabelNewBalanceShow.Name = "LabelNewBalanceShow";
+            this.LabelNewBalanceShow.Size = new System.Drawing.Size(58, 22);
+            this.LabelNewBalanceShow.TabIndex = 4;
+            this.LabelNewBalanceShow.Text = "label1";
+            this.LabelNewBalanceShow.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // LabelCurrentBalanceShow
+            // 
+            this.LabelCurrentBalanceShow.AutoSize = true;
+            this.LabelCurrentBalanceShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelCurrentBalanceShow.Location = new System.Drawing.Point(19, 239);
+            this.LabelCurrentBalanceShow.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LabelCurrentBalanceShow.Name = "LabelCurrentBalanceShow";
+            this.LabelCurrentBalanceShow.Size = new System.Drawing.Size(58, 22);
+            this.LabelCurrentBalanceShow.TabIndex = 4;
+            this.LabelCurrentBalanceShow.Text = "label1";
+            this.LabelCurrentBalanceShow.Click += new System.EventHandler(this.label1_Click);
             // 
             // LabelFirstNameEditBalance
             // 
             this.LabelFirstNameEditBalance.AutoSize = true;
             this.LabelFirstNameEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelFirstNameEditBalance.Location = new System.Drawing.Point(153, 19);
+            this.LabelFirstNameEditBalance.Location = new System.Drawing.Point(204, 23);
+            this.LabelFirstNameEditBalance.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelFirstNameEditBalance.Name = "LabelFirstNameEditBalance";
-            this.LabelFirstNameEditBalance.Size = new System.Drawing.Size(46, 18);
+            this.LabelFirstNameEditBalance.Size = new System.Drawing.Size(58, 22);
             this.LabelFirstNameEditBalance.TabIndex = 4;
             this.LabelFirstNameEditBalance.Text = "label1";
             this.LabelFirstNameEditBalance.Click += new System.EventHandler(this.label1_Click);
@@ -609,27 +657,30 @@
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(338, 477);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Size = new System.Drawing.Size(453, 590);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Name, E-Mail";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // TextBoxEMailEditItems
             // 
-            this.TextBoxEMailEditItems.Location = new System.Drawing.Point(133, 83);
+            this.TextBoxEMailEditItems.Location = new System.Drawing.Point(177, 102);
+            this.TextBoxEMailEditItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TextBoxEMailEditItems.Name = "TextBoxEMailEditItems";
-            this.TextBoxEMailEditItems.Size = new System.Drawing.Size(199, 20);
+            this.TextBoxEMailEditItems.Size = new System.Drawing.Size(264, 22);
             this.TextBoxEMailEditItems.TabIndex = 11;
             this.TextBoxEMailEditItems.TextChanged += new System.EventHandler(this.TextBoxChangedTabControllEditItems);
             // 
             // ButtonCancelEditItems
             // 
-            this.ButtonCancelEditItems.Location = new System.Drawing.Point(264, 192);
+            this.ButtonCancelEditItems.Location = new System.Drawing.Point(352, 236);
+            this.ButtonCancelEditItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonCancelEditItems.Name = "ButtonCancelEditItems";
-            this.ButtonCancelEditItems.Size = new System.Drawing.Size(68, 23);
+            this.ButtonCancelEditItems.Size = new System.Drawing.Size(91, 28);
             this.ButtonCancelEditItems.TabIndex = 6;
             this.ButtonCancelEditItems.Text = "Cancel";
             this.ButtonCancelEditItems.UseVisualStyleBackColor = true;
@@ -637,17 +688,19 @@
             // 
             // TextBoxLastNameEditItems
             // 
-            this.TextBoxLastNameEditItems.Location = new System.Drawing.Point(133, 53);
+            this.TextBoxLastNameEditItems.Location = new System.Drawing.Point(177, 65);
+            this.TextBoxLastNameEditItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TextBoxLastNameEditItems.Name = "TextBoxLastNameEditItems";
-            this.TextBoxLastNameEditItems.Size = new System.Drawing.Size(199, 20);
+            this.TextBoxLastNameEditItems.Size = new System.Drawing.Size(264, 22);
             this.TextBoxLastNameEditItems.TabIndex = 11;
             this.TextBoxLastNameEditItems.TextChanged += new System.EventHandler(this.TextBoxChangedTabControllEditItems);
             // 
             // ButtonSaveEditItems
             // 
-            this.ButtonSaveEditItems.Location = new System.Drawing.Point(190, 192);
+            this.ButtonSaveEditItems.Location = new System.Drawing.Point(253, 236);
+            this.ButtonSaveEditItems.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonSaveEditItems.Name = "ButtonSaveEditItems";
-            this.ButtonSaveEditItems.Size = new System.Drawing.Size(68, 23);
+            this.ButtonSaveEditItems.Size = new System.Drawing.Size(91, 28);
             this.ButtonSaveEditItems.TabIndex = 6;
             this.ButtonSaveEditItems.Text = "Save";
             this.ButtonSaveEditItems.UseVisualStyleBackColor = true;
@@ -657,18 +710,20 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(18, 161);
+            this.label1.Location = new System.Drawing.Point(24, 198);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 18);
+            this.label1.Size = new System.Drawing.Size(0, 22);
             this.label1.TabIndex = 6;
             // 
             // LabelCurrentBalanceEditItem
             // 
             this.LabelCurrentBalanceEditItem.AutoSize = true;
             this.LabelCurrentBalanceEditItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelCurrentBalanceEditItem.Location = new System.Drawing.Point(130, 152);
+            this.LabelCurrentBalanceEditItem.Location = new System.Drawing.Point(173, 187);
+            this.LabelCurrentBalanceEditItem.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelCurrentBalanceEditItem.Name = "LabelCurrentBalanceEditItem";
-            this.LabelCurrentBalanceEditItem.Size = new System.Drawing.Size(46, 18);
+            this.LabelCurrentBalanceEditItem.Size = new System.Drawing.Size(58, 22);
             this.LabelCurrentBalanceEditItem.TabIndex = 10;
             this.LabelCurrentBalanceEditItem.Text = "label1";
             // 
@@ -676,9 +731,10 @@
             // 
             this.LabelDateofChangeEditItems.AutoSize = true;
             this.LabelDateofChangeEditItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelDateofChangeEditItems.Location = new System.Drawing.Point(130, 118);
+            this.LabelDateofChangeEditItems.Location = new System.Drawing.Point(173, 145);
+            this.LabelDateofChangeEditItems.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelDateofChangeEditItems.Name = "LabelDateofChangeEditItems";
-            this.LabelDateofChangeEditItems.Size = new System.Drawing.Size(46, 18);
+            this.LabelDateofChangeEditItems.Size = new System.Drawing.Size(58, 22);
             this.LabelDateofChangeEditItems.TabIndex = 10;
             this.LabelDateofChangeEditItems.Text = "label1";
             // 
@@ -686,9 +742,10 @@
             // 
             this.LabelFirstNameEditItems.AutoSize = true;
             this.LabelFirstNameEditItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelFirstNameEditItems.Location = new System.Drawing.Point(130, 19);
+            this.LabelFirstNameEditItems.Location = new System.Drawing.Point(173, 23);
+            this.LabelFirstNameEditItems.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelFirstNameEditItems.Name = "LabelFirstNameEditItems";
-            this.LabelFirstNameEditItems.Size = new System.Drawing.Size(46, 18);
+            this.LabelFirstNameEditItems.Size = new System.Drawing.Size(58, 22);
             this.LabelFirstNameEditItems.TabIndex = 10;
             this.LabelFirstNameEditItems.Text = "label1";
             // 
@@ -696,9 +753,10 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(9, 152);
+            this.label10.Location = new System.Drawing.Point(12, 187);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(118, 18);
+            this.label10.Size = new System.Drawing.Size(145, 22);
             this.label10.TabIndex = 4;
             this.label10.Text = "Current Balance:";
             this.label10.Click += new System.EventHandler(this.label1_Click);
@@ -707,9 +765,10 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(9, 118);
+            this.label9.Location = new System.Drawing.Point(12, 145);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(115, 18);
+            this.label9.Size = new System.Drawing.Size(141, 22);
             this.label9.TabIndex = 4;
             this.label9.Text = "Date of Change:";
             this.label9.Click += new System.EventHandler(this.label1_Click);
@@ -718,9 +777,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(9, 85);
+            this.label8.Location = new System.Drawing.Point(12, 105);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(54, 18);
+            this.label8.Size = new System.Drawing.Size(65, 22);
             this.label8.TabIndex = 4;
             this.label8.Text = "E-Mail:";
             this.label8.Click += new System.EventHandler(this.label1_Click);
@@ -729,9 +789,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(9, 52);
+            this.label7.Location = new System.Drawing.Point(12, 64);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(77, 18);
+            this.label7.Size = new System.Drawing.Size(93, 22);
             this.label7.TabIndex = 4;
             this.label7.Text = "Lastname:";
             this.label7.Click += new System.EventHandler(this.label1_Click);
@@ -740,9 +801,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 19);
+            this.label2.Location = new System.Drawing.Point(12, 23);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 18);
+            this.label2.Size = new System.Drawing.Size(94, 22);
             this.label2.TabIndex = 4;
             this.label2.Text = "Firstname:";
             this.label2.Click += new System.EventHandler(this.label1_Click);
@@ -755,10 +817,11 @@
             // 
             this.MainTabcontrol.Controls.Add(this.EditGetCustomer);
             this.MainTabcontrol.Controls.Add(this.AddCustomer);
-            this.MainTabcontrol.Location = new System.Drawing.Point(0, 27);
+            this.MainTabcontrol.Location = new System.Drawing.Point(0, 33);
+            this.MainTabcontrol.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MainTabcontrol.Name = "MainTabcontrol";
             this.MainTabcontrol.SelectedIndex = 0;
-            this.MainTabcontrol.Size = new System.Drawing.Size(1093, 541);
+            this.MainTabcontrol.Size = new System.Drawing.Size(1457, 666);
             this.MainTabcontrol.TabIndex = 6;
             // 
             // EditGetCustomer
@@ -767,10 +830,11 @@
             this.EditGetCustomer.Controls.Add(this.SearchbyLastNameTextBox);
             this.EditGetCustomer.Controls.Add(this.EditItemsofCustomer);
             this.EditGetCustomer.Controls.Add(this.SearchName);
-            this.EditGetCustomer.Location = new System.Drawing.Point(4, 22);
+            this.EditGetCustomer.Location = new System.Drawing.Point(4, 25);
+            this.EditGetCustomer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.EditGetCustomer.Name = "EditGetCustomer";
-            this.EditGetCustomer.Padding = new System.Windows.Forms.Padding(3);
-            this.EditGetCustomer.Size = new System.Drawing.Size(1085, 515);
+            this.EditGetCustomer.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.EditGetCustomer.Size = new System.Drawing.Size(1449, 637);
             this.EditGetCustomer.TabIndex = 0;
             this.EditGetCustomer.Text = "Overview Customer";
             this.EditGetCustomer.UseVisualStyleBackColor = true;
@@ -785,9 +849,10 @@
             this.E_Mail,
             this.DateofChange,
             this.MoneyBalance});
-            this.DataGridViewCustomers.Location = new System.Drawing.Point(8, 54);
+            this.DataGridViewCustomers.Location = new System.Drawing.Point(11, 66);
+            this.DataGridViewCustomers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.DataGridViewCustomers.Name = "DataGridViewCustomers";
-            this.DataGridViewCustomers.Size = new System.Drawing.Size(719, 455);
+            this.DataGridViewCustomers.Size = new System.Drawing.Size(959, 560);
             this.DataGridViewCustomers.TabIndex = 6;
             this.DataGridViewCustomers.DoubleClick += new System.EventHandler(this.DataGridviewSelectedRow);
             // 
@@ -833,51 +898,57 @@
             this.AddCustomer.Controls.Add(this.label12);
             this.AddCustomer.Controls.Add(this.label13);
             this.AddCustomer.Controls.Add(this.label14);
-            this.AddCustomer.Location = new System.Drawing.Point(4, 22);
+            this.AddCustomer.Location = new System.Drawing.Point(4, 25);
+            this.AddCustomer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.AddCustomer.Name = "AddCustomer";
-            this.AddCustomer.Padding = new System.Windows.Forms.Padding(3);
-            this.AddCustomer.Size = new System.Drawing.Size(1085, 515);
+            this.AddCustomer.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.AddCustomer.Size = new System.Drawing.Size(1449, 637);
             this.AddCustomer.TabIndex = 1;
             this.AddCustomer.Text = "AddCustomer";
             this.AddCustomer.UseVisualStyleBackColor = true;
             // 
             // TextBoxAddNewAmount
             // 
-            this.TextBoxAddNewAmount.Location = new System.Drawing.Point(146, 141);
+            this.TextBoxAddNewAmount.Location = new System.Drawing.Point(195, 174);
+            this.TextBoxAddNewAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TextBoxAddNewAmount.Name = "TextBoxAddNewAmount";
-            this.TextBoxAddNewAmount.Size = new System.Drawing.Size(216, 20);
+            this.TextBoxAddNewAmount.Size = new System.Drawing.Size(287, 22);
             this.TextBoxAddNewAmount.TabIndex = 12;
             this.TextBoxAddNewAmount.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControll);
             // 
             // TextBoxAddE_Mail
             // 
-            this.TextBoxAddE_Mail.Location = new System.Drawing.Point(146, 106);
+            this.TextBoxAddE_Mail.Location = new System.Drawing.Point(195, 130);
+            this.TextBoxAddE_Mail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TextBoxAddE_Mail.Name = "TextBoxAddE_Mail";
-            this.TextBoxAddE_Mail.Size = new System.Drawing.Size(216, 20);
+            this.TextBoxAddE_Mail.Size = new System.Drawing.Size(287, 22);
             this.TextBoxAddE_Mail.TabIndex = 12;
             this.TextBoxAddE_Mail.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControll);
             // 
             // TextBoxAddLastName
             // 
-            this.TextBoxAddLastName.Location = new System.Drawing.Point(146, 73);
+            this.TextBoxAddLastName.Location = new System.Drawing.Point(195, 90);
+            this.TextBoxAddLastName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TextBoxAddLastName.Name = "TextBoxAddLastName";
-            this.TextBoxAddLastName.Size = new System.Drawing.Size(216, 20);
+            this.TextBoxAddLastName.Size = new System.Drawing.Size(287, 22);
             this.TextBoxAddLastName.TabIndex = 12;
             this.TextBoxAddLastName.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControll);
             // 
             // TextBoxAddFirstName
             // 
-            this.TextBoxAddFirstName.Location = new System.Drawing.Point(146, 40);
+            this.TextBoxAddFirstName.Location = new System.Drawing.Point(195, 49);
+            this.TextBoxAddFirstName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TextBoxAddFirstName.Name = "TextBoxAddFirstName";
-            this.TextBoxAddFirstName.Size = new System.Drawing.Size(216, 20);
+            this.TextBoxAddFirstName.Size = new System.Drawing.Size(287, 22);
             this.TextBoxAddFirstName.TabIndex = 12;
             this.TextBoxAddFirstName.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControll);
             // 
             // ButtonCancelNewCustomer
             // 
-            this.ButtonCancelNewCustomer.Location = new System.Drawing.Point(220, 180);
+            this.ButtonCancelNewCustomer.Location = new System.Drawing.Point(293, 222);
+            this.ButtonCancelNewCustomer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonCancelNewCustomer.Name = "ButtonCancelNewCustomer";
-            this.ButtonCancelNewCustomer.Size = new System.Drawing.Size(68, 23);
+            this.ButtonCancelNewCustomer.Size = new System.Drawing.Size(91, 28);
             this.ButtonCancelNewCustomer.TabIndex = 10;
             this.ButtonCancelNewCustomer.Text = "Cancel";
             this.ButtonCancelNewCustomer.UseVisualStyleBackColor = true;
@@ -885,9 +956,10 @@
             // 
             // ButtonAddNewCustomer
             // 
-            this.ButtonAddNewCustomer.Location = new System.Drawing.Point(146, 180);
+            this.ButtonAddNewCustomer.Location = new System.Drawing.Point(195, 222);
+            this.ButtonAddNewCustomer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonAddNewCustomer.Name = "ButtonAddNewCustomer";
-            this.ButtonAddNewCustomer.Size = new System.Drawing.Size(68, 23);
+            this.ButtonAddNewCustomer.Size = new System.Drawing.Size(91, 28);
             this.ButtonAddNewCustomer.TabIndex = 11;
             this.ButtonAddNewCustomer.Text = "Add";
             this.ButtonAddNewCustomer.UseVisualStyleBackColor = true;
@@ -897,9 +969,10 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(8, 140);
+            this.label15.Location = new System.Drawing.Point(11, 172);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(97, 18);
+            this.label15.Size = new System.Drawing.Size(117, 22);
             this.label15.TabIndex = 9;
             this.label15.Text = "New Amount:";
             // 
@@ -907,9 +980,10 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(8, 108);
+            this.label12.Location = new System.Drawing.Point(11, 133);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(54, 18);
+            this.label12.Size = new System.Drawing.Size(65, 22);
             this.label12.TabIndex = 6;
             this.label12.Text = "E-Mail:";
             // 
@@ -917,9 +991,10 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(8, 75);
+            this.label13.Location = new System.Drawing.Point(11, 92);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(77, 18);
+            this.label13.Size = new System.Drawing.Size(93, 22);
             this.label13.TabIndex = 7;
             this.label13.Text = "Lastname:";
             // 
@@ -927,42 +1002,22 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(8, 42);
+            this.label14.Location = new System.Drawing.Point(11, 52);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(78, 18);
+            this.label14.Size = new System.Drawing.Size(94, 22);
             this.label14.TabIndex = 8;
             this.label14.Text = "Firstname:";
             // 
-            // LabelCurrentBalanceShow
-            // 
-            this.LabelCurrentBalanceShow.AutoSize = true;
-            this.LabelCurrentBalanceShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelCurrentBalanceShow.Location = new System.Drawing.Point(14, 194);
-            this.LabelCurrentBalanceShow.Name = "LabelCurrentBalanceShow";
-            this.LabelCurrentBalanceShow.Size = new System.Drawing.Size(46, 18);
-            this.LabelCurrentBalanceShow.TabIndex = 4;
-            this.LabelCurrentBalanceShow.Text = "label1";
-            this.LabelCurrentBalanceShow.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // LabelNewBalanceShow
-            // 
-            this.LabelNewBalanceShow.AutoSize = true;
-            this.LabelNewBalanceShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelNewBalanceShow.Location = new System.Drawing.Point(194, 275);
-            this.LabelNewBalanceShow.Name = "LabelNewBalanceShow";
-            this.LabelNewBalanceShow.Size = new System.Drawing.Size(46, 18);
-            this.LabelNewBalanceShow.TabIndex = 4;
-            this.LabelNewBalanceShow.Text = "label1";
-            this.LabelNewBalanceShow.Click += new System.EventHandler(this.label1_Click);
-            // 
             // MainView
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1105, 617);
+            this.ClientSize = new System.Drawing.Size(1473, 759);
             this.Controls.Add(this.MainTabcontrol);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainView";
             this.Text = "MainView";
             this.menuStrip1.ResumeLayout(false);

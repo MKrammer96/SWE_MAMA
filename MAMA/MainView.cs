@@ -51,7 +51,7 @@ namespace MAMA
                 DataGridViewCustomers.Rows[number].Cells[0].Value = customers[i]._customerNumber;
                 DataGridViewCustomers.Rows[number].Cells[1].Value = customers[i]._firstName;
                 DataGridViewCustomers.Rows[number].Cells[2].Value = customers[i]._lastName;
-                DataGridViewCustomers.Rows[number].Cells[3].Value = customers[i]._eMail;
+                DataGridViewCustomers.Rows[number].Cells[3].Value = customers[i]._eMail.getEmailAdress();
                 DataGridViewCustomers.Rows[number].Cells[4].Value = customers[i]._DateOfChange;
                 DataGridViewCustomers.Rows[number].Cells[5].Value = customers[i]._MoneyBalance;
             }
@@ -90,30 +90,45 @@ namespace MAMA
                 {
 
                 }
-                
-            }
-
-        }
-        
-        //to do
-        private void ButtonClickedAddCustomer(object sender, EventArgs e)
-        {
-            if (sender.GetType() == typeof(Button))
-            {
-                Button btn = (Button) sender;
-
                 if (btn == ButtonAddNewCustomer)
                 {
 
                 }
                 else if (btn == ButtonCancelNewCustomer)
                 {
-                    
+
                 }
+
             }
 
         }
-        
+
+
+
+        /*
+        ***
+        *** see ButtonClickedEditItemsofCustomer
+        */
+
+        ////to do 
+        //private void ButtonClickedCustomer(object sender, EventArgs e)
+        //{
+        //    if (sender.GetType() == typeof(Button))
+        //    {
+        //        Button btn = (Button) sender;
+
+        //        if (btn == ButtonAddNewCustomer)
+        //        {
+
+        //        }
+        //        else if (btn == ButtonCancelNewCustomer)
+        //        {
+
+        //        }
+        //    }
+
+        //}
+
         //to finish
         private void TextBoxChangedMainTabControll(object sender, EventArgs e)
         {
@@ -250,8 +265,6 @@ namespace MAMA
                 filepath = openFileDialog1.FileName;
 
                 Controller.GetCustomerList(filepath);
-
-
             }
 
         }
@@ -271,7 +284,6 @@ namespace MAMA
                 {
                     // Code to write the stream goes here.
                     // Attention new CSV Handler
-
                 }
             }
 
@@ -310,58 +322,33 @@ namespace MAMA
             
             return true;
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
 
 
         private void label1_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
 
         }
 
-        
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

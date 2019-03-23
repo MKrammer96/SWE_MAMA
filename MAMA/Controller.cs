@@ -16,6 +16,9 @@ namespace MAMA
         private CSV_Handler CSVHandler;
         private LoginView LoginView;
 
+        private string filePathOfOpenedList = string.Empty;
+
+
         public List<Customer> CustomerList;
         
 
@@ -38,6 +41,7 @@ namespace MAMA
         /// <param name="filepath"></param>
         public void GetCustomerList(string filepath)
         {
+            filePathOfOpenedList = filepath;
             List<Customer> myCustomers = CSVHandler.readCSV(filepath);
 
 
@@ -49,24 +53,27 @@ namespace MAMA
 
 
             CustomerList = myCustomers;
-            MainView.UpdateDataGridview(myCustomers);
+            MainView.UpdateDataGridview(CustomerList);
         }
 
         /// <summary>
-        /// 
+        /// Saves the data to the file, which was opened last
         /// </summary>
         public void SaveCurrentCustomerList()
         {
-
+            if (filePathOfOpenedList != string.Empty)
+            {
+                CSVHandler.ExportToCSV(filePathOfOpenedList, CustomerList);
+            }
         }
 
         /// <summary>
-        /// 
+        /// Saves the data to the file at savefilepath
         /// </summary>
-        /// <param name="savefilepath"></param>
+        /// <param name="savefilepath">Put in the Path</param>
         public void SavenewCustomerList(string savefilepath)
         {
-
+            CSVHandler.ExportToCSV(savefilepath, CustomerList);
         }
 
         /// <summary>

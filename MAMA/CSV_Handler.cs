@@ -79,62 +79,56 @@ namespace MAMA
 
         }
         
-        public void ExportToCSV(string path, DataGridView GridData)
+        public void ExportToCSV(string path, List<Customer> customerData)
         {
+            List<string> dataToWrite = new List<string>();
+            StreamWriter csvFileWriter = new StreamWriter(path);
+            
             try
             {
-                StreamWriter csvFileWriter = new StreamWriter(path, false);
+                string header = "CustomerID;FirstName;LastName;E-Mail;DateofChange;MoneyBalance";
 
-                string columnHeaderText = "";
+                dataToWrite.Add(header);
 
-                int countColumn = GridData.ColumnCount - 1;
-
-                if (countColumn >= 0)
+                for (int i = 0; i < customerData.Count; i++)
                 {
-                    columnHeaderText = GridData.Columns[0].HeaderText;
-                }
+                    Customer myCustomer = customerData[i];
 
-                for (int i = 1; i <= countColumn; i++)
-                {
-                    columnHeaderText = columnHeaderText + ',' + GridData.Columns[i].HeaderText;
-                }
+                    int customerNumber = myCustomer._customerNumber;
+                    string firstName = myCustomer._firstName;
+                    string lastName = myCustomer._lastName;
+                    string eMailAdressAsString = myCustomer._eMail.ToString();
+                    string dateOfChangeAsString = myCustomer._DateOfChange.ToString();
+                    string moneyBalanceAsString = Convert.ToString(myCustomer._MoneyBalance);
 
-
-                csvFileWriter.WriteLine(columnHeaderText);
-
-                foreach (DataGridViewRow dataRowObject in GridData.Rows)
-                {
-                    if (!dataRowObject.IsNewRow)
-                    {
-                        string dataFromGrid = "";
-
-                        dataFromGrid = dataRowObject.Cells[0].Value.ToString();
-
-                        for (int i = 1; i <= countColumn; i++)
-                        {
-                            dataFromGrid = dataFromGrid + ',' + dataRowObject.Cells[i].Value.ToString();
-
-                            csvFileWriter.WriteLine(dataFromGrid);
-                        }
-                    }
+                    string text = Convert.ToString(customerNumber) + ";" + firstName + ";" + lastName + ";" + eMailAdressAsString + ";" + dateOfChangeAsString;
+                    dataToWrite.Add(text);
                 }
 
 
-                csvFileWriter.Flush();
-                csvFileWriter.Close();
+                foreach (string text in dataToWrite)
+                {
+                    csvFileWriter.WriteLine(text);
+                }
             }
             catch (Exception exceptionObject)
             {
                 MessageBox.Show(exceptionObject.ToString());
             }
+
+            finally
+            {
+                csvFileWriter.Flush();
+                csvFileWriter.Close();
+            }
         }
 
         public List<Customer> readCSV(string path)
         {
-            
-
+            StreamReader myReader = StreamReader.Null;
             try
             {
+                myReader = new StreamReader(path);
                 string textLine = string.Empty;
                 string[] splitLine;
                 List<string[]> customerDataAsString = new List<string[]>();
@@ -142,7 +136,7 @@ namespace MAMA
 
                 if (File.Exists(path))
                 {
-                    StreamReader myReader = new StreamReader(path);
+                    myReader = new StreamReader(path);
 
                     while (!myReader.EndOfStream)
                     {
@@ -163,7 +157,7 @@ namespace MAMA
                     int customerNumber = Convert.ToInt16(data[0]);
                     string firstName = data[1];
                     string lastName = data[2];
-                    string eMailAdress = data[3];                    
+                    string eMailAdress = data[3].ToString();                    
                     DateTime DateOfChange = Convert.ToDateTime(data[4]);
                     string moneyBalanceAsString = data[5];
 
@@ -188,6 +182,10 @@ namespace MAMA
                 }
 
                 return null;
+            }
+            finally
+            {
+                myReader.Close();
             }
         }
     }
