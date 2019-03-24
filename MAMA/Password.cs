@@ -11,7 +11,7 @@ namespace MAMA
         private string phrase = "MAMA_SWE"; // 8 characters
 
         /// <summary>
-        /// Creates a encrypted Password
+        /// Creates a encrypted Password and stores it in a file
         /// </summary>
         /// <param name="userinput">Enter Password</param>
         public Password(string userinput)
