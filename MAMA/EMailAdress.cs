@@ -10,6 +10,10 @@ namespace MAMA
     {
         public string Address { get; private set; }
 
+        /// <summary>
+        /// Creates a new E-Mail Adress and checks, if it is correct / (empty string, if false)
+        /// </summary>
+        /// <param name="adress">Adress</param>
         public EMailAdress(string adress)
         {
             if (verifyEmailAdress(adress))
@@ -23,7 +27,7 @@ namespace MAMA
         }
 
         /// <summary>
-        /// Updates your EMail-Adress
+        /// Updates your EMail-Adress / (empty string, if false)
         /// </summary>
         /// <param name="adress">e-Mail Adress</param>
         public void updateEmailAdress(string adress)
@@ -48,7 +52,7 @@ namespace MAMA
         }
 
         /// <summary>
-        /// Checks your EMail-Adress ("" if false)
+        /// Checks your EMail-Adress / (empty string, if false)
         /// </summary>
         /// <param name="eMailAdress"></param>
         /// <returns></returns>
@@ -60,7 +64,6 @@ namespace MAMA
             cond2 = false;
             cond3 = false;
 
-            // Ausbauen
             cond0 = checkIfString(eMailAdress);
 
             // Check @
