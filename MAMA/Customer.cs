@@ -39,10 +39,16 @@ namespace MAMA
         /// Adds moneyBalance to the actual Balance
         /// </summary>
         /// <param name="moneyBalance">Put in Money</param>
-        public void UpdateBalance(int moneyBalance)
+        public void UpdateBalance(float moneyBalance)
         {
-            _MoneyBalance = _MoneyBalance + moneyBalance;
+            _MoneyBalance = moneyBalance;
             _DateOfChange = DateTime.Now;
+        }
+
+        public void UpdateNameEmail(string lastname, EMailAdress e_MailAddress)
+        {
+            _lastName = lastname;
+            _eMail = e_MailAddress;
         }
     }
 }

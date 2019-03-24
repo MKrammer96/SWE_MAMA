@@ -114,7 +114,7 @@
             this.TextBoxAddLastName = new System.Windows.Forms.TextBox();
             this.TextBoxAddFirstName = new System.Windows.Forms.TextBox();
             this.ButtonCancelNewCustomer = new System.Windows.Forms.Button();
-            this.ButtonAddNewCustomer = new System.Windows.Forms.Button();
+            this.ButtonAddNewCustomertoList = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -381,7 +381,7 @@
             this.TextBoxSearchbyLastName.Name = "TextBoxSearchbyLastName";
             this.TextBoxSearchbyLastName.Size = new System.Drawing.Size(212, 20);
             this.TextBoxSearchbyLastName.TabIndex = 3;
-            this.TextBoxSearchbyLastName.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControll);
+            this.TextBoxSearchbyLastName.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControl);
             // 
             // SearchName
             // 
@@ -535,9 +535,8 @@
             this.LabelDateofChangeEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelDateofChangeEditBalance.Location = new System.Drawing.Point(153, 118);
             this.LabelDateofChangeEditBalance.Name = "LabelDateofChangeEditBalance";
-            this.LabelDateofChangeEditBalance.Size = new System.Drawing.Size(46, 18);
+            this.LabelDateofChangeEditBalance.Size = new System.Drawing.Size(0, 18);
             this.LabelDateofChangeEditBalance.TabIndex = 4;
-            this.LabelDateofChangeEditBalance.Text = "label1";
             // 
             // label4
             // 
@@ -555,9 +554,8 @@
             this.LabelE_MailAddressEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelE_MailAddressEditBalance.Location = new System.Drawing.Point(153, 85);
             this.LabelE_MailAddressEditBalance.Name = "LabelE_MailAddressEditBalance";
-            this.LabelE_MailAddressEditBalance.Size = new System.Drawing.Size(46, 18);
+            this.LabelE_MailAddressEditBalance.Size = new System.Drawing.Size(0, 18);
             this.LabelE_MailAddressEditBalance.TabIndex = 4;
-            this.LabelE_MailAddressEditBalance.Text = "label1";
             this.LabelE_MailAddressEditBalance.Click += new System.EventHandler(this.l);
             // 
             // label3
@@ -576,9 +574,8 @@
             this.LabelLastNameEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelLastNameEditBalance.Location = new System.Drawing.Point(153, 52);
             this.LabelLastNameEditBalance.Name = "LabelLastNameEditBalance";
-            this.LabelLastNameEditBalance.Size = new System.Drawing.Size(46, 18);
+            this.LabelLastNameEditBalance.Size = new System.Drawing.Size(0, 18);
             this.LabelLastNameEditBalance.TabIndex = 4;
-            this.LabelLastNameEditBalance.Text = "label1";
             // 
             // LabelNewBalanceShow
             // 
@@ -586,9 +583,8 @@
             this.LabelNewBalanceShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelNewBalanceShow.Location = new System.Drawing.Point(194, 275);
             this.LabelNewBalanceShow.Name = "LabelNewBalanceShow";
-            this.LabelNewBalanceShow.Size = new System.Drawing.Size(46, 18);
+            this.LabelNewBalanceShow.Size = new System.Drawing.Size(0, 18);
             this.LabelNewBalanceShow.TabIndex = 4;
-            this.LabelNewBalanceShow.Text = "label1";
             // 
             // LabelCurrentBalanceShow
             // 
@@ -596,9 +592,8 @@
             this.LabelCurrentBalanceShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelCurrentBalanceShow.Location = new System.Drawing.Point(14, 194);
             this.LabelCurrentBalanceShow.Name = "LabelCurrentBalanceShow";
-            this.LabelCurrentBalanceShow.Size = new System.Drawing.Size(46, 18);
+            this.LabelCurrentBalanceShow.Size = new System.Drawing.Size(0, 18);
             this.LabelCurrentBalanceShow.TabIndex = 4;
-            this.LabelCurrentBalanceShow.Text = "label1";
             // 
             // LabelFirstNameEditBalance
             // 
@@ -606,9 +601,8 @@
             this.LabelFirstNameEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelFirstNameEditBalance.Location = new System.Drawing.Point(153, 19);
             this.LabelFirstNameEditBalance.Name = "LabelFirstNameEditBalance";
-            this.LabelFirstNameEditBalance.Size = new System.Drawing.Size(46, 18);
+            this.LabelFirstNameEditBalance.Size = new System.Drawing.Size(0, 18);
             this.LabelFirstNameEditBalance.TabIndex = 4;
-            this.LabelFirstNameEditBalance.Text = "label1";
             // 
             // tabPage2
             // 
@@ -850,7 +844,7 @@
             this.AddCustomer.Controls.Add(this.TextBoxAddLastName);
             this.AddCustomer.Controls.Add(this.TextBoxAddFirstName);
             this.AddCustomer.Controls.Add(this.ButtonCancelNewCustomer);
-            this.AddCustomer.Controls.Add(this.ButtonAddNewCustomer);
+            this.AddCustomer.Controls.Add(this.ButtonAddNewCustomertoList);
             this.AddCustomer.Controls.Add(this.label15);
             this.AddCustomer.Controls.Add(this.label12);
             this.AddCustomer.Controls.Add(this.label13);
@@ -869,7 +863,7 @@
             this.TextBoxAddNewAmount.Name = "TextBoxAddNewAmount";
             this.TextBoxAddNewAmount.Size = new System.Drawing.Size(216, 20);
             this.TextBoxAddNewAmount.TabIndex = 12;
-            this.TextBoxAddNewAmount.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControll);
+            this.TextBoxAddNewAmount.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControl);
             // 
             // TextBoxAddE_Mail
             // 
@@ -877,7 +871,7 @@
             this.TextBoxAddE_Mail.Name = "TextBoxAddE_Mail";
             this.TextBoxAddE_Mail.Size = new System.Drawing.Size(216, 20);
             this.TextBoxAddE_Mail.TabIndex = 12;
-            this.TextBoxAddE_Mail.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControll);
+            this.TextBoxAddE_Mail.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControl);
             // 
             // TextBoxAddLastName
             // 
@@ -885,7 +879,7 @@
             this.TextBoxAddLastName.Name = "TextBoxAddLastName";
             this.TextBoxAddLastName.Size = new System.Drawing.Size(216, 20);
             this.TextBoxAddLastName.TabIndex = 12;
-            this.TextBoxAddLastName.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControll);
+            this.TextBoxAddLastName.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControl);
             // 
             // TextBoxAddFirstName
             // 
@@ -893,7 +887,7 @@
             this.TextBoxAddFirstName.Name = "TextBoxAddFirstName";
             this.TextBoxAddFirstName.Size = new System.Drawing.Size(216, 20);
             this.TextBoxAddFirstName.TabIndex = 12;
-            this.TextBoxAddFirstName.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControll);
+            this.TextBoxAddFirstName.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControl);
             // 
             // ButtonCancelNewCustomer
             // 
@@ -903,17 +897,17 @@
             this.ButtonCancelNewCustomer.TabIndex = 10;
             this.ButtonCancelNewCustomer.Text = "Cancel";
             this.ButtonCancelNewCustomer.UseVisualStyleBackColor = true;
-            this.ButtonCancelNewCustomer.Click += new System.EventHandler(this.ButtonClickedEditItemsTab);
+            this.ButtonCancelNewCustomer.Click += new System.EventHandler(this.ButtonClickedMainTab);
             // 
-            // ButtonAddNewCustomer
+            // ButtonAddNewCustomertoList
             // 
-            this.ButtonAddNewCustomer.Location = new System.Drawing.Point(146, 180);
-            this.ButtonAddNewCustomer.Name = "ButtonAddNewCustomer";
-            this.ButtonAddNewCustomer.Size = new System.Drawing.Size(68, 23);
-            this.ButtonAddNewCustomer.TabIndex = 11;
-            this.ButtonAddNewCustomer.Text = "Add";
-            this.ButtonAddNewCustomer.UseVisualStyleBackColor = true;
-            this.ButtonAddNewCustomer.Click += new System.EventHandler(this.ButtonClickedEditItemsTab);
+            this.ButtonAddNewCustomertoList.Location = new System.Drawing.Point(146, 180);
+            this.ButtonAddNewCustomertoList.Name = "ButtonAddNewCustomertoList";
+            this.ButtonAddNewCustomertoList.Size = new System.Drawing.Size(68, 23);
+            this.ButtonAddNewCustomertoList.TabIndex = 11;
+            this.ButtonAddNewCustomertoList.Text = "Add";
+            this.ButtonAddNewCustomertoList.UseVisualStyleBackColor = true;
+            this.ButtonAddNewCustomertoList.Click += new System.EventHandler(this.ButtonClickedMainTab);
             // 
             // label15
             // 
@@ -1060,12 +1054,10 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox TextBoxAddNewAmount;
         private System.Windows.Forms.TextBox TextBoxAddE_Mail;
         private System.Windows.Forms.TextBox TextBoxAddLastName;
-        private System.Windows.Forms.TextBox TextBoxAddFirstName;
         private System.Windows.Forms.Button ButtonCancelNewCustomer;
-        private System.Windows.Forms.Button ButtonAddNewCustomer;
+        private System.Windows.Forms.Button ButtonAddNewCustomertoList;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerID;
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
@@ -1075,6 +1067,8 @@
         private System.Windows.Forms.Label LabelNewBalanceShow;
         private System.Windows.Forms.Label LabelCurrentBalanceShow;
         private System.Windows.Forms.Button ButtonCancelSearch;
+        private System.Windows.Forms.TextBox TextBoxAddNewAmount;
+        private System.Windows.Forms.TextBox TextBoxAddFirstName;
     }
 }
 

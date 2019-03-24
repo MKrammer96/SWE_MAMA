@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -15,19 +16,16 @@ namespace MAMA
 {
     public partial class MainView : Form
     {
-        private Controller Controller;
-        private List<Customer> CurrentCustomersList;
-        private Customer CurrentEditCustomer = null;
-        private bool EnableButtonSaveNewBalance = false;
-        private bool EnableButtonSaveEditItems = false;
-        private bool EnableButtonAddNewCustomer = false;
+        private Controller _controller;
+        private List<Customer> _currentCustomersList;
+        private Customer _currentEditCustomer = null;
 
 
 
         public MainView()
         {
             InitializeComponent();
-            ButtonAddNewCustomer.Enabled = false;
+            ButtonAddNewCustomertoList.Enabled = false;
             ButtonSaveEditItems.Enabled = false;
             ButtonSaveNewBalance.Enabled = false;
 
@@ -36,7 +34,7 @@ namespace MAMA
 
         public void SetContoller(Controller controller)
         {
-            Controller = controller;
+            this._controller = controller;
         }
 
         /// <summary>
@@ -46,7 +44,7 @@ namespace MAMA
         public void UpdateDataGridview(List<Customer> customers)
         {
 
-            CurrentCustomersList = customers;
+            _currentCustomersList = customers;
             //Skalierung 
             //DataGridViewCustomers = customers;
             DataGridViewCustomers.Rows.Clear();
@@ -66,6 +64,8 @@ namespace MAMA
 
         }
 
+
+        //finished
         private void ButtonClickedMainTab(object sender, EventArgs e) 
         {
             if (sender.GetType() == typeof(Button))
@@ -76,13 +76,14 @@ namespace MAMA
                 {
                     TextBoxSearchbyLastName.Clear();
                 }
-                else if (btn == ButtonAddNewCustomer)
+                else if (btn == ButtonAddNewCustomertoList)
                 {
+                    _controller.AddCustomer(TextBoxAddFirstName.Text,TextBoxAddLastName.Text,TextBoxAddE_Mail.Text,float.Parse(TextBoxAddNewAmount.Text));
 
                 }
                 else if (btn == ButtonCancelNewCustomer)
                 {
-
+                    ClearTextBoxesAddNewCustomer();
                 }
 
 
@@ -92,6 +93,7 @@ namespace MAMA
 
         
         //Check the Name of the ButtonClicked and to reference to the functions
+        // finished
         private void ButtonClickedEditItemsTab(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(Button))
@@ -100,47 +102,64 @@ namespace MAMA
 
                 if (btn == ButtonSaveNewBalance)
                 {
-                    if (CurrentEditCustomer != null)
+                    if (_currentEditCustomer != null)
                     {
-
+                        
+                        if (float.TryParse(LabelNewBalanceShow.Text, out float newBalance))
+                        {
+                            _currentEditCustomer = _controller.ChangeBalanceofCustomer(_currentEditCustomer, newBalance);
+                            UpdateBalanceTab(_currentEditCustomer);
+                            UpdateEditItemsTab(_currentEditCustomer);
+                        }
+                        
                     }
                 }
                 else if (btn == ButtonCancelNewBalance)
                 {
 
-                    CurrentEditCustomer = null;
+                    _currentEditCustomer = null;
                     ClearTextBoxesEditBalanceItems();
 
 
                 }
                 else if (btn == ButtonAddNewAmount)
                 {
-                    if (CurrentEditCustomer != null && ButtonSaveNewBalance.Enabled == true)
+                    if (_currentEditCustomer != null && ButtonSaveNewBalance.Enabled == true)
                     {
-                        float newAmount = CurrentEditCustomer._MoneyBalance + float.Parse(TextBoxAddNewAmount.Text);
+                        float newAmount = _currentEditCustomer._MoneyBalance + float.Parse(TextBoxNewAmount.Text);
+                        LabelNewBalanceShow.Text = newAmount.ToString();
                     }
                 }
                 else if (btn == ButtonSubNewAmount)
                 {
-                    if (CurrentEditCustomer != null)
+                    if (_currentEditCustomer != null)
                     {
-                        if (CurrentEditCustomer != null && ButtonSaveNewBalance.Enabled == true)
+                        if (_currentEditCustomer != null && ButtonSaveNewBalance.Enabled == true)
                         {
-                            float newAmount = CurrentEditCustomer._MoneyBalance - float.Parse(TextBoxAddNewAmount.Text);
+                            float newAmount = _currentEditCustomer._MoneyBalance - float.Parse(TextBoxNewAmount.Text); ;
+                            LabelNewBalanceShow.Text = newAmount.ToString();
                         }
                     }
                 }
                 else if (btn == ButtonSaveEditItems)
                 {
-                    if (CurrentEditCustomer != null)
+                    if (_currentEditCustomer != null)
                     {
+                        EMailAdress eMailAddress = new EMailAdress(TextBoxEMailEditItems.Text);
+                        if (eMailAddress.Address != string.Empty && CheckforLettersonly(TextBoxLastNameEditItems.Text))
+                        {
+                            _currentEditCustomer = _controller.EditCustomeritems(_currentEditCustomer,
+                                TextBoxLastNameEditItems.Text, eMailAddress);
+                            UpdateBalanceTab(_currentEditCustomer);
+                            UpdateEditItemsTab(_currentEditCustomer);
+                        }
 
                     }
 
                 }
                 else if (btn == ButtonCancelEditItems)
                 {
-                    CurrentEditCustomer = null;
+                    _currentEditCustomer = null;
                     ClearTextBoxesEditBalanceItems();
                 }
 
@@ -150,8 +169,8 @@ namespace MAMA
         }
 
 
-        //to finish
-        private void TextBoxChangedMainTabControll(object sender, EventArgs e)
+        //current working
+        private void TextBoxChangedMainTabControl(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(TextBox))
             {
@@ -164,13 +183,15 @@ namespace MAMA
                     if (textOk && TextBoxAddFirstName.Text.Length > 2)
                     {
                         TextBoxAddFirstName.BackColor = Color.Green;
+                        CheckAddBoxes();
                     }
                     else
                     {
                         TextBoxAddFirstName.BackColor = Color.Red;
+                        ButtonAddNewCustomertoList.Enabled = false;
                     }
-
                 }
+
                 else if (txBox == TextBoxAddLastName)
                 {
                     bool textOk = CheckforLettersonly(TextBoxAddLastName.Text);
@@ -178,10 +199,12 @@ namespace MAMA
                     if (textOk && TextBoxAddLastName.Text.Length > 2)
                     {
                         TextBoxAddLastName.BackColor = Color.Green;
+                        CheckAddBoxes();
                     }
                     else
                     {
                         TextBoxAddLastName.BackColor = Color.Red;
+                        ButtonAddNewCustomertoList.Enabled = false;
                     }
 
                 }
@@ -191,10 +214,12 @@ namespace MAMA
                     if (eMailAdress.Address != string.Empty && eMailAdress.Address != string.Empty)
                     {
                         TextBoxAddE_Mail.BackColor = Color.Green;
+                        CheckAddBoxes();
                     }
                     else
                     {
                         TextBoxAddE_Mail.BackColor = Color.Red;
+                        ButtonAddNewCustomertoList.Enabled = false;
                     }
 
 
@@ -202,19 +227,22 @@ namespace MAMA
                 else if (txBox == TextBoxAddNewAmount)
                 {
                     decimal moneyBalance;
-                    if (decimal.TryParse(TextBoxAddNewAmount.Text,out moneyBalance))
+                    if (decimal.TryParse(TextBoxAddNewAmount.Text, out moneyBalance))
                     {
                         TextBoxAddNewAmount.BackColor = Color.Green;
+                        CheckAddBoxes();
                     }
                     else
                     {
                         TextBoxAddNewAmount.BackColor = Color.Red;
+                        ButtonAddNewCustomertoList.Enabled = false;
                     }
-                    
+
                 }
+
                 else if (txBox == TextBoxSearchbyLastName)
                 {
-                    Controller.SearchforCustomer(TextBoxSearchbyLastName.Text,CurrentCustomersList);
+                    _controller.SearchforCustomer(TextBoxSearchbyLastName.Text,_currentCustomersList);
                 }
 
                 
@@ -223,7 +251,7 @@ namespace MAMA
 
         }
 
-        // to finish
+        // finished
         private void TextBoxChangedTabControllEditItems(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(TextBox))
@@ -237,7 +265,7 @@ namespace MAMA
                     if (decimal.TryParse(TextBoxNewAmount.Text, out moneyBalance))
                     {
                         TextBoxNewAmount.BackColor = Color.Green;
-                        if (CurrentEditCustomer != null)
+                        if (_currentEditCustomer != null)
                         {
                             ButtonSaveNewBalance.Enabled = true;
                         }
@@ -257,10 +285,16 @@ namespace MAMA
                     if (CheckforLettersonly(TextBoxLastNameEditItems.Text) && TextBoxLastNameEditItems.Text.Length > 2)
                     {
                         TextBoxLastNameEditItems.BackColor = Color.Green;
+
+                        if (TextBoxEMailEditItems.BackColor == Color.Green)
+                        {
+                            ButtonSaveEditItems.Enabled = true;
+                        }
                     }
                     else
                     {
                         TextBoxLastNameEditItems.BackColor = Color.Red;
+                        ButtonSaveEditItems.Enabled = false;
                     }
 
                 }
@@ -270,10 +304,16 @@ namespace MAMA
                     if (eMailAdress.Address != string.Empty && eMailAdress.Address != string.Empty)
                     {
                         TextBoxEMailEditItems.BackColor = Color.Green;
+
+                        if (TextBoxLastNameEditItems.BackColor == Color.Green)
+                        {
+                            ButtonSaveEditItems.Enabled = true;
+                        }
                     }
                     else
                     {
                         TextBoxEMailEditItems.BackColor = Color.Red;
+                        ButtonSaveEditItems.Enabled = false;
                     }
 
                 }
@@ -282,7 +322,7 @@ namespace MAMA
 
         /// Clicked Item Handeling of the Menustrip
         /// OpenFiler Handler
-        /// good
+        /// finished
         private void OpenfileHandler(object sender, EventArgs e)
         {
             string filepath = string.Empty;
@@ -295,13 +335,13 @@ namespace MAMA
             {
                 filepath = openFileDialog1.FileName;
 
-                Controller.GetCustomerList(filepath);
+                _controller.GetCustomerList(filepath);
             }
 
         }
 
         /// SaveFile Handler for a new File
-        /// to finish 
+        /// finished
         private void SavefileHandler(object sender, EventArgs e)
         {
             //Stream myStream;
@@ -314,7 +354,7 @@ namespace MAMA
             {
 
                 filepath = saveFileDialog1.FileName;
-                Controller.SaveNewCustomerList(filepath);
+                _controller.SaveNewCustomerList(filepath);
 
                 //if ((myStream = saveFileDialog1.OpenFile()) != null)
                 //{
@@ -328,13 +368,13 @@ namespace MAMA
         }
 
         /// Save File Handler for existing File
-        /// to do
+        /// to do change to current file save
         private void SaveCurrentFile(object sender, EventArgs e)
         {
 
         }
 
-        //to do
+        //finished
         //get Selected Customer Of the DatagridView to Edit Items
         private void DataGridviewSelectedRow(object sender, EventArgs e)
         {
@@ -352,8 +392,8 @@ namespace MAMA
                     if (DataGridViewCustomers.CurrentRow.Cells[0].Value.GetType() == typeof(int))
                     {
                         int selectedCustomerNumber = Convert.ToInt16(DataGridViewCustomers.CurrentRow.Cells[0].Value);
-                        Customer selectedCustomer = Controller.GetSelectedCustomer(selectedCustomerNumber, CurrentCustomersList);
-                        CurrentEditCustomer = selectedCustomer;
+                        Customer selectedCustomer = _controller.GetSelectedCustomer(selectedCustomerNumber, _currentCustomersList);
+                        _currentEditCustomer = selectedCustomer;
                         UpdateBalanceTab(selectedCustomer);
                         UpdateEditItemsTab(selectedCustomer);
                         
@@ -367,25 +407,44 @@ namespace MAMA
         }
 
 
+
+        //These are all support Methodes
+        //finished
+        private void CheckAddBoxes()
+        {
+            if (TextBoxAddFirstName.BackColor == Color.Green && TextBoxAddLastName.BackColor == Color.Green &&
+                TextBoxAddE_Mail.BackColor == Color.Green && TextBoxAddNewAmount.BackColor == Color.Green)
+            {
+                ButtonAddNewCustomertoList.Enabled = true;
+            }
+            else
+            {
+                ButtonAddNewCustomertoList.Enabled = false;
+            }
+        }
+        //finished
         private void UpdateBalanceTab(Customer customer)
         {
             LabelFirstNameEditBalance.Text = customer._firstName;
             LabelLastNameEditBalance.Text = customer._lastName;
-            LabelE_MailAddressEditBalance.Text = customer._firstName;
+            LabelE_MailAddressEditBalance.Text = customer._eMail.getEmailAdress();
             LabelDateofChangeEditBalance.Text = customer._DateOfChange.ToString();
             LabelCurrentBalanceShow.Text = customer._MoneyBalance.ToString();
+            TextBoxNewAmount.Clear();
+            TextBoxNewAmount.BackColor = Color.Empty;
+            LabelNewBalanceShow.Text = "";
 
         }
-
+        //finished
         private void UpdateEditItemsTab(Customer customer)
         {
             LabelFirstNameEditItems.Text = customer._firstName;
             LabelDateofChangeEditItems.Text = customer._DateOfChange.ToString();
             LabelCurrentBalanceEditItem.Text = customer._MoneyBalance.ToString();
+            TextBoxEMailEditItems.Text = customer._eMail.getEmailAdress();
+            TextBoxLastNameEditItems.Text = customer._lastName;
 
         }
-
-
         //finished
         private bool CheckforLettersonly(string textbox)
         {
@@ -405,10 +464,28 @@ namespace MAMA
             LabelDateofChangeEditBalance.Text = "";
             LabelCurrentBalanceShow.Text = "";
             LabelNewBalanceShow.Text = "";
+            TextBoxNewAmount.Clear();
+            TextBoxNewAmount.BackColor = Color.Empty;
 
             LabelFirstNameEditItems.Text = "";
             LabelCurrentBalanceEditItem.Text = "";
             LabelDateofChangeEditItems.Text = "";
+            TextBoxEMailEditItems.Clear();
+            TextBoxEMailEditItems.BackColor = Color.Empty;
+            TextBoxLastNameEditItems.Clear();
+            TextBoxLastNameEditItems.BackColor = Color.Empty;
+        }
+        //finished
+        private void ClearTextBoxesAddNewCustomer()
+        {
+            TextBoxAddFirstName.Clear();
+            TextBoxAddFirstName.BackColor = Color.Empty;
+            TextBoxAddLastName.Clear();
+            TextBoxAddLastName.BackColor = Color.Empty;
+            TextBoxAddE_Mail.Clear();
+            TextBoxAddE_Mail.BackColor = Color.Empty;
+            TextBoxAddNewAmount.Clear();
+            TextBoxAddNewAmount.BackColor = Color.Empty;
         }
 
 

@@ -13,21 +13,21 @@ namespace MAMA
 
     public class Controller
     {
-        private MainView MainView;
-        private CSV_Handler CSVHandler;
-        private LoginView LoginView;
+        private MainView _mainView;
+        private CSV_Handler _csvHandler;
+        private LoginView _loginView;
 
-        private string filePathOfOpenedList = string.Empty;
+        private string _filePathOfOpenedList = string.Empty;
 
 
         public List<Customer> CustomerList;
-        
+
 
         public Controller(MainView mainView, CSV_Handler csv_Handler, LoginView loginView)
         {
-            MainView = mainView;
-            CSVHandler = csv_Handler;
-            LoginView = loginView;
+            _mainView = mainView;
+            _csvHandler = csv_Handler;
+            _loginView = loginView;
         }
 
         public Controller()
@@ -42,8 +42,8 @@ namespace MAMA
         /// <param name="filepath"></param>
         public void GetCustomerList(string filepath)
         {
-            filePathOfOpenedList = filepath;
-            List<Customer> myCustomers = CSVHandler.readCSV(filepath);
+            _filePathOfOpenedList = filepath;
+            List<Customer> myCustomers = _csvHandler.readCSV(filepath);
 
 
             ////Test List
@@ -54,7 +54,7 @@ namespace MAMA
 
 
             CustomerList = myCustomers;
-            MainView.UpdateDataGridview(CustomerList);
+            _mainView.UpdateDataGridview(CustomerList);
         }
 
         /// <summary>
@@ -62,9 +62,9 @@ namespace MAMA
         /// </summary>
         public void SaveCurrentCustomerList()
         {
-            if (filePathOfOpenedList != string.Empty)
+            if (_filePathOfOpenedList != string.Empty)
             {
-                CSVHandler.ExportToCSV(filePathOfOpenedList, CustomerList);
+                _csvHandler.ExportToCSV(_filePathOfOpenedList, CustomerList);
             }
         }
 
@@ -74,29 +74,84 @@ namespace MAMA
         /// <param name="savefilepath">Put in the Path</param>
         public void SaveNewCustomerList(string savefilepath)
         {
-            CSVHandler.ExportToCSV(savefilepath, CustomerList);
+            _csvHandler.ExportToCSV(savefilepath, CustomerList);
         }
 
         /// <summary>
         /// add a new customer to list
         /// </summary>
-        /// <param name="newCustomer"></param>
-        public void AddCustomer(Customer newCustomer)
+        /// <param name="customer"></param>
+        public void AddCustomer(string firstName, string lastName, string strE_MailAddress, float moneyBalance)
         {
+            int customerNumber = CheckCustomerNumberorFindOne(CustomerList.Count);
+            EMailAdress eMailAddress = new EMailAdress(strE_MailAddress);
 
+
+            if (eMailAddress.getEmailAdress() == String.Empty || CheckEMailforUnique(eMailAddress) == false)
+            {
+                MessageBox.Show("Wrong input of the E-Mail address or the E-Mail address already exit");
+                return;
+            }
+            else
+            {
+                Customer customer = new Customer(firstName,lastName,strE_MailAddress,customerNumber,moneyBalance,DateTime.Now);
+                CustomerList.Add(customer);
+                _mainView.UpdateDataGridview(CustomerList);
+            }
 
         }
 
         /// <summary>
-        /// 
+        /// Change the Name and/or E-Mail of the customer
         /// </summary>
         /// <param name="customertoChange"></param>
         /// <param name="newlastName"></param>
         /// <param name="newEMailAddress"></param>
-        public void EditCustomeritems(Customer customertoChange, string newlastName, EMailAdress newEMailAddress)
+        public Customer EditCustomeritems(Customer customer, string newlastName, EMailAdress newEMailAddress)
         {
+            if (CustomerList == null || customer == null)
+            {
+                return customer;
+            }
 
+            for (int i = 0; i < CustomerList.Count; i++)
+            {
+                if (customer._customerNumber == CustomerList[i]._customerNumber)
+                {
+                    CustomerList[i].UpdateNameEmail(newlastName,newEMailAddress);
+                    customer = CustomerList[i];
+                    _mainView.UpdateDataGridview(CustomerList);
+                    return customer;
+                }
+            }
 
+            return customer;
+        }
+
+        /// <summary>
+        /// Change the Balance of the selected customer
+        /// </summary>
+        /// <param name="customer"></param>
+        /// <param name="moneybalance"></param>
+        /// <returns></returns>
+        public Customer ChangeBalanceofCustomer(Customer customer, float moneybalance)
+        {
+            if (CustomerList == null|| customer == null)
+            {
+                return customer;
+            }
+            for (int i = 0; i < CustomerList.Count; i++)
+            {
+                if (customer._customerNumber == CustomerList[i]._customerNumber)
+                {
+                    CustomerList[i].UpdateBalance(moneybalance);
+                    customer = CustomerList[i];
+                    _mainView.UpdateDataGridview(CustomerList);
+                    return customer;
+                }
+            }
+
+            return customer;
         }
 
         /// <summary>
@@ -113,13 +168,13 @@ namespace MAMA
 
             if (searchbyName == string.Empty)
             {
-                MainView.UpdateDataGridview(CustomerList);
+                _mainView.UpdateDataGridview(CustomerList);
                 return;
             }
 
 
             List<Customer> foundcCustomers = new List<Customer>();
-            for(int i = 0; i < toSearcheCustomers.Count; i++)
+            for (int i = 0; i < toSearcheCustomers.Count; i++)
             {
                 string currentCustomer = toSearcheCustomers[i]._lastName;
                 bool equalletters = false;
@@ -141,10 +196,10 @@ namespace MAMA
                 {
                     foundcCustomers.Add(toSearcheCustomers[i]);
                 }
-                
+
             }
 
-            MainView.UpdateDataGridview(foundcCustomers);
+            _mainView.UpdateDataGridview(foundcCustomers);
         }
 
         /// <summary>
@@ -172,15 +227,44 @@ namespace MAMA
 
         }
 
-        /// <summary>
-        /// When there doesn't exist a list
-        /// </summary>
-        /// <param name="customer"></param>
-        private void NewCustomerList(Customer customer)
+
+
+        //These are all support Methodes
+        private int CheckCustomerNumberorFindOne(int customerNumber)
         {
+            bool matchNumbers = false;
+            for (int i = 0; i < CustomerList.Count; i++)
+            {
+                if (customerNumber == CustomerList[i]._customerNumber)
+                {
+                    matchNumbers = true;
+                    break;
+                }
+            }
+
+            if (matchNumbers)
+            {
+                CheckCustomerNumberorFindOne(customerNumber++);
+            }
+
+            return customerNumber;
 
         }
 
+        private bool CheckEMailforUnique(EMailAdress eMailAdress)
+        {
+            
+            for (int i = 0; i < CustomerList.Count; i++)
+            {
+                if (eMailAdress.getEmailAdress() == CustomerList[i]._eMail.getEmailAdress())
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
     }
+
 }
