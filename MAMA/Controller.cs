@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace MAMA
 {
@@ -98,6 +99,78 @@ namespace MAMA
 
         }
 
+        /// <summary>
+        /// Search by Name
+        /// </summary>
+        /// <param name="searchbyName"></param>
+        /// <returns></returns>
+        public void SearchforCustomer(string searchbyName, List<Customer> toSearcheCustomers)
+        {
+            if (toSearcheCustomers == null)
+            {
+                return;
+            }
+
+            if (searchbyName == string.Empty)
+            {
+                MainView.UpdateDataGridview(CustomerList);
+                return;
+            }
+
+
+            List<Customer> foundcCustomers = new List<Customer>();
+            for(int i = 0; i < toSearcheCustomers.Count; i++)
+            {
+                string currentCustomer = toSearcheCustomers[i]._lastName;
+                bool equalletters = false;
+                for (int j = 0; j < searchbyName.Length; j++)
+                {
+                    if (searchbyName[j] == char.ToLower(currentCustomer[j]) || searchbyName[j] == currentCustomer[j])
+                    {
+                        equalletters = true;
+                    }
+                    else
+                    {
+                        equalletters = false;
+                        break;
+                    }
+
+                }
+
+                if (equalletters == true)
+                {
+                    foundcCustomers.Add(toSearcheCustomers[i]);
+                }
+                
+            }
+
+            MainView.UpdateDataGridview(foundcCustomers);
+        }
+
+        /// <summary>
+        /// Get the Customer by CustomerNumber
+        /// </summary>
+        /// <param name="customerNumber"></param>
+        /// <param name="showedCustomers"></param>
+        /// <returns></returns>
+        public Customer GetSelectedCustomer(int customerNumber, List<Customer> showedCustomers)
+        {
+            if (showedCustomers == null)
+            {
+                return null;
+            }
+
+            for (int i = 0; i < showedCustomers.Count; i++)
+            {
+                if (customerNumber == showedCustomers[i]._customerNumber)
+                {
+                    return showedCustomers[i];
+                }
+            }
+
+            return null;
+
+        }
 
         /// <summary>
         /// When there doesn't exist a list
@@ -107,7 +180,6 @@ namespace MAMA
         {
 
         }
-
 
 
     }

@@ -16,9 +16,13 @@ namespace MAMA
     public partial class MainView : Form
     {
         private Controller Controller;
+        private List<Customer> CurrentCustomersList;
+        private Customer CurrentEditCustomer = null;
         private bool EnableButtonSaveNewBalance = false;
         private bool EnableButtonSaveEditItems = false;
         private bool EnableButtonAddNewCustomer = false;
+
+
 
         public MainView()
         {
@@ -26,6 +30,8 @@ namespace MAMA
             ButtonAddNewCustomer.Enabled = false;
             ButtonSaveEditItems.Enabled = false;
             ButtonSaveNewBalance.Enabled = false;
+
+            DataGridViewCustomers.ReadOnly = true;
         }
 
         public void SetContoller(Controller controller)
@@ -40,8 +46,10 @@ namespace MAMA
         public void UpdateDataGridview(List<Customer> customers)
         {
 
+            CurrentCustomersList = customers;
             //Skalierung 
             //DataGridViewCustomers = customers;
+            DataGridViewCustomers.Rows.Clear();
             DataGridViewCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DataGridViewCustomers.Update();
 
@@ -58,39 +66,17 @@ namespace MAMA
 
         }
 
-        
-        //Check the Name of the ButtonClicked and to reference to the functions
-        private void ButtonClickedEditItemsofCustomer(object sender, EventArgs e)
+        private void ButtonClickedMainTab(object sender, EventArgs e) 
         {
             if (sender.GetType() == typeof(Button))
             {
-                Button btn = (Button)sender;
+                Button btn = (Button) sender;
 
-                if (btn == ButtonSaveNewBalance)
+                if (btn == ButtonCancelSearch)
                 {
-
+                    TextBoxSearchbyLastName.Clear();
                 }
-                if (btn == ButtonCancelNewBalance)
-                {
-
-                }
-                if (btn == ButtonSaveEditItems)
-                {
-
-                }
-                if (btn == ButtonCancelEditItems)
-                {
-
-                }
-                if(btn == ButtonAddNewAmount)
-                {
-
-                }
-                if (btn == ButtonSubNewAmount)
-                {
-
-                }
-                if (btn == ButtonAddNewCustomer)
+                else if (btn == ButtonAddNewCustomer)
                 {
 
                 }
@@ -99,35 +85,70 @@ namespace MAMA
 
                 }
 
+
+
+            }
+        }
+
+        
+        //Check the Name of the ButtonClicked and to reference to the functions
+        private void ButtonClickedEditItemsTab(object sender, EventArgs e)
+        {
+            if (sender.GetType() == typeof(Button))
+            {
+                Button btn = (Button)sender;
+
+                if (btn == ButtonSaveNewBalance)
+                {
+                    if (CurrentEditCustomer != null)
+                    {
+
+                    }
+                }
+                else if (btn == ButtonCancelNewBalance)
+                {
+
+                    CurrentEditCustomer = null;
+                    ClearTextBoxesEditBalanceItems();
+
+
+                }
+                else if (btn == ButtonAddNewAmount)
+                {
+                    if (CurrentEditCustomer != null && ButtonSaveNewBalance.Enabled == true)
+                    {
+                        float newAmount = CurrentEditCustomer._MoneyBalance + float.Parse(TextBoxAddNewAmount.Text);
+                    }
+                }
+                else if (btn == ButtonSubNewAmount)
+                {
+                    if (CurrentEditCustomer != null)
+                    {
+                        if (CurrentEditCustomer != null && ButtonSaveNewBalance.Enabled == true)
+                        {
+                            float newAmount = CurrentEditCustomer._MoneyBalance - float.Parse(TextBoxAddNewAmount.Text);
+                        }
+                    }
+                }
+                else if (btn == ButtonSaveEditItems)
+                {
+                    if (CurrentEditCustomer != null)
+                    {
+
+                    }
+
+                }
+                else if (btn == ButtonCancelEditItems)
+                {
+                    CurrentEditCustomer = null;
+                    ClearTextBoxesEditBalanceItems();
+                }
+
+
             }
 
         }
 
-
-
-        /*
-        ***
-        *** see ButtonClickedEditItemsofCustomer
-        */
-
-        ////to do 
-        //private void ButtonClickedCustomer(object sender, EventArgs e)
-        //{
-        //    if (sender.GetType() == typeof(Button))
-        //    {
-        //        Button btn = (Button) sender;
-
-        //        if (btn == ButtonAddNewCustomer)
-        //        {
-
-        //        }
-        //        else if (btn == ButtonCancelNewCustomer)
-        //        {
-
-        //        }
-        //    }
-
-        //}
 
         //to finish
         private void TextBoxChangedMainTabControll(object sender, EventArgs e)
@@ -191,6 +212,10 @@ namespace MAMA
                     }
                     
                 }
+                else if (txBox == TextBoxSearchbyLastName)
+                {
+                    Controller.SearchforCustomer(TextBoxSearchbyLastName.Text,CurrentCustomersList);
+                }
 
                 
             }
@@ -212,10 +237,16 @@ namespace MAMA
                     if (decimal.TryParse(TextBoxNewAmount.Text, out moneyBalance))
                     {
                         TextBoxNewAmount.BackColor = Color.Green;
+                        if (CurrentEditCustomer != null)
+                        {
+                            ButtonSaveNewBalance.Enabled = true;
+                        }
+                        
                     }
                     else
                     {
                         TextBoxNewAmount.BackColor = Color.Red;
+                        ButtonSaveNewBalance.Enabled = false;
                     }
 
                 }
@@ -304,12 +335,29 @@ namespace MAMA
         }
 
         //to do
+        //get Selected Customer Of the DatagridView to Edit Items
         private void DataGridviewSelectedRow(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(DataGridView))
             {
                 if ((DataGridView) sender == DataGridViewCustomers)
                 {
+
+
+                    if (DataGridViewCustomers.CurrentRow.Cells[0].Value == null)
+                    {
+                        return;
+                    }
+
+                    if (DataGridViewCustomers.CurrentRow.Cells[0].Value.GetType() == typeof(int))
+                    {
+                        int selectedCustomerNumber = Convert.ToInt16(DataGridViewCustomers.CurrentRow.Cells[0].Value);
+                        Customer selectedCustomer = Controller.GetSelectedCustomer(selectedCustomerNumber, CurrentCustomersList);
+                        CurrentEditCustomer = selectedCustomer;
+                        UpdateBalanceTab(selectedCustomer);
+                        UpdateEditItemsTab(selectedCustomer);
+                        
+                    }
                     
                 }
 
@@ -319,7 +367,26 @@ namespace MAMA
         }
 
 
-        //good
+        private void UpdateBalanceTab(Customer customer)
+        {
+            LabelFirstNameEditBalance.Text = customer._firstName;
+            LabelLastNameEditBalance.Text = customer._lastName;
+            LabelE_MailAddressEditBalance.Text = customer._firstName;
+            LabelDateofChangeEditBalance.Text = customer._DateOfChange.ToString();
+            LabelCurrentBalanceShow.Text = customer._MoneyBalance.ToString();
+
+        }
+
+        private void UpdateEditItemsTab(Customer customer)
+        {
+            LabelFirstNameEditItems.Text = customer._firstName;
+            LabelDateofChangeEditItems.Text = customer._DateOfChange.ToString();
+            LabelCurrentBalanceEditItem.Text = customer._MoneyBalance.ToString();
+
+        }
+
+
+        //finished
         private bool CheckforLettersonly(string textbox)
         {
             if (!Regex.IsMatch(textbox, @"^[\p{L}]+$"))
@@ -328,6 +395,20 @@ namespace MAMA
             }
             
             return true;
+        }
+        //finsihed
+        private void ClearTextBoxesEditBalanceItems()
+        {
+            LabelFirstNameEditBalance.Text = "";
+            LabelLastNameEditBalance.Text = "";
+            LabelE_MailAddressEditBalance.Text = "";
+            LabelDateofChangeEditBalance.Text = "";
+            LabelCurrentBalanceShow.Text = "";
+            LabelNewBalanceShow.Text = "";
+
+            LabelFirstNameEditItems.Text = "";
+            LabelCurrentBalanceEditItem.Text = "";
+            LabelDateofChangeEditItems.Text = "";
         }
 
 
@@ -391,6 +472,11 @@ namespace MAMA
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void l(object sender, EventArgs e)
         {
 
         }
