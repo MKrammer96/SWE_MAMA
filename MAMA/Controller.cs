@@ -13,6 +13,8 @@ namespace MAMA
 
     public class Controller
     {
+        public event EventHandler CloseLoginForm;
+        public bool LoginSuccessfully = false;
         private MainView _mainView;
         private CSV_Handler _csvHandler;
         private LoginView _loginView;
@@ -22,7 +24,12 @@ namespace MAMA
 
         public List<Customer> CustomerList;
 
-
+        /// <summary>
+        /// Constructor of the class
+        /// </summary>
+        /// <param name="mainView"></param>
+        /// <param name="csv_Handler"></param>
+        /// <param name="loginView"></param>
         public Controller(MainView mainView, CSV_Handler csv_Handler, LoginView loginView)
         {
             _mainView = mainView;
@@ -30,28 +37,43 @@ namespace MAMA
             _loginView = loginView;
         }
 
-        public Controller(MainView mainView, CSV_Handler csv_Handler)
+        /// <summary>
+        /// Create New List of Customers
+        /// </summary>
+        public void NewListofCustomers()
         {
-            _mainView = mainView;
-            _csvHandler = csv_Handler;
+            //There should be asked current customer list to save?
+
+            CustomerList = new List<Customer>();
+            _filePathOfOpenedList = String.Empty;
+            _mainView.UpdateDatagridViewFullList(CustomerList);
+            _mainView.UpdateDataGridViewOverview(CustomerList);
+
         }
 
-        public Controller()
-        {
-
-        }
-
-
+        /// <summary>
+        /// Run or don't run the MainView depending on the login proce
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void HandleClosingLoginView(object sender, EventArgs e)
         {
-            
-            // check if the argument of the eventargs is true or false 
+            if (e.GetType() == typeof(CloseLoginViewEventArgs))
+            {
+                if (((CloseLoginViewEventArgs) e).Loginsuccessful)
+                {
+                    _loginView.Close();
+                    LoginSuccessfully = true;
+                }
+                else
+                {
+                    _loginView.Close();
+                    LoginSuccessfully = false;
+                }
 
-            Application.Run(_mainView);
+            }
 
         }
-
-
 
         /// <summary>
         /// This methode gets the ListofCustomers and updates the view
@@ -71,7 +93,8 @@ namespace MAMA
 
 
             CustomerList = myCustomers;
-            _mainView.UpdateDataGridview(CustomerList);
+            _mainView.UpdateDataGridViewOverview(CustomerList);
+            _mainView.UpdateDatagridViewFullList(CustomerList);
         }
 
         /// <summary>
@@ -91,6 +114,7 @@ namespace MAMA
         /// <param name="savefilepath">Put in the Path</param>
         public void SaveNewCustomerList(string savefilepath)
         {
+            _filePathOfOpenedList = savefilepath;
             _csvHandler.ExportToCSV(savefilepath, CustomerList);
         }
 
@@ -100,10 +124,14 @@ namespace MAMA
         /// <param name="customer"></param>
         public void AddCustomer(string firstName, string lastName, string strE_MailAddress, float moneyBalance)
         {
-            int customerNumber = CheckCustomerNumberorFindOne(CustomerList.Count);
+            if (CustomerList == null)
+            {
+                CustomerList = new List<Customer>();
+            }
+
+            int customerNumber = CheckCustomerNumberorFindOne(CustomerList.Count+1);
             EMailAdress eMailAddress = new EMailAdress(strE_MailAddress);
-
-
+            
             if (eMailAddress.getEmailAdress() == String.Empty || CheckEMailforUnique(eMailAddress) == false)
             {
                 MessageBox.Show("Wrong input of the E-Mail address or the E-Mail address already exit");
@@ -113,7 +141,8 @@ namespace MAMA
             {
                 Customer customer = new Customer(firstName,lastName,strE_MailAddress,customerNumber,moneyBalance,DateTime.Now);
                 CustomerList.Add(customer);
-                _mainView.UpdateDataGridview(CustomerList);
+                _mainView.UpdateDataGridViewOverview(CustomerList);
+                _mainView.UpdateDatagridViewFullList(CustomerList);
             }
 
         }
@@ -137,7 +166,8 @@ namespace MAMA
                 {
                     CustomerList[i].UpdateNameEmail(newlastName,newEMailAddress);
                     customer = CustomerList[i];
-                    _mainView.UpdateDataGridview(CustomerList);
+                    _mainView.UpdateDataGridViewOverview(CustomerList);
+                    _mainView.UpdateDatagridViewFullList(CustomerList);
                     return customer;
                 }
             }
@@ -163,7 +193,8 @@ namespace MAMA
                 {
                     CustomerList[i].UpdateBalance(moneybalance);
                     customer = CustomerList[i];
-                    _mainView.UpdateDataGridview(CustomerList);
+                    _mainView.UpdateDataGridViewOverview(CustomerList);
+                    _mainView.UpdateDatagridViewFullList(CustomerList);
                     return customer;
                 }
             }
@@ -185,7 +216,7 @@ namespace MAMA
 
             if (searchbyName == string.Empty)
             {
-                _mainView.UpdateDataGridview(CustomerList);
+                _mainView.UpdateDataGridViewOverview(CustomerList);
                 return;
             }
 
@@ -216,7 +247,7 @@ namespace MAMA
 
             }
 
-            _mainView.UpdateDataGridview(foundcCustomers);
+            _mainView.UpdateDataGridViewOverview(foundcCustomers);
         }
 
         /// <summary>
@@ -243,12 +274,11 @@ namespace MAMA
             return null;
 
         }
-
-
-
+        
         //These are all support Methodes
         private int CheckCustomerNumberorFindOne(int customerNumber)
         {
+
             bool matchNumbers = false;
             for (int i = 0; i < CustomerList.Count; i++)
             {
@@ -261,7 +291,8 @@ namespace MAMA
 
             if (matchNumbers)
             {
-                CheckCustomerNumberorFindOne(customerNumber++);
+                customerNumber += 1; 
+                CheckCustomerNumberorFindOne(customerNumber);
             }
 
             return customerNumber;

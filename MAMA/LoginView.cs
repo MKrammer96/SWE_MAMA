@@ -12,12 +12,16 @@ namespace MAMA
 {
     public partial class LoginView : Form
     {
+        public event EventHandler CloseLoginView;
         private Controller _controller;
         private int counter;
+
+
 
         public LoginView()
         {
             InitializeComponent();
+            txt_userPassword.PasswordChar = '*';
             counter = 0;
         }
 
@@ -28,27 +32,30 @@ namespace MAMA
 
         private void loginButton_Click(object sender, EventArgs e)
         {
+            Encryption password = new Encryption(txt_userPassword.Text);
+
             if (!Password.CheckPassword(txt_userPassword.Text))
             {
                 counter++;
             }
             else
             {
-                // Start Main View
+                CloseLoginView?.Invoke(this,new CloseLoginViewEventArgs(true));
+                
             }
 
             if (counter >= 3)
-            {
-                // Quit
+            {                
+                CloseLoginView?.Invoke(this, new CloseLoginViewEventArgs(false));
+                MessageBox.Show("There has been three wrong passwort inputs");
                 
             }
             
         }
 
-        private void LoginView_FormClosing(object sender, FormClosingEventArgs e)
+        public void LoginView_FormClosing(object sender, FormClosingEventArgs e)
         {
-            // Quit
-            
+
         }
     }
 }

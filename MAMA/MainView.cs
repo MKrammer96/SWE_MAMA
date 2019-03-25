@@ -21,7 +21,9 @@ namespace MAMA
         private Customer _currentEditCustomer = null;
 
 
-
+        /// <summary>
+        /// constructor
+        /// </summary>
         public MainView()
         {
             InitializeComponent();
@@ -29,41 +31,61 @@ namespace MAMA
             ButtonSaveEditItems.Enabled = false;
             ButtonSaveNewBalance.Enabled = false;
 
-            DataGridViewCustomers.ReadOnly = true;
+            DataGridViewCustomersOverview.ReadOnly = true;
         }
-
+        /// <summary>
+        /// Set the Controller of the application in the view
+        /// </summary>
+        /// <param name="controller"></param>
         public void SetContoller(Controller controller)
         {
             this._controller = controller;
         }
 
         /// <summary>
-        /// still to finish
+        /// shows the list of customers in overview
         /// </summary>
         /// <param name="customers"></param>
-        public void UpdateDataGridview(List<Customer> customers)
+        public void UpdateDataGridViewOverview(List<Customer> customers)
         {
 
             _currentCustomersList = customers;
             //Skalierung 
             //DataGridViewCustomers = customers;
-            DataGridViewCustomers.Rows.Clear();
-            DataGridViewCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            DataGridViewCustomers.Update();
+            DataGridViewCustomersOverview.Rows.Clear();
+            DataGridViewCustomersOverview.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DataGridViewCustomersOverview.Update();
 
             for (int i = 0; i < customers.Count; i++)
             {
-                int number = DataGridViewCustomers.Rows.Add();
-                DataGridViewCustomers.Rows[number].Cells[0].Value = customers[i]._customerNumber;
-                DataGridViewCustomers.Rows[number].Cells[1].Value = customers[i]._firstName;
-                DataGridViewCustomers.Rows[number].Cells[2].Value = customers[i]._lastName;
-                DataGridViewCustomers.Rows[number].Cells[3].Value = customers[i]._eMail.getEmailAdress();
-                DataGridViewCustomers.Rows[number].Cells[4].Value = customers[i]._DateOfChange;
-                DataGridViewCustomers.Rows[number].Cells[5].Value = customers[i]._MoneyBalance;
+                int number = DataGridViewCustomersOverview.Rows.Add();
+                DataGridViewCustomersOverview.Rows[number].Cells[0].Value = customers[i]._customerNumber;
+                DataGridViewCustomersOverview.Rows[number].Cells[1].Value = customers[i]._firstName;
+                DataGridViewCustomersOverview.Rows[number].Cells[2].Value = customers[i]._lastName;
+                DataGridViewCustomersOverview.Rows[number].Cells[3].Value = customers[i]._eMail.getEmailAdress();
+                DataGridViewCustomersOverview.Rows[number].Cells[4].Value = customers[i]._DateOfChange;
+                DataGridViewCustomersOverview.Rows[number].Cells[5].Value = customers[i]._MoneyBalance;
             }
 
         }
 
+        public void UpdateDatagridViewFullList(List<Customer> customers)
+        {
+            DataGridViewAllCustomers.Rows.Clear();
+            DataGridViewAllCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DataGridViewAllCustomers.Update();
+
+            for (int i = 0; i < customers.Count; i++)
+            {
+                int number = DataGridViewAllCustomers.Rows.Add();
+                DataGridViewAllCustomers.Rows[number].Cells[0].Value = customers[i]._customerNumber;
+                DataGridViewAllCustomers.Rows[number].Cells[1].Value = customers[i]._firstName;
+                DataGridViewAllCustomers.Rows[number].Cells[2].Value = customers[i]._lastName;
+                DataGridViewAllCustomers.Rows[number].Cells[3].Value = customers[i]._eMail.getEmailAdress();
+                DataGridViewAllCustomers.Rows[number].Cells[4].Value = customers[i]._DateOfChange;
+                DataGridViewAllCustomers.Rows[number].Cells[5].Value = customers[i]._MoneyBalance;
+            }
+        }
 
         //finished
         private void ButtonClickedMainTab(object sender, EventArgs e) 
@@ -79,6 +101,7 @@ namespace MAMA
                 else if (btn == ButtonAddNewCustomertoList)
                 {
                     _controller.AddCustomer(TextBoxAddFirstName.Text,TextBoxAddLastName.Text,TextBoxAddE_Mail.Text,float.Parse(TextBoxAddNewAmount.Text));
+                    ClearTextBoxesAddNewCustomer();
 
                 }
                 else if (btn == ButtonCancelNewCustomer)
@@ -91,8 +114,6 @@ namespace MAMA
             }
         }
 
-        
-        //Check the Name of the ButtonClicked and to reference to the functions
         // finished
         private void ButtonClickedEditItemsTab(object sender, EventArgs e)
         {
@@ -168,8 +189,7 @@ namespace MAMA
 
         }
 
-
-        //current working
+        //finished
         private void TextBoxChangedMainTabControl(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(TextBox))
@@ -320,9 +340,15 @@ namespace MAMA
             }
         }
 
-        /// Clicked Item Handeling of the Menustrip
-        /// OpenFiler Handler
-        /// finished
+        //finished
+        private void NewToolStripMenuItem(object sender, EventArgs e)
+        {
+            _controller.NewListofCustomers();
+            ClearTextBoxesAddNewCustomer();
+            ClearTextBoxesEditBalanceItems();
+        }
+
+        // finished
         private void OpenfileHandler(object sender, EventArgs e)
         {
             string filepath = string.Empty;
@@ -340,8 +366,7 @@ namespace MAMA
 
         }
 
-        /// SaveFile Handler for a new File
-        /// finished
+        // finished
         private void SavefileHandler(object sender, EventArgs e)
         {
             //Stream myStream;
@@ -367,31 +392,29 @@ namespace MAMA
 
         }
 
-        /// Save File Handler for existing File
-        /// to do change to current file save
+        // finished
         private void SaveCurrentFile(object sender, EventArgs e)
         {
-
+            _controller.SaveCurrentCustomerList();
         }
 
         //finished
-        //get Selected Customer Of the DatagridView to Edit Items
         private void DataGridviewSelectedRow(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(DataGridView))
             {
-                if ((DataGridView) sender == DataGridViewCustomers)
+                if ((DataGridView) sender == DataGridViewCustomersOverview)
                 {
 
 
-                    if (DataGridViewCustomers.CurrentRow.Cells[0].Value == null)
+                    if (DataGridViewCustomersOverview.CurrentRow.Cells[0].Value == null)
                     {
                         return;
                     }
 
-                    if (DataGridViewCustomers.CurrentRow.Cells[0].Value.GetType() == typeof(int))
+                    if (DataGridViewCustomersOverview.CurrentRow.Cells[0].Value.GetType() == typeof(int))
                     {
-                        int selectedCustomerNumber = Convert.ToInt16(DataGridViewCustomers.CurrentRow.Cells[0].Value);
+                        int selectedCustomerNumber = Convert.ToInt16(DataGridViewCustomersOverview.CurrentRow.Cells[0].Value);
                         Customer selectedCustomer = _controller.GetSelectedCustomer(selectedCustomerNumber, _currentCustomersList);
                         _currentEditCustomer = selectedCustomer;
                         UpdateBalanceTab(selectedCustomer);
@@ -551,10 +574,7 @@ namespace MAMA
 
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void l(object sender, EventArgs e)
         {

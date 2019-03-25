@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -28,11 +29,17 @@ namespace MAMA
             // Set Password to Login
             Password.SetPassword("MAMA");
 
-            ////Start Login View with PasswordBox
-            //Application.Run(loginView);
+            //Eventhandler to close loginform 
+            loginView.CloseLoginView += new EventHandler(controller.HandleClosingLoginView);
 
-            //Start MainView after positiiv Login
-            Application.Run(mainView);
+            loginView.ShowDialog();
+            ////Start Main Application
+            if (controller.LoginSuccessfully)
+            {
+                Application.Run(mainView);
+            }
+            
         }
+
     }
 }

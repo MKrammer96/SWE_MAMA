@@ -6,7 +6,7 @@ using System.IO; // for FileStream
 
 namespace MAMA
 {
-    class Encryption
+    public class Encryption
     {
         private string _encryptedText;
         AesCryptoServiceProvider aesCSP;
@@ -55,6 +55,7 @@ namespace MAMA
 
             return Convert.ToBase64String(encQuote);
         }
+        
     }
 
 }
