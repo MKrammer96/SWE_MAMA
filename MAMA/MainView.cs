@@ -487,8 +487,11 @@ namespace MAMA
             TextBoxAddNewAmount.Clear();
             TextBoxAddNewAmount.BackColor = Color.Empty;
         }
-
-
+        //finished
+        private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
 
 
 
