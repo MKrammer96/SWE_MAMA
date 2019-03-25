@@ -28,12 +28,45 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.txt_userPassword = new System.Windows.Forms.TextBox();
+            this.loginButton = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // txt_userPassword
+            // 
+            this.txt_userPassword.Location = new System.Drawing.Point(227, 138);
+            this.txt_userPassword.Name = "txt_userPassword";
+            this.txt_userPassword.Size = new System.Drawing.Size(100, 22);
+            this.txt_userPassword.TabIndex = 0;
+            // 
+            // loginButton
+            // 
+            this.loginButton.Location = new System.Drawing.Point(240, 166);
+            this.loginButton.Name = "loginButton";
+            this.loginButton.Size = new System.Drawing.Size(75, 23);
+            this.loginButton.TabIndex = 1;
+            this.loginButton.Text = "Login";
+            this.loginButton.UseVisualStyleBackColor = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
+            // 
+            // LoginView
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.loginButton);
+            this.Controls.Add(this.txt_userPassword);
+            this.Name = "LoginView";
             this.Text = "LoginView";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginView_FormClosing);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.TextBox txt_userPassword;
+        private System.Windows.Forms.Button loginButton;
     }
 }
