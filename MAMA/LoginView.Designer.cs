@@ -34,14 +34,14 @@
             // 
             // txt_userPassword
             // 
-            this.txt_userPassword.Location = new System.Drawing.Point(227, 138);
+            this.txt_userPassword.Location = new System.Drawing.Point(55, 53);
             this.txt_userPassword.Name = "txt_userPassword";
             this.txt_userPassword.Size = new System.Drawing.Size(100, 22);
             this.txt_userPassword.TabIndex = 0;
             // 
             // loginButton
             // 
-            this.loginButton.Location = new System.Drawing.Point(240, 166);
+            this.loginButton.Location = new System.Drawing.Point(68, 81);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(75, 23);
             this.loginButton.TabIndex = 1;
@@ -53,7 +53,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(220, 150);
             this.Controls.Add(this.loginButton);
             this.Controls.Add(this.txt_userPassword);
             this.Name = "LoginView";
