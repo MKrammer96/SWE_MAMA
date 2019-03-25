@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CloseLoginViewEventArgs.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="CSV_Handler.cs" />
     <Compile Include="Customer.cs" />

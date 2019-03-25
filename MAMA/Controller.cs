@@ -36,6 +36,17 @@ namespace MAMA
         }
 
 
+        public void HandleClosingLoginView(object sender, EventArgs e)
+        {
+            
+            // check if the argument of the eventargs is true or false 
+
+            Application.Run(_mainView);
+
+        }
+
+
+
         /// <summary>
         /// This methode gets the ListofCustomers and updates the view
         /// </summary>

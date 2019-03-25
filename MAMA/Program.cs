@@ -25,7 +25,7 @@ namespace MAMA
             mainView.SetContoller(controller);
 
             //Start Login View with PasswordBox
-
+            loginView.CloseLoginView += new EventHandler(controller.HandleClosingLoginView);
 
             
             //Start MainView after positiiv Login
