@@ -12,19 +12,43 @@ namespace MAMA
 {
     public partial class LoginView : Form
     {
-        public event EventHandler CloseLoginView;
+        private Controller _controller;
+        private int counter;
 
         public LoginView()
         {
             InitializeComponent();
+            counter = 0;
         }
 
-
-        private void CloseView(object sender, EventArgs e)
+        public void SetContoller(Controller controller)
         {
-            //check the password
+            _controller = controller;
+        }
+
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+            if (!Password.CheckPassword(txt_userPassword.Text))
+            {
+                counter++;
+            }
+            else
+            {
+                // Start Main View
+            }
+
+            if (counter >= 3)
+            {
+                // Quit
+                
+            }
             
-            CloseLoginView?.Invoke(this, new CloseLoginViewEventArgs(true));
+        }
+
+        private void LoginView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // Quit
+            
         }
     }
 }

@@ -8,24 +8,33 @@ namespace MAMA
 {
     public class Password
     {
-        private string phrase = "MAMA_SWE"; // 8 characters
+        static Encryption myEncrypter;
 
         /// <summary>
-        /// Creates a encrypted Password and stores it in a file
+        /// Sets a Passwort and stores it encrypted
         /// </summary>
-        /// <param name="userinput">Enter Password</param>
-        public Password(string userinput)
+        /// <param name="secretPassword">Choose your password to encrypt</param>
+        public static void SetPassword(string secretPassword)
         {
-            Encryption.encrypt(userinput, phrase);
+            myEncrypter = new Encryption(secretPassword);
         }
 
         /// <summary>
-        /// Returns the decrypted Password
+        /// Checks your Input
         /// </summary>
+        /// <param name="userinput">Userinput</param>
         /// <returns></returns>
-        public string getPassword()
+        public static bool CheckPassword(string userinput)
         {
-            return Encryption.decrypt(phrase);
+            if (myEncrypter.encrpyt(userinput).Equals(myEncrypter.getEncryptedText()))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+
     }
 }

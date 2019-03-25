@@ -30,6 +30,12 @@ namespace MAMA
             _loginView = loginView;
         }
 
+        public Controller(MainView mainView, CSV_Handler csv_Handler)
+        {
+            _mainView = mainView;
+            _csvHandler = csv_Handler;
+        }
+
         public Controller()
         {
 

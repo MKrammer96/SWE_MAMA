@@ -26,12 +26,10 @@ namespace MAMA
         /// <param name="lastName">Last Name</param>
         /// <param name="eMailAdress">E-Mail Adress</param>
         /// <param name="username">Username</param>
-        /// <param name="password">Password</param>
         /// <param name="customerNumber">Usernumber</param>
-        public User (string firstName, string lastName, string eMailAdress, string username, string password, int customerNumber)
+        public User (string firstName, string lastName, string eMailAdress, string username, int customerNumber)
         {
             _username = username;
-            _password = new Password(password);
             _customerNumber = customerNumber;
             _dateOfCreate = DateTime.Now;
             _eMail = new EMailAdress(eMailAdress);
