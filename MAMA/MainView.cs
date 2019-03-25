@@ -104,8 +104,8 @@ namespace MAMA
                 {
                     if (_currentEditCustomer != null)
                     {
-                        
-                        if (float.TryParse(LabelNewBalanceShow.Text, out float newBalance))
+                        float newBalance;
+                        if (float.TryParse(LabelNewBalanceShow.Text, out newBalance))
                         {
                             _currentEditCustomer = _controller.ChangeBalanceofCustomer(_currentEditCustomer, newBalance);
                             UpdateBalanceTab(_currentEditCustomer);
