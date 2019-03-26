@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2005
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAMA", "MAMA\MAMA.csproj", "{58983955-4B4A-40BB-8E09-83B1BFC34A1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MAMATests", "MAMATests\MAMATests.csproj", "{46A60719-8597-4210-BFAF-D92E33685D20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{58983955-4B4A-40BB-8E09-83B1BFC34A1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58983955-4B4A-40BB-8E09-83B1BFC34A1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58983955-4B4A-40BB-8E09-83B1BFC34A1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{46A60719-8597-4210-BFAF-D92E33685D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46A60719-8597-4210-BFAF-D92E33685D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46A60719-8597-4210-BFAF-D92E33685D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46A60719-8597-4210-BFAF-D92E33685D20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
