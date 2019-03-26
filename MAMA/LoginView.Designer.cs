@@ -74,7 +74,6 @@
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "LoginView";
             this.Text = "LoginView";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoginView_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

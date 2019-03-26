@@ -13,7 +13,6 @@ namespace MAMA
 
     public class Controller
     {
-        public event EventHandler CloseLoginForm;
         public bool LoginSuccessfully = false;
         private MainView _mainView;
         private CSV_Handler _csvHandler;

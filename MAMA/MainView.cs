@@ -69,6 +69,10 @@ namespace MAMA
 
         }
 
+        /// <summary>
+        /// Updates the DataGrid with de Data in customers
+        /// </summary>
+        /// <param name="customers">Customer-data</param>
         public void UpdateDatagridViewFullList(List<Customer> customers)
         {
             DataGridViewAllCustomers.Rows.Clear();
@@ -108,9 +112,6 @@ namespace MAMA
                 {
                     ClearTextBoxesAddNewCustomer();
                 }
-
-
-
             }
         }
 

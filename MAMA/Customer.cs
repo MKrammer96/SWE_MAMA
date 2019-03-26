@@ -30,11 +30,6 @@ namespace MAMA
             _lastName = lastName;
         }
 
-        //public Customer()
-        //{
-
-        //}
-
         /// <summary>
         /// Adds moneyBalance to the actual Balance
         /// </summary>
@@ -45,6 +40,11 @@ namespace MAMA
             _DateOfChange = DateTime.Now;
         }
 
+        /// <summary>
+        /// Updates the E-Mail Adress
+        /// </summary>
+        /// <param name="lastname"></param>
+        /// <param name="e_MailAddress"></param>
         public void UpdateNameEmail(string lastname, EMailAdress e_MailAddress)
         {
             _lastName = lastname;

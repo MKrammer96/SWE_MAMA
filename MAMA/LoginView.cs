@@ -32,8 +32,6 @@ namespace MAMA
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            Encryption password = new Encryption(txt_userPassword.Text);
-
             if (!Password.CheckPassword(txt_userPassword.Text))
             {
                 counter++;
@@ -50,12 +48,6 @@ namespace MAMA
                 MessageBox.Show("There has been three wrong passwort inputs");
                 
             }
-            
-        }
-
-        public void LoginView_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
         }
     }
 }
