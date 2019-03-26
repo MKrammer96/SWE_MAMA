@@ -116,6 +116,7 @@ namespace MAMA
         }
 
         // finished
+        // Bug found
         private void ButtonClickedEditItemsTab(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(Button))
@@ -144,11 +145,13 @@ namespace MAMA
 
 
                 }
+                // Bug found
                 else if (btn == ButtonAddNewAmount)
                 {
                     if (_currentEditCustomer != null && ButtonSaveNewBalance.Enabled == true)
                     {
                         float newAmount = _currentEditCustomer._MoneyBalance + float.Parse(TextBoxNewAmount.Text);
+                        _currentEditCustomer._MoneyBalance = newAmount;
                         LabelNewBalanceShow.Text = newAmount.ToString();
                     }
                 }

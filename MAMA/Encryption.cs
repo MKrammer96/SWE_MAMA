@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Security.Cryptography; // for DES
-using System.IO; // for FileStream
 
 namespace MAMA
 {
