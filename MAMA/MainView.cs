@@ -152,7 +152,7 @@ namespace MAMA
                     {
                         float newAmount = _currentEditCustomer._MoneyBalance + float.Parse(TextBoxNewAmount.Text);
                         _currentEditCustomer._MoneyBalance = newAmount;
-                        LabelNewBalanceShow.Text = newAmount.ToString();
+                        LabelNewBalanceShow.Text = _currentEditCustomer._MoneyBalance.ToString();
                     }
                 }
                 else if (btn == ButtonSubNewAmount)
@@ -162,7 +162,8 @@ namespace MAMA
                         if (_currentEditCustomer != null && ButtonSaveNewBalance.Enabled == true)
                         {
                             float newAmount = _currentEditCustomer._MoneyBalance - float.Parse(TextBoxNewAmount.Text); ;
-                            LabelNewBalanceShow.Text = newAmount.ToString();
+                            _currentEditCustomer._MoneyBalance = newAmount;
+                            LabelNewBalanceShow.Text = _currentEditCustomer._MoneyBalance.ToString();
                         }
                     }
                 }
