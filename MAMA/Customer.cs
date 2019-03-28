@@ -11,7 +11,6 @@ namespace MAMA
         public float _MoneyBalance;
         public DateTime _DateOfChange;
 
-
         /// <summary>
         /// Creates a new Customer
         /// </summary>
@@ -19,6 +18,8 @@ namespace MAMA
         /// <param name="lastName">Last Name</param>
         /// <param name="eMailAddress">E-Mail Address</param>
         /// <param name="customerNumber">Usernumber</param>
+        /// <param name="moneyBalance">Money Balance</param>
+        /// <param name="DateOfChange">Date of change</param>
         public Customer(string firstName, string lastName, string eMailAddress, int customerNumber, float moneyBalance, DateTime DateOfChange)
         {
             _MoneyBalance = moneyBalance;
@@ -28,6 +29,37 @@ namespace MAMA
             _eMail = new EMailAddress(eMailAddress);
             _firstName = firstName;
             _lastName = lastName;
+        }
+
+        /// <summary>
+        /// New Constructor with address info
+        /// </summary>
+        /// <param name="firstName">First Name</param>
+        /// <param name="lastName">Last Name</param>
+        /// <param name="eMailAddress">E-Mail Address</param>
+        /// <param name="customerNumber">Usernumber</param>
+        /// <param name="moneyBalance">Money Balance</param>
+        /// <param name="DateOfChange">Date of change</param>
+        /// <param name="street">Street</param>
+        /// <param name="housenumber">Housenumber</param>
+        /// <param name="postcode">Postcode</param>
+        /// <param name="location">Location</param>
+        /// <param name="country">Country</param>
+        public Customer(string firstName, string lastName, string eMailAddress, int customerNumber, float moneyBalance, DateTime DateOfChange, string street, int housenumber, int postcode, string location, string country)
+        {
+            _MoneyBalance = moneyBalance;
+            _customerNumber = customerNumber;
+            _dateOfCreate = DateTime.Now;
+            _DateOfChange = DateOfChange;
+            _eMail = new EMailAddress(eMailAddress);
+            _firstName = firstName;
+            _lastName = lastName;
+            _adress = new Address(street, housenumber, postcode, location, country);
+        }
+
+        public void AddAddressToCustomer(string street, int housenumber, int postcode, string location, string country)
+        {
+            _adress = new Address(street, housenumber, postcode, location, country);
         }
 
         /// <summary>

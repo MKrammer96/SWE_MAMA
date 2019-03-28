@@ -13,6 +13,7 @@ namespace MAMA
         public Password _password;
         public DateTime _dateOfCreate;
         public EMailAddress _eMail;
+        public Address _adress;
 
         public User()
         {
