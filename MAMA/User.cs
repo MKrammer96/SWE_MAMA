@@ -12,7 +12,7 @@ namespace MAMA
         public int _customerNumber;
         public Password _password;
         public DateTime _dateOfCreate;
-        public EMailAdress _eMail;
+        public EMailAddress _eMail;
 
         public User()
         {
@@ -32,14 +32,14 @@ namespace MAMA
             _username = username;
             _customerNumber = customerNumber;
             _dateOfCreate = DateTime.Now;
-            _eMail = new EMailAdress(eMailAdress);
+            _eMail = new EMailAddress(eMailAdress);
             _firstName = firstName;
             _lastName = lastName;
         }
 
         public void updateEmailAdress(string newAdress)
         {
-            _eMail.updateEmailAdress(newAdress); 
+            _eMail.updateEmailAddress(newAdress); 
         }
     }
 }

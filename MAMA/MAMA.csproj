@@ -45,11 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.cs" />
     <Compile Include="CloseLoginViewEventArgs.cs" />
     <Compile Include="Controller.cs" />
     <Compile Include="CSV_Handler.cs" />
     <Compile Include="Customer.cs" />
-    <Compile Include="EMailAdress.cs" />
+    <Compile Include="EMailAddress.cs" />
     <Compile Include="Encryption.cs" />
     <Compile Include="LoginView.cs">
       <SubType>Form</SubType>

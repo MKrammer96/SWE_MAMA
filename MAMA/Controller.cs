@@ -129,9 +129,9 @@ namespace MAMA
             }
 
             int customerNumber = CheckCustomerNumberorFindOne(CustomerList.Count+1);
-            EMailAdress eMailAddress = new EMailAdress(strE_MailAddress);
+            EMailAddress eMailAddress = new EMailAddress(strE_MailAddress);
             
-            if (eMailAddress.getEmailAdress() == String.Empty || CheckEMailforUnique(eMailAddress) == false)
+            if (eMailAddress.getEmailAddress() == String.Empty || CheckEMailforUnique(eMailAddress) == false)
             {
                 MessageBox.Show("Wrong input of the E-Mail address or the E-Mail address already exit");
                 return;
@@ -152,7 +152,7 @@ namespace MAMA
         /// <param name="customertoChange"></param>
         /// <param name="newlastName"></param>
         /// <param name="newEMailAddress"></param>
-        public Customer EditCustomeritems(Customer customer, string newlastName, EMailAdress newEMailAddress)
+        public Customer EditCustomeritems(Customer customer, string newlastName, EMailAddress newEMailAddress)
         {
             if (CustomerList == null || customer == null)
             {
@@ -298,12 +298,12 @@ namespace MAMA
 
         }
 
-        private bool CheckEMailforUnique(EMailAdress eMailAdress)
+        private bool CheckEMailforUnique(EMailAddress eMailAddress)
         {
             
             for (int i = 0; i < CustomerList.Count; i++)
             {
-                if (eMailAdress.getEmailAdress() == CustomerList[i]._eMail.getEmailAdress())
+                if (eMailAddress.getEmailAddress() == CustomerList[i]._eMail.getEmailAddress())
                 {
                     return false;
                 }

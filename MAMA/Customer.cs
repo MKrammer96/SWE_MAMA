@@ -17,15 +17,15 @@ namespace MAMA
         /// </summary>
         /// <param name="firstName">First Name</param>
         /// <param name="lastName">Last Name</param>
-        /// <param name="eMailAdress">E-Mail Adress</param>
+        /// <param name="eMailAddress">E-Mail Address</param>
         /// <param name="customerNumber">Usernumber</param>
-        public Customer(string firstName, string lastName, string eMailAdress, int customerNumber, float moneyBalance, DateTime DateOfChange)
+        public Customer(string firstName, string lastName, string eMailAddress, int customerNumber, float moneyBalance, DateTime DateOfChange)
         {
             _MoneyBalance = moneyBalance;
             _customerNumber = customerNumber;
             _dateOfCreate = DateTime.Now;
             _DateOfChange = DateOfChange;
-            _eMail = new EMailAdress(eMailAdress);
+            _eMail = new EMailAddress(eMailAddress);
             _firstName = firstName;
             _lastName = lastName;
         }
@@ -41,11 +41,11 @@ namespace MAMA
         }
 
         /// <summary>
-        /// Updates the E-Mail Adress
+        /// Updates the E-Mail Address
         /// </summary>
         /// <param name="lastname"></param>
         /// <param name="e_MailAddress"></param>
-        public void UpdateNameEmail(string lastname, EMailAdress e_MailAddress)
+        public void UpdateNameEmail(string lastname, EMailAddress e_MailAddress)
         {
             _lastName = lastname;
             _eMail = e_MailAddress;

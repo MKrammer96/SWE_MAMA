@@ -40,11 +40,11 @@ namespace MAMA
                     int customerNumber = myCustomer._customerNumber;
                     string firstName = myCustomer._firstName;
                     string lastName = myCustomer._lastName;
-                    string eMailAdress = myCustomer._eMail.getEmailAdress();
+                    string eMailAddress = myCustomer._eMail.getEmailAddress();
                     string dateOfChange = myCustomer._DateOfChange.ToString();
                     string moneyBalance = Convert.ToString(myCustomer._MoneyBalance);
 
-                    string text = Convert.ToString(customerNumber) + ";" + firstName + ";" + lastName + ";" + eMailAdress + ";" + dateOfChange + ";" + moneyBalance;
+                    string text = Convert.ToString(customerNumber) + ";" + firstName + ";" + lastName + ";" + eMailAddress + ";" + dateOfChange + ";" + moneyBalance;
                     dataToWrite.Add(text);
                 }
 
@@ -108,13 +108,13 @@ namespace MAMA
                     int customerNumber = Convert.ToInt16(data[0]);
                     string firstName = data[1];
                     string lastName = data[2];
-                    string eMailAdress = data[3].ToString();                    
+                    string eMailAddress = data[3].ToString();                    
                     DateTime DateOfChange = Convert.ToDateTime(data[4]);
                     string moneyBalanceAsString = data[5];
 
                     float moneyBalance;
                     float.TryParse(moneyBalanceAsString, out moneyBalance);
-                    Customer myCustomer = new Customer(firstName, lastName, eMailAdress, customerNumber, moneyBalance, DateOfChange);
+                    Customer myCustomer = new Customer(firstName, lastName, eMailAddress, customerNumber, moneyBalance, DateOfChange);
 
                     customerData.Add(myCustomer);
                 }

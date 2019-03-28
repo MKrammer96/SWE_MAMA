@@ -61,7 +61,7 @@ namespace MAMA.Tests
 
             string eMailAdressNew = "max.mustermann@students.fh-wels.at";
             myTestCustomer.updateEmailAdress(eMailAdressNew);
-            Assert.IsTrue(myTestCustomer._eMail.getEmailAdress().Equals(eMailAdressNew));
+            Assert.IsTrue(myTestCustomer._eMail.getEmailAddress().Equals(eMailAdressNew));
         }
     }
 }

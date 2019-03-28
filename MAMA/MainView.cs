@@ -62,7 +62,7 @@ namespace MAMA
                 DataGridViewCustomersOverview.Rows[number].Cells[0].Value = customers[i]._customerNumber;
                 DataGridViewCustomersOverview.Rows[number].Cells[1].Value = customers[i]._firstName;
                 DataGridViewCustomersOverview.Rows[number].Cells[2].Value = customers[i]._lastName;
-                DataGridViewCustomersOverview.Rows[number].Cells[3].Value = customers[i]._eMail.getEmailAdress();
+                DataGridViewCustomersOverview.Rows[number].Cells[3].Value = customers[i]._eMail.getEmailAddress();
                 DataGridViewCustomersOverview.Rows[number].Cells[4].Value = customers[i]._DateOfChange;
                 DataGridViewCustomersOverview.Rows[number].Cells[5].Value = customers[i]._MoneyBalance;
             }
@@ -85,7 +85,7 @@ namespace MAMA
                 DataGridViewAllCustomers.Rows[number].Cells[0].Value = customers[i]._customerNumber;
                 DataGridViewAllCustomers.Rows[number].Cells[1].Value = customers[i]._firstName;
                 DataGridViewAllCustomers.Rows[number].Cells[2].Value = customers[i]._lastName;
-                DataGridViewAllCustomers.Rows[number].Cells[3].Value = customers[i]._eMail.getEmailAdress();
+                DataGridViewAllCustomers.Rows[number].Cells[3].Value = customers[i]._eMail.getEmailAddress();
                 DataGridViewAllCustomers.Rows[number].Cells[4].Value = customers[i]._DateOfChange;
                 DataGridViewAllCustomers.Rows[number].Cells[5].Value = customers[i]._MoneyBalance;
             }
@@ -171,7 +171,7 @@ namespace MAMA
                 {
                     if (_currentEditCustomer != null)
                     {
-                        EMailAdress eMailAddress = new EMailAdress(TextBoxEMailEditItems.Text);
+                        EMailAddress eMailAddress = new EMailAddress(TextBoxEMailEditItems.Text);
                         if (eMailAddress.Address != string.Empty && CheckforLettersonly(TextBoxLastNameEditItems.Text))
                         {
                             _currentEditCustomer = _controller.EditCustomeritems(_currentEditCustomer,
@@ -235,7 +235,7 @@ namespace MAMA
                 }
                 else if (txBox == TextBoxAddE_Mail)
                 {
-                    EMailAdress eMailAdress = new EMailAdress(TextBoxAddE_Mail.Text);
+                    EMailAddress eMailAdress = new EMailAddress(TextBoxAddE_Mail.Text);
                     if (eMailAdress.Address != string.Empty && eMailAdress.Address != string.Empty)
                     {
                         TextBoxAddE_Mail.BackColor = Color.Green;
@@ -325,7 +325,7 @@ namespace MAMA
                 }
                 else if (txBox == TextBoxEMailEditItems)
                 {
-                    EMailAdress eMailAdress = new EMailAdress(TextBoxEMailEditItems.Text);
+                    EMailAddress eMailAdress = new EMailAddress(TextBoxEMailEditItems.Text);
                     if (eMailAdress.Address != string.Empty && eMailAdress.Address != string.Empty)
                     {
                         TextBoxEMailEditItems.BackColor = Color.Green;
@@ -455,7 +455,7 @@ namespace MAMA
         {
             LabelFirstNameEditBalance.Text = customer._firstName;
             LabelLastNameEditBalance.Text = customer._lastName;
-            LabelE_MailAddressEditBalance.Text = customer._eMail.getEmailAdress();
+            LabelE_MailAddressEditBalance.Text = customer._eMail.getEmailAddress();
             LabelDateofChangeEditBalance.Text = customer._DateOfChange.ToString();
             LabelCurrentBalanceShow.Text = customer._MoneyBalance.ToString();
             TextBoxNewAmount.Clear();
@@ -469,7 +469,7 @@ namespace MAMA
             LabelFirstNameEditItems.Text = customer._firstName;
             LabelDateofChangeEditItems.Text = customer._DateOfChange.ToString();
             LabelCurrentBalanceEditItem.Text = customer._MoneyBalance.ToString();
-            TextBoxEMailEditItems.Text = customer._eMail.getEmailAdress();
+            TextBoxEMailEditItems.Text = customer._eMail.getEmailAddress();
             TextBoxLastNameEditItems.Text = customer._lastName;
 
         }

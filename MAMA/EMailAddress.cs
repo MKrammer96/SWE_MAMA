@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace MAMA
 {
-    public class EMailAdress
+    public class EMailAddress
     {
         public string Address { get; private set; }
 
         /// <summary>
-        /// Creates a new E-Mail Adress and checks, if it is correct / (empty string, if false)
+        /// Creates a new E-Mail Address and checks, if it is correct / (empty string, if false)
         /// </summary>
-        /// <param name="adress">Adress</param>
-        public EMailAdress(string adress)
+        /// <param name="address">Address</param>
+        public EMailAddress(string address)
         {
-            if (verifyEmailAdress(adress))
+            if (verifyEmailAddress(address))
             {
-                Address = adress;
+                Address = address;
             }
             else
             {
@@ -27,14 +27,14 @@ namespace MAMA
         }
 
         /// <summary>
-        /// Updates your EMail-Adress / (empty string, if false)
+        /// Updates your EMail-Address / (empty string, if false)
         /// </summary>
-        /// <param name="adress">e-Mail Adress</param>
-        public void updateEmailAdress(string adress)
+        /// <param name="address">e-Mail Address</param>
+        public void updateEmailAddress(string address)
         {
-            if (verifyEmailAdress(adress))
+            if (verifyEmailAddress(address))
             {
-                Address = adress;
+                Address = address;
             }
             else
             {
@@ -43,20 +43,20 @@ namespace MAMA
         }
 
         /// <summary>
-        /// Returns your EMail-Adress
+        /// Returns your EMail-Address
         /// </summary>
         /// <returns></returns>
-        public string getEmailAdress()
+        public string getEmailAddress()
         {
             return Address;
         }
 
         /// <summary>
-        /// Checks your EMail-Adress / (empty string, if false)
+        /// Checks your EMail-Address / (empty string, if false)
         /// </summary>
-        /// <param name="eMailAdress"></param>
+        /// <param name="eMailAddress"></param>
         /// <returns></returns>
-        public bool verifyEmailAdress(string eMailAdress)
+        public bool verifyEmailAddress(string eMailAddress)
         {
             bool cond0, cond1, cond2, cond3;
             cond0 = false;
@@ -64,25 +64,25 @@ namespace MAMA
             cond2 = false;
             cond3 = false;
 
-            cond0 = checkIfString(eMailAdress);
+            cond0 = checkIfString(eMailAddress);
 
             // Check @
             if (cond0)
             {
-                cond1 = checkAt(eMailAdress);
+                cond1 = checkAt(eMailAddress);
             }
 
             if (cond1)
             {
-                string[] splitAdress = eMailAdress.Split('@');
-                if (splitAdress[0] == string.Empty || splitAdress[1] == string.Empty)
+                string[] splitAddress = eMailAddress.Split('@');
+                if (splitAddress[0] == string.Empty || splitAddress[1] == string.Empty)
                 {
                     return false;
                 }
                 else
                 {
-                    cond2 = checkAfterAT(splitAdress[1]);
-                    cond3 = checkBeforeAT(splitAdress[0]);
+                    cond2 = checkAfterAT(splitAddress[1]);
+                    cond3 = checkBeforeAT(splitAddress[0]);
                 }
             }
 
@@ -96,10 +96,10 @@ namespace MAMA
             }
         }
 
-        private bool checkIfString(string eMailAdress)
+        private bool checkIfString(string eMailAddress)
         {
             // Check last Condition
-            if (eMailAdress == null)
+            if (eMailAddress == null)
             {
                 return false;
             }
@@ -178,13 +178,13 @@ namespace MAMA
             return true;
         }
 
-        private bool checkAt(string eMailAdress)
+        private bool checkAt(string eMailAddress)
         {
             // Check if only one @
             int counter = 0;
-            for (int i = 0; i < eMailAdress.Length; i++)
+            for (int i = 0; i < eMailAddress.Length; i++)
             {
-                if (eMailAdress[i].Equals('@'))
+                if (eMailAddress[i].Equals('@'))
                 {
                     counter++;
                 }
