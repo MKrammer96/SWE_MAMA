@@ -32,6 +32,8 @@ namespace MAMA
 
         private void loginButton_Click(object sender, EventArgs e)
         {
+            Address.ConvertStringToAddress(" Straße mit Leerzeichen 1;  9999  Postleitzahl mit Leerzeichen; Vereinigtes Königreich");
+            
             if (!Password.CheckPassword(txt_userPassword.Text))
             {
                 counter++;

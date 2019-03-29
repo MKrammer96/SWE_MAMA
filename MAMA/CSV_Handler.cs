@@ -111,9 +111,11 @@ namespace MAMA
                     string eMailAddress = data[3].ToString();                    
                     DateTime DateOfChange = Convert.ToDateTime(data[4]);
                     string moneyBalanceAsString = data[5];
-
                     float moneyBalance;
                     float.TryParse(moneyBalanceAsString, out moneyBalance);
+
+                    string address = data[6];
+
                     Customer myCustomer = new Customer(firstName, lastName, eMailAddress, customerNumber, moneyBalance, DateOfChange);
 
                     customerData.Add(myCustomer);

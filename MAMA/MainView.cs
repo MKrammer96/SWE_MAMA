@@ -65,6 +65,9 @@ namespace MAMA
                 DataGridViewCustomersOverview.Rows[number].Cells[3].Value = customers[i]._eMail.getEmailAddress();
                 DataGridViewCustomersOverview.Rows[number].Cells[4].Value = customers[i]._DateOfChange;
                 DataGridViewCustomersOverview.Rows[number].Cells[5].Value = customers[i]._MoneyBalance;
+
+                // Address = new
+                //DataGridViewCustomersOverview.Rows[number].Cells[6].Value = customers[i]._adress.getAddress();
             }
 
         }
@@ -116,7 +119,6 @@ namespace MAMA
         }
 
         // finished
-        // Bug found
         private void ButtonClickedEditItemsTab(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(Button))

@@ -24,7 +24,11 @@ namespace MAMA
         /// <param name="country">country</param>
         public Address(string street, int housenumber, int postcode, string location, string country)
         {
-            if (street.GetType() == typeof (string))
+            if (street == null)
+            {
+                // Do nothing
+            }
+            else if (street.GetType() == typeof (string))
             {
                 if (CheckForLetters(street))
                 {
@@ -71,8 +75,11 @@ namespace MAMA
             {
                 _postcode = -1;
             }
-            
-            if (location.GetType() == typeof(string))
+            if (location == null)
+            {
+                // Do nothing
+            }
+            else if (location.GetType() == typeof(string))
             {
                 if (CheckForLetters(location))
                 {
@@ -88,7 +95,11 @@ namespace MAMA
                 _location = "No valid location";
             }
 
-            if (country.GetType() == typeof(string))
+            if (country == null)
+            {
+
+            }
+            else if (country.GetType() == typeof(string))
             {
                 if (CheckForLetters(country))
                 {
@@ -104,6 +115,52 @@ namespace MAMA
                 _country = "No vald country";
             }
         }
+        /// <summary>
+        /// Converts a string into an address. Format "street housenumber; postcode location; country"
+        /// </summary>
+        /// <param name="AddressAsString">Tye in Addres in right format</param>
+        /// <returns></returns>
+        public static Address ConvertStringToAddress(string AddressAsString)
+        {
+            string[] splittedAddress = AddressAsString.Split(';');
+
+            string street = string.Empty;
+            string[] splittedStreet = splittedAddress[0].Split(' ');
+            int housenumber;
+            int.TryParse(splittedStreet.Last(), out housenumber);
+            // The last index is the housenumber
+            for (int i = 0; i < splittedStreet.Length -1; i++)
+            {
+                street = street + splittedStreet[i] + " ";
+            }
+            // Remove last " "
+            street = street.Remove(street.Length - 1, 1);
+
+            string location = string.Empty;
+            string[] splittedLocation = splittedAddress[1].Split(' ');
+            // splittedLocation[0] = " "
+            int postcode;
+            
+            int counter = 0;
+            while (!int.TryParse(splittedLocation[counter], out postcode))
+            {
+                counter++;
+                // Try as long, until find postcode
+            }
+
+            for (int i = 1+counter; i < splittedLocation.Length; i++)
+            {
+                location = location + splittedLocation[i] + " ";
+            }
+            // Remove last " "
+            location = location.Remove(location.Length - 1, 1);
+
+            string country = splittedAddress.Last().Remove(0, 1);
+
+            Address returnAddress = new Address(street, housenumber, postcode, location, country);
+
+            return returnAddress;
+        }
 
         /// <summary>
         /// Checks the text, if there are only letters
@@ -112,7 +169,7 @@ namespace MAMA
         /// <returns></returns>
         private bool CheckForLetters(string textToCheck)
         {
-            string compareString = "ABCDEFGHIJKLMNOPQRSTUVWXYZß";
+            string compareString = "ABCDEFGHIJKLMNOPQRSTUVWXYZßÄÖÜ ";
 
             foreach (char ch in textToCheck)
             {
@@ -130,7 +187,7 @@ namespace MAMA
         /// <returns></returns>
         public string getAddress()
         {
-            string adress = _street + " " + _housenumber + "; " + _postcode + " " + _location + ", " + _country;
+            string adress = _street + " " + _housenumber + "; " + _postcode + " " + _location + "; " + _country;
 
             return adress;
         }
