@@ -107,7 +107,10 @@ namespace MAMA
                 }
                 else if (btn == ButtonAddNewCustomertoList)
                 {
-                    _controller.AddCustomer(TextBoxAddFirstName.Text,TextBoxAddLastName.Text,TextBoxAddE_Mail.Text,float.Parse(TextBoxAddNewAmount.Text));
+                    Address address = new Address(TextBoxAddStreet.Text,int.Parse(TextBoxAddStreetNumber.Text), 
+                        int.Parse(TextBoxAddPostcode.Text), TextBoxAddCity.Text, TextBoxAddCountry.Text);
+
+                    _controller.AddCustomer(TextBoxAddFirstName.Text,TextBoxAddLastName.Text,TextBoxAddE_Mail.Text,float.Parse(TextBoxAddNewAmount.Text), address);
                     ClearTextBoxesAddNewCustomer();
 
                 }
@@ -118,7 +121,7 @@ namespace MAMA
             }
         }
 
-        // finished
+        // change to version 2
         private void ButtonClickedEditItemsTab(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(Button))
@@ -174,10 +177,13 @@ namespace MAMA
                     if (_currentEditCustomer != null)
                     {
                         EMailAddress eMailAddress = new EMailAddress(TextBoxEMailEditItems.Text);
-                        if (eMailAddress.Address != string.Empty && CheckforLettersonly(TextBoxLastNameEditItems.Text))
+                        Address address = new Address(TextBoxStreetEditItems.Text,int.Parse(TextBoxEditStreetNumberItems.Text),
+                            int.Parse(TextBoxPostcodeEditItems.Text),TextBoxCityEditItems.Text,TextBoxCountryEditItems.Text);
+
+                        if (address != null && eMailAddress.Address != string.Empty && CheckforLettersonly(TextBoxLastNameEditItems.Text))
                         {
                             _currentEditCustomer = _controller.EditCustomeritems(_currentEditCustomer,
-                                TextBoxLastNameEditItems.Text, eMailAddress);
+                                TextBoxLastNameEditItems.Text, eMailAddress, address);
                             UpdateBalanceTab(_currentEditCustomer);
                             UpdateEditItemsTab(_currentEditCustomer);
                         }
@@ -189,6 +195,17 @@ namespace MAMA
                 {
                     _currentEditCustomer = null;
                     ClearTextBoxesEditBalanceItems();
+                }
+                else if (btn == ButtonDeleteCustomer)
+                {
+                    if (_currentEditCustomer._MoneyBalance == 0)
+                    {
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("The MoneyBalance of the customer needs to 0 EURO");
+                    }
                 }
 
 
@@ -218,7 +235,6 @@ namespace MAMA
                         ButtonAddNewCustomertoList.Enabled = false;
                     }
                 }
-
                 else if (txBox == TextBoxAddLastName)
                 {
                     bool textOk = CheckforLettersonly(TextBoxAddLastName.Text);
@@ -262,6 +278,86 @@ namespace MAMA
                     else
                     {
                         TextBoxAddNewAmount.BackColor = Color.Red;
+                        ButtonAddNewCustomertoList.Enabled = false;
+                    }
+
+                }
+                else if (txBox == TextBoxAddStreet)
+                {
+                    bool textOk = CheckforLettersonly(TextBoxAddStreet.Text);
+
+                    if (textOk && TextBoxAddStreet.Text.Length > 2)
+                    {
+                        TextBoxAddStreet.BackColor = Color.Green;
+                        CheckAddBoxes();
+                    }
+                    else
+                    {
+                        TextBoxAddStreet.BackColor = Color.Red;
+                        ButtonAddNewCustomertoList.Enabled = false;
+                    }
+
+                }
+                else if (txBox == TextBoxAddStreetNumber)
+                {
+                    decimal moneyBalance;
+                    if (decimal.TryParse(TextBoxAddStreetNumber.Text, out moneyBalance))
+                    {
+                        TextBoxAddStreetNumber.BackColor = Color.Green;
+                        CheckAddBoxes();
+                    }
+                    else
+                    {
+                        TextBoxAddStreetNumber.BackColor = Color.Red;
+                        ButtonAddNewCustomertoList.Enabled = false;
+                    }
+
+                }
+                else if (txBox == TextBoxAddPostcode)
+                {
+                    decimal moneyBalance;
+                    if (decimal.TryParse(TextBoxAddPostcode.Text, out moneyBalance))
+                    {
+                        TextBoxAddPostcode.BackColor = Color.Green;
+                        CheckAddBoxes();
+                    }
+                    else
+                    {
+                        TextBoxAddPostcode.BackColor = Color.Red;
+                        ButtonAddNewCustomertoList.Enabled = false;
+                    }
+
+                }
+                else if (txBox == TextBoxAddCity)
+                {
+                    bool textOk = CheckforLettersonly(TextBoxAddCity.Text);
+
+                    if (textOk && TextBoxAddCity.Text.Length > 2)
+                    {
+                        TextBoxAddCity.BackColor = Color.Green;
+                        CheckAddBoxes();
+                    }
+                    else
+                    {
+
+                        TextBoxAddCity.BackColor = Color.Red;
+                        ButtonAddNewCustomertoList.Enabled = false;
+                    }
+
+                }
+                else if (txBox == TextBoxAddCountry)
+                {
+                    bool textOk = CheckforLettersonly(TextBoxAddCountry.Text);
+
+                    if (textOk && TextBoxAddCountry.Text.Length > 2)
+                    {
+                        TextBoxAddCountry.BackColor = Color.Green;
+                        CheckAddBoxes();
+                    }
+                    else
+                    {
+
+                        TextBoxAddCountry.BackColor = Color.Red;
                         ButtonAddNewCustomertoList.Enabled = false;
                     }
 
@@ -312,11 +408,7 @@ namespace MAMA
                     if (CheckforLettersonly(TextBoxLastNameEditItems.Text) && TextBoxLastNameEditItems.Text.Length > 2)
                     {
                         TextBoxLastNameEditItems.BackColor = Color.Green;
-
-                        if (TextBoxEMailEditItems.BackColor == Color.Green)
-                        {
-                            ButtonSaveEditItems.Enabled = true;
-                        }
+                        CheckEditBoxes();
                     }
                     else
                     {
@@ -325,17 +417,82 @@ namespace MAMA
                     }
 
                 }
+                else if (txBox == TextBoxStreetEditItems)
+                {
+                    if (CheckforLettersonly(TextBoxStreetEditItems.Text) && TextBoxStreetEditItems.Text.Length > 2)
+                    {
+                        TextBoxStreetEditItems.BackColor = Color.Green;
+                        CheckEditBoxes();
+                    }
+                    else
+                    {
+                        TextBoxStreetEditItems.BackColor = Color.Red;
+                        ButtonSaveEditItems.Enabled = false;
+                    }
+                }
+                else if (txBox == TextBoxEditStreetNumberItems)
+                {
+                    decimal moneyBalance;
+                    if (decimal.TryParse(TextBoxEditStreetNumberItems.Text, out moneyBalance))
+                    {
+                        TextBoxEditStreetNumberItems.BackColor = Color.Green;
+                        CheckEditBoxes();
+
+                    }
+                    else
+                    {
+                        TextBoxEditStreetNumberItems.BackColor = Color.Red;
+                        ButtonSaveEditItems.Enabled = false;
+                    }
+                }
+                else if (txBox == TextBoxPostcodeEditItems)
+                {
+                    decimal moneyBalance;
+                    if (decimal.TryParse(TextBoxPostcodeEditItems.Text, out moneyBalance))
+                    {
+                        TextBoxPostcodeEditItems.BackColor = Color.Green;
+                        CheckEditBoxes();
+                    }
+                    else
+                    {
+                        TextBoxPostcodeEditItems.BackColor = Color.Red;
+                        ButtonSaveEditItems.Enabled = false;
+                    }
+
+                }
+                else if (txBox == TextBoxCityEditItems)
+                {
+                    if (CheckforLettersonly(TextBoxCityEditItems.Text) && TextBoxCityEditItems.Text.Length > 2)
+                    {
+                        TextBoxCityEditItems.BackColor = Color.Green;
+                        CheckEditBoxes();
+                    }
+                    else
+                    {
+                        TextBoxCityEditItems.BackColor = Color.Red;
+                        ButtonSaveEditItems.Enabled = false;
+                    }
+                }
+                else if (txBox == TextBoxCountryEditItems)
+                {
+                    if (CheckforLettersonly(TextBoxCountryEditItems.Text) && TextBoxCountryEditItems.Text.Length > 2)
+                    {
+                        TextBoxCountryEditItems.BackColor = Color.Green;
+                        CheckEditBoxes();
+                    }
+                    else
+                    {
+                        TextBoxCountryEditItems.BackColor = Color.Red;
+                        ButtonSaveEditItems.Enabled = false;
+                    }
+                }
                 else if (txBox == TextBoxEMailEditItems)
                 {
                     EMailAddress eMailAdress = new EMailAddress(TextBoxEMailEditItems.Text);
                     if (eMailAdress.Address != string.Empty && eMailAdress.Address != string.Empty)
                     {
                         TextBoxEMailEditItems.BackColor = Color.Green;
-
-                        if (TextBoxLastNameEditItems.BackColor == Color.Green)
-                        {
-                            ButtonSaveEditItems.Enabled = true;
-                        }
+                        CheckEditBoxes();
                     }
                     else
                     {
@@ -344,6 +501,7 @@ namespace MAMA
                     }
 
                 }
+
             }
         }
 
@@ -437,13 +595,15 @@ namespace MAMA
         }
 
 
-
         //These are all support Methodes
         //finished
         private void CheckAddBoxes()
         {
             if (TextBoxAddFirstName.BackColor == Color.Green && TextBoxAddLastName.BackColor == Color.Green &&
-                TextBoxAddE_Mail.BackColor == Color.Green && TextBoxAddNewAmount.BackColor == Color.Green)
+                TextBoxAddE_Mail.BackColor == Color.Green && TextBoxAddNewAmount.BackColor == Color.Green &&
+                TextBoxAddStreet.BackColor == Color.Green && TextBoxAddStreetNumber.BackColor == Color.Green &&
+                TextBoxAddPostcode.BackColor == Color.Green && TextBoxAddCity.BackColor == Color.Green &&
+                TextBoxAddCountry.BackColor == Color.Green)
             {
                 ButtonAddNewCustomertoList.Enabled = true;
             }
@@ -453,6 +613,26 @@ namespace MAMA
             }
         }
         //finished
+        private void CheckEditBoxes()
+        {
+            if (TextBoxLastNameEditItems.BackColor == Color.Green
+                && TextBoxStreetEditItems.BackColor == Color.Green
+                && TextBoxEditStreetNumberItems.BackColor == Color.Green
+                && TextBoxPostcodeEditItems.BackColor == Color.Green
+                && TextBoxCityEditItems.BackColor == Color.Green
+                && TextBoxCountryEditItems.BackColor == Color.Green
+                && TextBoxEMailEditItems.BackColor == Color.Green)
+            {
+                ButtonSaveEditItems.Enabled = true;
+            }
+            else
+            {
+                ButtonSaveEditItems.Enabled = false;
+            }
+
+
+        }
+        //to test
         private void UpdateBalanceTab(Customer customer)
         {
             LabelFirstNameEditBalance.Text = customer._firstName;
@@ -460,12 +640,20 @@ namespace MAMA
             LabelE_MailAddressEditBalance.Text = customer._eMail.getEmailAddress();
             LabelDateofChangeEditBalance.Text = customer._DateOfChange.ToString();
             LabelCurrentBalanceShow.Text = customer._MoneyBalance.ToString();
+            if (customer._adress != null)
+            {
+                LabelStreetEditBalance.Text = customer._adress._street;
+                LabelStreetNumberEditBalance.Text = customer._adress._housenumber.ToString();
+                LabelPostcodeEditBalance.Text = customer._adress._postcode.ToString();
+                LabelCityEditBalance.Text = customer._adress._location;
+                LabelCountryEditBalance.Text = customer._adress._country;
+            }
             TextBoxNewAmount.Clear();
             TextBoxNewAmount.BackColor = Color.Empty;
             LabelNewBalanceShow.Text = "";
 
         }
-        //finished
+        //to test
         private void UpdateEditItemsTab(Customer customer)
         {
             LabelFirstNameEditItems.Text = customer._firstName;
@@ -473,12 +661,20 @@ namespace MAMA
             LabelCurrentBalanceEditItem.Text = customer._MoneyBalance.ToString();
             TextBoxEMailEditItems.Text = customer._eMail.getEmailAddress();
             TextBoxLastNameEditItems.Text = customer._lastName;
+            if (customer._adress != null)
+            {
+                TextBoxAddStreet.Text = customer._adress._street;
+                TextBoxEditStreetNumberItems.Text = customer._adress._housenumber.ToString();
+                TextBoxPostcodeEditItems.Text = customer._adress._postcode.ToString();
+                TextBoxCityEditItems.Text = customer._adress._location;
+                TextBoxCountryEditItems.Text = customer._adress._country;
+            }
 
         }
         //finished
         private bool CheckforLettersonly(string textbox)
         {
-            if (!Regex.IsMatch(textbox, @"^[\p{L}]+$"))
+            if (!Regex.IsMatch(textbox, @"^[\p{L} ]+$"))
             {
                 return false;
             }
@@ -494,6 +690,11 @@ namespace MAMA
             LabelDateofChangeEditBalance.Text = "";
             LabelCurrentBalanceShow.Text = "";
             LabelNewBalanceShow.Text = "";
+            LabelStreetEditBalance.Text = "";
+            LabelStreetNumberEditBalance.Text = "";
+            LabelPostcodeEditBalance.Text = "";
+            LabelCityEditBalance.Text = "";
+            LabelCountryEditBalance.Text = "";
             TextBoxNewAmount.Clear();
             TextBoxNewAmount.BackColor = Color.Empty;
 
@@ -504,6 +705,16 @@ namespace MAMA
             TextBoxEMailEditItems.BackColor = Color.Empty;
             TextBoxLastNameEditItems.Clear();
             TextBoxLastNameEditItems.BackColor = Color.Empty;
+            TextBoxStreetEditItems.Clear();
+            TextBoxStreetEditItems.BackColor = Color.Empty;
+            TextBoxEditStreetNumberItems.Clear();
+            TextBoxEditStreetNumberItems.BackColor = Color.Empty;
+            TextBoxPostcodeEditItems.Clear();
+            TextBoxPostcodeEditItems.BackColor = Color.Empty;
+            TextBoxCityEditItems.Clear();
+            TextBoxCityEditItems.BackColor = Color.Empty;
+            TextBoxCountryEditItems.Clear();
+            TextBoxCountryEditItems.BackColor = Color.Empty;
         }
         //finished
         private void ClearTextBoxesAddNewCustomer()
@@ -516,6 +727,16 @@ namespace MAMA
             TextBoxAddE_Mail.BackColor = Color.Empty;
             TextBoxAddNewAmount.Clear();
             TextBoxAddNewAmount.BackColor = Color.Empty;
+            TextBoxAddStreet.Clear();
+            TextBoxAddStreet.BackColor = Color.Empty;
+            TextBoxAddStreetNumber.Clear();
+            TextBoxAddStreetNumber.BackColor = Color.Empty;
+            TextBoxAddPostcode.Clear();
+            TextBoxAddPostcode.BackColor = Color.Empty;
+            TextBoxAddCity.Clear();
+            TextBoxAddCity.BackColor = Color.Empty;
+            TextBoxAddCountry.Clear();
+            TextBoxAddCountry.BackColor = Color.Empty;
         }
         //finished
         private void exitToolStripMenuItem_Click_1(object sender, EventArgs e)

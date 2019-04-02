@@ -8,11 +8,11 @@ namespace MAMA
 {
     public class Address
     {
-        private string _street = string.Empty;
-        private int _housenumber = 0;
-        private string _location = string.Empty;
-        private string _country = string.Empty;
-        private int _postcode = 0;
+        public string _street { get; private set; }
+        public int _housenumber { get; private set; }
+        public string _location { get; private set; }
+        public string _country { get; private set; }
+        public int _postcode { get; private set; }
 
         /// <summary>
         /// Creates a new address
@@ -185,9 +185,9 @@ namespace MAMA
         /// Returns the address in Format: street + housenumber; postcode + location; country
         /// </summary>
         /// <returns></returns>
-        public string getAddress()
+        public string[] getAddress()
         {
-            string adress = _street + " " + _housenumber + "; " + _postcode + " " + _location + "; " + _country;
+            string[] adress = new string []{_street, _housenumber.ToString(), _postcode.ToString(), _location, _country};
 
             return adress;
         }

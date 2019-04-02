@@ -121,7 +121,7 @@ namespace MAMA
         /// add a new customer to list
         /// </summary>
         /// <param name="customer"></param>
-        public void AddCustomer(string firstName, string lastName, string strE_MailAddress, float moneyBalance)
+        public void AddCustomer(string firstName, string lastName, string strE_MailAddress, float moneyBalance, Address address)
         {
             if (CustomerList == null)
             {
@@ -138,12 +138,30 @@ namespace MAMA
             }
             else
             {
-                Customer customer = new Customer(firstName,lastName,strE_MailAddress,customerNumber,moneyBalance,DateTime.Now);
+                Customer customer = new Customer(firstName,lastName,strE_MailAddress,customerNumber,moneyBalance,DateTime.Now,address);
                 CustomerList.Add(customer);
                 _mainView.UpdateDataGridViewOverview(CustomerList);
                 _mainView.UpdateDatagridViewFullList(CustomerList);
             }
 
+        }
+        
+        /// <summary>
+        /// Delete the selected customer from the list
+        /// </summary>
+        /// <param name="customertoDelete"></param>
+        public void DeletCustomer(Customer customertoDelete)
+        {
+            for (int i = 0; i < CustomerList.Count; i++)
+            {
+                if (CustomerList[i]._customerNumber == customertoDelete._customerNumber)
+                {
+                    CustomerList.RemoveAt(i);
+                    _mainView.UpdateDatagridViewFullList(CustomerList);
+                    _mainView.UpdateDataGridViewOverview(CustomerList);
+                    return;
+                }
+            }
         }
 
         /// <summary>
@@ -152,7 +170,7 @@ namespace MAMA
         /// <param name="customertoChange"></param>
         /// <param name="newlastName"></param>
         /// <param name="newEMailAddress"></param>
-        public Customer EditCustomeritems(Customer customer, string newlastName, EMailAddress newEMailAddress)
+        public Customer EditCustomeritems(Customer customer, string newlastName, EMailAddress newEMailAddress, Address newAddress)
         {
             if (CustomerList == null || customer == null)
             {
@@ -163,7 +181,7 @@ namespace MAMA
             {
                 if (customer._customerNumber == CustomerList[i]._customerNumber)
                 {
-                    CustomerList[i].UpdateNameEmail(newlastName,newEMailAddress);
+                    CustomerList[i].UpdateNameAddressEmail(newlastName,newEMailAddress,newAddress);
                     customer = CustomerList[i];
                     _mainView.UpdateDataGridViewOverview(CustomerList);
                     _mainView.UpdateDatagridViewFullList(CustomerList);

@@ -126,6 +126,37 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.LabelStreetEditBalance = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.LabelPostcodeEditBalance = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.LabelCityEditBalance = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.TextBoxStreetEditItems = new System.Windows.Forms.TextBox();
+            this.TextBoxPostcodeEditItems = new System.Windows.Forms.TextBox();
+            this.TextBoxCityEditItems = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.LabelStreetNumberEditBalance = new System.Windows.Forms.Label();
+            this.LabelCountryEditBalance = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.TextBoxEditStreetNumberItems = new System.Windows.Forms.TextBox();
+            this.TextBoxCountryEditItems = new System.Windows.Forms.TextBox();
+            this.ButtonDeleteCustomer = new System.Windows.Forms.Button();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.TextBoxAddCountry = new System.Windows.Forms.TextBox();
+            this.TextBoxAddCity = new System.Windows.Forms.TextBox();
+            this.TextBoxAddPostcode = new System.Windows.Forms.TextBox();
+            this.TextBoxAddStreetNumber = new System.Windows.Forms.TextBox();
+            this.TextBoxAddStreet = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.EditItemsofCustomer.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -184,7 +215,7 @@
             this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(183, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openToolStripMenuItem.Text = "&Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenfileHandler);
             // 
@@ -199,14 +230,14 @@
             this.saveToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(183, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveCurrentFile);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(183, 26);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveAsToolStripMenuItem.Text = "Save &As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SavefileHandler);
             // 
@@ -415,6 +446,7 @@
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.ButtonSubNewAmount);
+            this.tabPage1.Controls.Add(this.ButtonDeleteCustomer);
             this.tabPage1.Controls.Add(this.ButtonCancelNewBalance);
             this.tabPage1.Controls.Add(this.ButtonSaveNewBalance);
             this.tabPage1.Controls.Add(this.ButtonAddNewAmount);
@@ -422,7 +454,17 @@
             this.tabPage1.Controls.Add(this.LabelNewBalanceHeader);
             this.tabPage1.Controls.Add(this.LabelNewAmountHeader);
             this.tabPage1.Controls.Add(this.LabelCurrentBalanceHeader);
+            this.tabPage1.Controls.Add(this.label24);
+            this.tabPage1.Controls.Add(this.label20);
+            this.tabPage1.Controls.Add(this.LabelCountryEditBalance);
+            this.tabPage1.Controls.Add(this.label18);
+            this.tabPage1.Controls.Add(this.LabelCityEditBalance);
+            this.tabPage1.Controls.Add(this.LabelStreetNumberEditBalance);
+            this.tabPage1.Controls.Add(this.label21);
+            this.tabPage1.Controls.Add(this.label16);
+            this.tabPage1.Controls.Add(this.LabelPostcodeEditBalance);
             this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.LabelStreetEditBalance);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.LabelDateofChangeEditBalance);
             this.tabPage1.Controls.Add(this.label4);
@@ -442,7 +484,7 @@
             // 
             // ButtonSubNewAmount
             // 
-            this.ButtonSubNewAmount.Location = new System.Drawing.Point(229, 218);
+            this.ButtonSubNewAmount.Location = new System.Drawing.Point(229, 365);
             this.ButtonSubNewAmount.Name = "ButtonSubNewAmount";
             this.ButtonSubNewAmount.Size = new System.Drawing.Size(33, 23);
             this.ButtonSubNewAmount.TabIndex = 6;
@@ -452,7 +494,7 @@
             // 
             // ButtonCancelNewBalance
             // 
-            this.ButtonCancelNewBalance.Location = new System.Drawing.Point(264, 299);
+            this.ButtonCancelNewBalance.Location = new System.Drawing.Point(264, 448);
             this.ButtonCancelNewBalance.Name = "ButtonCancelNewBalance";
             this.ButtonCancelNewBalance.Size = new System.Drawing.Size(68, 23);
             this.ButtonCancelNewBalance.TabIndex = 6;
@@ -462,7 +504,7 @@
             // 
             // ButtonSaveNewBalance
             // 
-            this.ButtonSaveNewBalance.Location = new System.Drawing.Point(190, 299);
+            this.ButtonSaveNewBalance.Location = new System.Drawing.Point(190, 448);
             this.ButtonSaveNewBalance.Name = "ButtonSaveNewBalance";
             this.ButtonSaveNewBalance.Size = new System.Drawing.Size(68, 23);
             this.ButtonSaveNewBalance.TabIndex = 6;
@@ -472,7 +514,7 @@
             // 
             // ButtonAddNewAmount
             // 
-            this.ButtonAddNewAmount.Location = new System.Drawing.Point(190, 218);
+            this.ButtonAddNewAmount.Location = new System.Drawing.Point(190, 365);
             this.ButtonAddNewAmount.Name = "ButtonAddNewAmount";
             this.ButtonAddNewAmount.Size = new System.Drawing.Size(33, 23);
             this.ButtonAddNewAmount.TabIndex = 6;
@@ -482,7 +524,7 @@
             // 
             // TextBoxNewAmount
             // 
-            this.TextBoxNewAmount.Location = new System.Drawing.Point(190, 192);
+            this.TextBoxNewAmount.Location = new System.Drawing.Point(190, 339);
             this.TextBoxNewAmount.Name = "TextBoxNewAmount";
             this.TextBoxNewAmount.Size = new System.Drawing.Size(142, 20);
             this.TextBoxNewAmount.TabIndex = 5;
@@ -492,7 +534,7 @@
             // 
             this.LabelNewBalanceHeader.AutoSize = true;
             this.LabelNewBalanceHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelNewBalanceHeader.Location = new System.Drawing.Point(187, 252);
+            this.LabelNewBalanceHeader.Location = new System.Drawing.Point(187, 399);
             this.LabelNewBalanceHeader.Name = "LabelNewBalanceHeader";
             this.LabelNewBalanceHeader.Size = new System.Drawing.Size(131, 18);
             this.LabelNewBalanceHeader.TabIndex = 4;
@@ -502,7 +544,7 @@
             // 
             this.LabelNewAmountHeader.AutoSize = true;
             this.LabelNewAmountHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelNewAmountHeader.Location = new System.Drawing.Point(187, 171);
+            this.LabelNewAmountHeader.Location = new System.Drawing.Point(187, 318);
             this.LabelNewAmountHeader.Name = "LabelNewAmountHeader";
             this.LabelNewAmountHeader.Size = new System.Drawing.Size(129, 18);
             this.LabelNewAmountHeader.TabIndex = 4;
@@ -512,7 +554,7 @@
             // 
             this.LabelCurrentBalanceHeader.AutoSize = true;
             this.LabelCurrentBalanceHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelCurrentBalanceHeader.Location = new System.Drawing.Point(6, 171);
+            this.LabelCurrentBalanceHeader.Location = new System.Drawing.Point(6, 318);
             this.LabelCurrentBalanceHeader.Name = "LabelCurrentBalanceHeader";
             this.LabelCurrentBalanceHeader.Size = new System.Drawing.Size(150, 18);
             this.LabelCurrentBalanceHeader.TabIndex = 4;
@@ -522,7 +564,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(6, 118);
+            this.label6.Location = new System.Drawing.Point(6, 250);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(115, 18);
             this.label6.TabIndex = 4;
@@ -542,10 +584,11 @@
             // 
             this.LabelDateofChangeEditBalance.AutoSize = true;
             this.LabelDateofChangeEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelDateofChangeEditBalance.Location = new System.Drawing.Point(153, 118);
+            this.LabelDateofChangeEditBalance.Location = new System.Drawing.Point(153, 250);
             this.LabelDateofChangeEditBalance.Name = "LabelDateofChangeEditBalance";
-            this.LabelDateofChangeEditBalance.Size = new System.Drawing.Size(0, 18);
+            this.LabelDateofChangeEditBalance.Size = new System.Drawing.Size(80, 18);
             this.LabelDateofChangeEditBalance.TabIndex = 4;
+            this.LabelDateofChangeEditBalance.Text = "01.01.2000";
             // 
             // label4
             // 
@@ -563,8 +606,9 @@
             this.LabelE_MailAddressEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelE_MailAddressEditBalance.Location = new System.Drawing.Point(153, 85);
             this.LabelE_MailAddressEditBalance.Name = "LabelE_MailAddressEditBalance";
-            this.LabelE_MailAddressEditBalance.Size = new System.Drawing.Size(0, 18);
+            this.LabelE_MailAddressEditBalance.Size = new System.Drawing.Size(180, 18);
             this.LabelE_MailAddressEditBalance.TabIndex = 4;
+            this.LabelE_MailAddressEditBalance.Text = "john.snow@example.com";
             this.LabelE_MailAddressEditBalance.Click += new System.EventHandler(this.l);
             // 
             // label3
@@ -583,26 +627,29 @@
             this.LabelLastNameEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelLastNameEditBalance.Location = new System.Drawing.Point(153, 52);
             this.LabelLastNameEditBalance.Name = "LabelLastNameEditBalance";
-            this.LabelLastNameEditBalance.Size = new System.Drawing.Size(0, 18);
+            this.LabelLastNameEditBalance.Size = new System.Drawing.Size(46, 18);
             this.LabelLastNameEditBalance.TabIndex = 4;
+            this.LabelLastNameEditBalance.Text = "Snow";
             // 
             // LabelNewBalanceShow
             // 
             this.LabelNewBalanceShow.AutoSize = true;
             this.LabelNewBalanceShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelNewBalanceShow.Location = new System.Drawing.Point(194, 275);
+            this.LabelNewBalanceShow.Location = new System.Drawing.Point(194, 422);
             this.LabelNewBalanceShow.Name = "LabelNewBalanceShow";
-            this.LabelNewBalanceShow.Size = new System.Drawing.Size(0, 18);
+            this.LabelNewBalanceShow.Size = new System.Drawing.Size(56, 18);
             this.LabelNewBalanceShow.TabIndex = 4;
+            this.LabelNewBalanceShow.Text = "999999";
             // 
             // LabelCurrentBalanceShow
             // 
             this.LabelCurrentBalanceShow.AutoSize = true;
             this.LabelCurrentBalanceShow.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelCurrentBalanceShow.Location = new System.Drawing.Point(14, 194);
+            this.LabelCurrentBalanceShow.Location = new System.Drawing.Point(14, 341);
             this.LabelCurrentBalanceShow.Name = "LabelCurrentBalanceShow";
-            this.LabelCurrentBalanceShow.Size = new System.Drawing.Size(0, 18);
+            this.LabelCurrentBalanceShow.Size = new System.Drawing.Size(56, 18);
             this.LabelCurrentBalanceShow.TabIndex = 4;
+            this.LabelCurrentBalanceShow.Text = "999999";
             // 
             // LabelFirstNameEditBalance
             // 
@@ -610,12 +657,23 @@
             this.LabelFirstNameEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelFirstNameEditBalance.Location = new System.Drawing.Point(153, 19);
             this.LabelFirstNameEditBalance.Name = "LabelFirstNameEditBalance";
-            this.LabelFirstNameEditBalance.Size = new System.Drawing.Size(0, 18);
+            this.LabelFirstNameEditBalance.Size = new System.Drawing.Size(41, 18);
             this.LabelFirstNameEditBalance.TabIndex = 4;
+            this.LabelFirstNameEditBalance.Text = "John";
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label25);
+            this.tabPage2.Controls.Add(this.label28);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.label17);
+            this.tabPage2.Controls.Add(this.label19);
+            this.tabPage2.Controls.Add(this.TextBoxCountryEditItems);
+            this.tabPage2.Controls.Add(this.TextBoxCityEditItems);
+            this.tabPage2.Controls.Add(this.TextBoxPostcodeEditItems);
             this.tabPage2.Controls.Add(this.TextBoxEMailEditItems);
+            this.tabPage2.Controls.Add(this.TextBoxEditStreetNumberItems);
+            this.tabPage2.Controls.Add(this.TextBoxStreetEditItems);
             this.tabPage2.Controls.Add(this.ButtonCancelEditItems);
             this.tabPage2.Controls.Add(this.TextBoxLastNameEditItems);
             this.tabPage2.Controls.Add(this.ButtonSaveEditItems);
@@ -646,7 +704,7 @@
             // 
             // ButtonCancelEditItems
             // 
-            this.ButtonCancelEditItems.Location = new System.Drawing.Point(264, 192);
+            this.ButtonCancelEditItems.Location = new System.Drawing.Point(264, 448);
             this.ButtonCancelEditItems.Name = "ButtonCancelEditItems";
             this.ButtonCancelEditItems.Size = new System.Drawing.Size(68, 23);
             this.ButtonCancelEditItems.TabIndex = 6;
@@ -664,7 +722,7 @@
             // 
             // ButtonSaveEditItems
             // 
-            this.ButtonSaveEditItems.Location = new System.Drawing.Point(190, 192);
+            this.ButtonSaveEditItems.Location = new System.Drawing.Point(190, 448);
             this.ButtonSaveEditItems.Name = "ButtonSaveEditItems";
             this.ButtonSaveEditItems.Size = new System.Drawing.Size(68, 23);
             this.ButtonSaveEditItems.TabIndex = 6;
@@ -685,21 +743,21 @@
             // 
             this.LabelCurrentBalanceEditItem.AutoSize = true;
             this.LabelCurrentBalanceEditItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelCurrentBalanceEditItem.Location = new System.Drawing.Point(130, 152);
+            this.LabelCurrentBalanceEditItem.Location = new System.Drawing.Point(130, 291);
             this.LabelCurrentBalanceEditItem.Name = "LabelCurrentBalanceEditItem";
-            this.LabelCurrentBalanceEditItem.Size = new System.Drawing.Size(46, 18);
+            this.LabelCurrentBalanceEditItem.Size = new System.Drawing.Size(56, 18);
             this.LabelCurrentBalanceEditItem.TabIndex = 10;
-            this.LabelCurrentBalanceEditItem.Text = "label1";
+            this.LabelCurrentBalanceEditItem.Text = "999999";
             // 
             // LabelDateofChangeEditItems
             // 
             this.LabelDateofChangeEditItems.AutoSize = true;
             this.LabelDateofChangeEditItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelDateofChangeEditItems.Location = new System.Drawing.Point(130, 118);
+            this.LabelDateofChangeEditItems.Location = new System.Drawing.Point(130, 257);
             this.LabelDateofChangeEditItems.Name = "LabelDateofChangeEditItems";
-            this.LabelDateofChangeEditItems.Size = new System.Drawing.Size(46, 18);
+            this.LabelDateofChangeEditItems.Size = new System.Drawing.Size(80, 18);
             this.LabelDateofChangeEditItems.TabIndex = 10;
-            this.LabelDateofChangeEditItems.Text = "label1";
+            this.LabelDateofChangeEditItems.Text = "01.01.2000";
             // 
             // LabelFirstNameEditItems
             // 
@@ -707,15 +765,15 @@
             this.LabelFirstNameEditItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LabelFirstNameEditItems.Location = new System.Drawing.Point(130, 19);
             this.LabelFirstNameEditItems.Name = "LabelFirstNameEditItems";
-            this.LabelFirstNameEditItems.Size = new System.Drawing.Size(46, 18);
+            this.LabelFirstNameEditItems.Size = new System.Drawing.Size(41, 18);
             this.LabelFirstNameEditItems.TabIndex = 10;
-            this.LabelFirstNameEditItems.Text = "label1";
+            this.LabelFirstNameEditItems.Text = "John";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(9, 152);
+            this.label10.Location = new System.Drawing.Point(9, 291);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(118, 18);
             this.label10.TabIndex = 4;
@@ -725,7 +783,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(9, 118);
+            this.label9.Location = new System.Drawing.Point(9, 257);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(115, 18);
             this.label9.TabIndex = 4;
@@ -848,6 +906,16 @@
             // 
             // AddCustomer
             // 
+            this.AddCustomer.Controls.Add(this.label22);
+            this.AddCustomer.Controls.Add(this.label23);
+            this.AddCustomer.Controls.Add(this.label26);
+            this.AddCustomer.Controls.Add(this.label27);
+            this.AddCustomer.Controls.Add(this.label29);
+            this.AddCustomer.Controls.Add(this.TextBoxAddCountry);
+            this.AddCustomer.Controls.Add(this.TextBoxAddCity);
+            this.AddCustomer.Controls.Add(this.TextBoxAddPostcode);
+            this.AddCustomer.Controls.Add(this.TextBoxAddStreetNumber);
+            this.AddCustomer.Controls.Add(this.TextBoxAddStreet);
             this.AddCustomer.Controls.Add(this.DataGridViewAllCustomers);
             this.AddCustomer.Controls.Add(this.TextBoxAddNewAmount);
             this.AddCustomer.Controls.Add(this.TextBoxAddE_Mail);
@@ -953,7 +1021,7 @@
             // 
             // ButtonCancelNewCustomer
             // 
-            this.ButtonCancelNewCustomer.Location = new System.Drawing.Point(220, 180);
+            this.ButtonCancelNewCustomer.Location = new System.Drawing.Point(220, 322);
             this.ButtonCancelNewCustomer.Name = "ButtonCancelNewCustomer";
             this.ButtonCancelNewCustomer.Size = new System.Drawing.Size(68, 23);
             this.ButtonCancelNewCustomer.TabIndex = 10;
@@ -963,7 +1031,7 @@
             // 
             // ButtonAddNewCustomertoList
             // 
-            this.ButtonAddNewCustomertoList.Location = new System.Drawing.Point(146, 180);
+            this.ButtonAddNewCustomertoList.Location = new System.Drawing.Point(146, 322);
             this.ButtonAddNewCustomertoList.Name = "ButtonAddNewCustomertoList";
             this.ButtonAddNewCustomertoList.Size = new System.Drawing.Size(68, 23);
             this.ButtonAddNewCustomertoList.TabIndex = 11;
@@ -1010,6 +1078,296 @@
             this.label14.Size = new System.Drawing.Size(78, 18);
             this.label14.TabIndex = 8;
             this.label14.Text = "Firstname:";
+            // 
+            // LabelStreetEditBalance
+            // 
+            this.LabelStreetEditBalance.AutoSize = true;
+            this.LabelStreetEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelStreetEditBalance.Location = new System.Drawing.Point(153, 116);
+            this.LabelStreetEditBalance.Name = "LabelStreetEditBalance";
+            this.LabelStreetEditBalance.Size = new System.Drawing.Size(47, 18);
+            this.LabelStreetEditBalance.TabIndex = 4;
+            this.LabelStreetEditBalance.Text = "Street";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(6, 116);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(47, 18);
+            this.label16.TabIndex = 4;
+            this.label16.Text = "Street";
+            // 
+            // LabelPostcodeEditBalance
+            // 
+            this.LabelPostcodeEditBalance.AutoSize = true;
+            this.LabelPostcodeEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelPostcodeEditBalance.Location = new System.Drawing.Point(153, 171);
+            this.LabelPostcodeEditBalance.Name = "LabelPostcodeEditBalance";
+            this.LabelPostcodeEditBalance.Size = new System.Drawing.Size(40, 18);
+            this.LabelPostcodeEditBalance.TabIndex = 4;
+            this.LabelPostcodeEditBalance.Text = "4600";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(6, 171);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(72, 18);
+            this.label18.TabIndex = 4;
+            this.label18.Text = "Postcode";
+            // 
+            // LabelCityEditBalance
+            // 
+            this.LabelCityEditBalance.AutoSize = true;
+            this.LabelCityEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelCityEditBalance.Location = new System.Drawing.Point(153, 196);
+            this.LabelCityEditBalance.Name = "LabelCityEditBalance";
+            this.LabelCityEditBalance.Size = new System.Drawing.Size(42, 18);
+            this.LabelCityEditBalance.TabIndex = 4;
+            this.LabelCityEditBalance.Text = "Wels";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(6, 196);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(33, 18);
+            this.label20.TabIndex = 4;
+            this.label20.Text = "City";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(9, 200);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(33, 18);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "City";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(9, 171);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(72, 18);
+            this.label17.TabIndex = 13;
+            this.label17.Text = "Postcode";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(9, 115);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(47, 18);
+            this.label19.TabIndex = 14;
+            this.label19.Text = "Street";
+            // 
+            // TextBoxStreetEditItems
+            // 
+            this.TextBoxStreetEditItems.Location = new System.Drawing.Point(133, 115);
+            this.TextBoxStreetEditItems.Name = "TextBoxStreetEditItems";
+            this.TextBoxStreetEditItems.Size = new System.Drawing.Size(199, 20);
+            this.TextBoxStreetEditItems.TabIndex = 11;
+            this.TextBoxStreetEditItems.TextChanged += new System.EventHandler(this.TextBoxChangedTabControllEditItems);
+            // 
+            // TextBoxPostcodeEditItems
+            // 
+            this.TextBoxPostcodeEditItems.Location = new System.Drawing.Point(133, 171);
+            this.TextBoxPostcodeEditItems.Name = "TextBoxPostcodeEditItems";
+            this.TextBoxPostcodeEditItems.Size = new System.Drawing.Size(199, 20);
+            this.TextBoxPostcodeEditItems.TabIndex = 11;
+            this.TextBoxPostcodeEditItems.TextChanged += new System.EventHandler(this.TextBoxChangedTabControllEditItems);
+            // 
+            // TextBoxCityEditItems
+            // 
+            this.TextBoxCityEditItems.Location = new System.Drawing.Point(133, 199);
+            this.TextBoxCityEditItems.Name = "TextBoxCityEditItems";
+            this.TextBoxCityEditItems.Size = new System.Drawing.Size(199, 20);
+            this.TextBoxCityEditItems.TabIndex = 11;
+            this.TextBoxCityEditItems.TextChanged += new System.EventHandler(this.TextBoxChangedTabControllEditItems);
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(6, 144);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(61, 18);
+            this.label21.TabIndex = 4;
+            this.label21.Text = "Number";
+            // 
+            // LabelStreetNumberEditBalance
+            // 
+            this.LabelStreetNumberEditBalance.AutoSize = true;
+            this.LabelStreetNumberEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelStreetNumberEditBalance.Location = new System.Drawing.Point(153, 144);
+            this.LabelStreetNumberEditBalance.Name = "LabelStreetNumberEditBalance";
+            this.LabelStreetNumberEditBalance.Size = new System.Drawing.Size(24, 18);
+            this.LabelStreetNumberEditBalance.TabIndex = 4;
+            this.LabelStreetNumberEditBalance.Text = "12";
+            // 
+            // LabelCountryEditBalance
+            // 
+            this.LabelCountryEditBalance.AutoSize = true;
+            this.LabelCountryEditBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelCountryEditBalance.Location = new System.Drawing.Point(153, 223);
+            this.LabelCountryEditBalance.Name = "LabelCountryEditBalance";
+            this.LabelCountryEditBalance.Size = new System.Drawing.Size(53, 18);
+            this.LabelCountryEditBalance.TabIndex = 4;
+            this.LabelCountryEditBalance.Text = "Austria";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(6, 223);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(60, 18);
+            this.label24.TabIndex = 4;
+            this.label24.Text = "Country";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(9, 143);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(61, 18);
+            this.label28.TabIndex = 18;
+            this.label28.Text = "Number";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(9, 227);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(60, 18);
+            this.label25.TabIndex = 15;
+            this.label25.Text = "Country";
+            // 
+            // TextBoxEditStreetNumberItems
+            // 
+            this.TextBoxEditStreetNumberItems.Location = new System.Drawing.Point(133, 142);
+            this.TextBoxEditStreetNumberItems.Name = "TextBoxEditStreetNumberItems";
+            this.TextBoxEditStreetNumberItems.Size = new System.Drawing.Size(199, 20);
+            this.TextBoxEditStreetNumberItems.TabIndex = 11;
+            this.TextBoxEditStreetNumberItems.TextChanged += new System.EventHandler(this.TextBoxChangedTabControllEditItems);
+            // 
+            // TextBoxCountryEditItems
+            // 
+            this.TextBoxCountryEditItems.Location = new System.Drawing.Point(133, 228);
+            this.TextBoxCountryEditItems.Name = "TextBoxCountryEditItems";
+            this.TextBoxCountryEditItems.Size = new System.Drawing.Size(199, 20);
+            this.TextBoxCountryEditItems.TabIndex = 11;
+            this.TextBoxCountryEditItems.TextChanged += new System.EventHandler(this.TextBoxChangedTabControllEditItems);
+            // 
+            // ButtonDeleteCustomer
+            // 
+            this.ButtonDeleteCustomer.Location = new System.Drawing.Point(6, 448);
+            this.ButtonDeleteCustomer.Name = "ButtonDeleteCustomer";
+            this.ButtonDeleteCustomer.Size = new System.Drawing.Size(68, 23);
+            this.ButtonDeleteCustomer.TabIndex = 6;
+            this.ButtonDeleteCustomer.Text = "Delete";
+            this.ButtonDeleteCustomer.UseVisualStyleBackColor = true;
+            this.ButtonDeleteCustomer.Click += new System.EventHandler(this.ButtonClickedEditItemsTab);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(8, 286);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(60, 18);
+            this.label22.TabIndex = 27;
+            this.label22.Text = "Country";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(8, 202);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(61, 18);
+            this.label23.TabIndex = 28;
+            this.label23.Text = "Number";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(8, 259);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(33, 18);
+            this.label26.TabIndex = 24;
+            this.label26.Text = "City";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(8, 230);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(72, 18);
+            this.label27.TabIndex = 25;
+            this.label27.Text = "Postcode";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(8, 174);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(47, 18);
+            this.label29.TabIndex = 26;
+            this.label29.Text = "Street";
+            // 
+            // TextBoxAddCountry
+            // 
+            this.TextBoxAddCountry.Location = new System.Drawing.Point(146, 287);
+            this.TextBoxAddCountry.Name = "TextBoxAddCountry";
+            this.TextBoxAddCountry.Size = new System.Drawing.Size(216, 20);
+            this.TextBoxAddCountry.TabIndex = 19;
+            this.TextBoxAddCountry.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControl);
+            // 
+            // TextBoxAddCity
+            // 
+            this.TextBoxAddCity.Location = new System.Drawing.Point(146, 258);
+            this.TextBoxAddCity.Name = "TextBoxAddCity";
+            this.TextBoxAddCity.Size = new System.Drawing.Size(216, 20);
+            this.TextBoxAddCity.TabIndex = 20;
+            this.TextBoxAddCity.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControl);
+            // 
+            // TextBoxAddPostcode
+            // 
+            this.TextBoxAddPostcode.Location = new System.Drawing.Point(146, 230);
+            this.TextBoxAddPostcode.Name = "TextBoxAddPostcode";
+            this.TextBoxAddPostcode.Size = new System.Drawing.Size(216, 20);
+            this.TextBoxAddPostcode.TabIndex = 21;
+            this.TextBoxAddPostcode.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControl);
+            // 
+            // TextBoxAddStreetNumber
+            // 
+            this.TextBoxAddStreetNumber.Location = new System.Drawing.Point(146, 201);
+            this.TextBoxAddStreetNumber.Name = "TextBoxAddStreetNumber";
+            this.TextBoxAddStreetNumber.Size = new System.Drawing.Size(216, 20);
+            this.TextBoxAddStreetNumber.TabIndex = 22;
+            this.TextBoxAddStreetNumber.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControl);
+            // 
+            // TextBoxAddStreet
+            // 
+            this.TextBoxAddStreet.Location = new System.Drawing.Point(146, 174);
+            this.TextBoxAddStreet.Name = "TextBoxAddStreet";
+            this.TextBoxAddStreet.Size = new System.Drawing.Size(216, 20);
+            this.TextBoxAddStreet.TabIndex = 23;
+            this.TextBoxAddStreet.TextChanged += new System.EventHandler(this.TextBoxChangedMainTabControl);
             // 
             // MainView
             // 
@@ -1139,6 +1497,37 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label LabelCityEditBalance;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label LabelPostcodeEditBalance;
+        private System.Windows.Forms.Label LabelStreetEditBalance;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox TextBoxCityEditItems;
+        private System.Windows.Forms.TextBox TextBoxPostcodeEditItems;
+        private System.Windows.Forms.TextBox TextBoxStreetEditItems;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label LabelCountryEditBalance;
+        private System.Windows.Forms.Label LabelStreetNumberEditBalance;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox TextBoxCountryEditItems;
+        private System.Windows.Forms.TextBox TextBoxEditStreetNumberItems;
+        private System.Windows.Forms.Button ButtonDeleteCustomer;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.TextBox TextBoxAddCountry;
+        private System.Windows.Forms.TextBox TextBoxAddCity;
+        private System.Windows.Forms.TextBox TextBoxAddPostcode;
+        private System.Windows.Forms.TextBox TextBoxAddStreetNumber;
+        private System.Windows.Forms.TextBox TextBoxAddStreet;
     }
 }
 

@@ -45,7 +45,7 @@ namespace MAMA
         /// <param name="postcode">Postcode</param>
         /// <param name="location">Location</param>
         /// <param name="country">Country</param>
-        public Customer(string firstName, string lastName, string eMailAddress, int customerNumber, float moneyBalance, DateTime DateOfChange, string street, int housenumber, int postcode, string location, string country)
+        public Customer(string firstName, string lastName, string eMailAddress, int customerNumber, float moneyBalance, DateTime DateOfChange, Address address)
         {
             _MoneyBalance = moneyBalance;
             _customerNumber = customerNumber;
@@ -54,7 +54,7 @@ namespace MAMA
             _eMail = new EMailAddress(eMailAddress);
             _firstName = firstName;
             _lastName = lastName;
-            _adress = new Address(street, housenumber, postcode, location, country);
+            _adress = address;
         }
 
         public void AddAddressToCustomer(string street, int housenumber, int postcode, string location, string country)
@@ -77,8 +77,12 @@ namespace MAMA
         /// </summary>
         /// <param name="lastname"></param>
         /// <param name="e_MailAddress"></param>
-        public void UpdateNameEmail(string lastname, EMailAddress e_MailAddress)
+        public void UpdateNameAddressEmail(string lastname, EMailAddress e_MailAddress, Address address)
         {
+            if (address != null)
+            {
+                _adress = address;
+            }            
             _lastName = lastname;
             _eMail = e_MailAddress;
         }
