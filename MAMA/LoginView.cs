@@ -16,8 +16,6 @@ namespace MAMA
         private Controller _controller;
         private int counter;
 
-
-
         public LoginView()
         {
             InitializeComponent();
@@ -35,6 +33,7 @@ namespace MAMA
             if (!Password.CheckPassword(txt_userPassword.Text))
             {
                 counter++;
+                MessageBox.Show("Wrong Password");
             }
             else
             {
@@ -48,6 +47,16 @@ namespace MAMA
                 MessageBox.Show("There has been three wrong passwort inputs");
                 
             }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                loginButton.PerformClick();
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
         }
     }
 }
