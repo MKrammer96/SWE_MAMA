@@ -28,8 +28,7 @@ namespace MAMA
             
             try
             {
-                //char sharpS = '�';
-                csvFileWriter = new StreamWriter(path,false,Encoding.Default);
+                csvFileWriter = new StreamWriter(path,false,Encoding.Unicode);
                 
                 string header = "CustomerID;FirstName;LastName;E-Mail;DateofChange;MoneyBalance;Address";
 
@@ -46,7 +45,6 @@ namespace MAMA
                     string dateOfChange = myCustomer._DateOfChange.ToString();
                     string moneyBalance = Convert.ToString(myCustomer._MoneyBalance);
                     string address = myCustomer._adress.ConvertAdressToString();
-                    //address = address.Replace('ß', sharpS);
 
                     string text = Convert.ToString(customerNumber) + ";" + firstName + ";" + lastName + ";" + eMailAddress + ";" + dateOfChange + ";" + moneyBalance + ";" + address;
                     dataToWrite.Add(text);
@@ -74,7 +72,7 @@ namespace MAMA
         }
 
         /// <summary>
-        /// Reads the Customer-Data at path
+        /// Returns the Customer-Data. Format: CustomerNumber;FirstName;LastName;EMail;DateOfChange;MoneyBalance;Address
         /// </summary>
         /// <param name="path">File-path</param>
         /// <returns></returns>
@@ -83,7 +81,7 @@ namespace MAMA
             StreamReader myReader = StreamReader.Null;
             try
             {
-                myReader = new StreamReader(path,Encoding.Default);
+                myReader = new StreamReader(path,Encoding.Unicode);
                 string textLine = string.Empty;
                 string[] splitLine;
                 List<string[]> customerDataAsString = new List<string[]>();
@@ -92,15 +90,12 @@ namespace MAMA
                 if (File.Exists(path))
                 {
                     myReader = new StreamReader(path);
-                    //char sharpS = '�';
 
                     while (!myReader.EndOfStream)
                     {
                         textLine = myReader.ReadLine();
                         if (textLine != "")
                         {
-                            //textLine = textLine.Replace(sharpS, 'ß');
-
                             splitLine = textLine.Split(';');
                             customerDataAsString.Add(splitLine);
                         }
