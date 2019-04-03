@@ -80,7 +80,7 @@ namespace MAMA
             StreamReader myReader = StreamReader.Null;
             try
             {
-                myReader = new StreamReader(path);
+                myReader = new StreamReader(path,Encoding.Unicode);
                 string textLine = string.Empty;
                 string[] splitLine;
                 List<string[]> customerDataAsString = new List<string[]>();

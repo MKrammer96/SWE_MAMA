@@ -116,16 +116,19 @@ namespace MAMA
             }
         }
         /// <summary>
-        /// Converts a string into an address. Format "street housenumber; postcode location; country"
+        /// Converts a string into an address. String-Format "street housenumber - postcode location - country"
         /// </summary>
         /// <param name="AddressAsString">Tye in Addres in right format</param>
         /// <returns></returns>
         public static Address ConvertStringToAddress(string AddressAsString)
         {
-            string[] splittedAddress = AddressAsString.Split(';');
+            string[] splittedAddress = AddressAsString.Split('-');
 
             string street = string.Empty;
+            
             string[] splittedStreet = splittedAddress[0].Split(' ');
+            Array.Resize<string>(ref splittedStreet, splittedStreet.Length - 1);
+
             int housenumber;
             int.TryParse(splittedStreet.Last(), out housenumber);
             // The last index is the housenumber
@@ -139,6 +142,7 @@ namespace MAMA
             string location = string.Empty;
             string[] splittedLocation = splittedAddress[1].Split(' ');
             // splittedLocation[0] = " "
+            Array.Resize<string>(ref splittedLocation, splittedLocation.Length - 1);
             int postcode;
             
             int counter = 0;
@@ -182,12 +186,12 @@ namespace MAMA
         }
 
         /// <summary>
-        /// Returns the address in Format: street + housenumber; postcode + location; country
+        /// Returns the address in Format: street + housenumber - postcode + location - country
         /// </summary>
         /// <returns></returns>
         public string ConvertAdressToString()
         {
-            string adress = _street + " " + _housenumber.ToString() + "; " + _postcode.ToString() + " " + _location + "; " + _country;
+            string adress = _street + " " + _housenumber.ToString() + " - " + _postcode.ToString() + " " + _location + " - " + _country;
 
             return adress;
         }

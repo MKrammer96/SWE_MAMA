@@ -82,14 +82,7 @@ namespace MAMA
         {
             _filePathOfOpenedList = filepath;
             List<Customer> myCustomers = _csvHandler.readCSV(filepath);
-
-
-            ////Test List
-            //List<Customer> testCustomers = new List<Customer>();
-            //testCustomers.Add(new Customer("Manuel", "Krammer", "manuel.krammer@gmail.com", 1, 120));
-            //testCustomers.Add(new Customer("Matthias", "Farveleder", "farveleder@gmail.com", 5, 160));
-            //testCustomers.Add(new Customer("Markus", "Farveleder", "m.farv@gmail.com", 7, -167));
-
+            
 
             CustomerList = myCustomers;
             _mainView.UpdateDataGridViewOverview(CustomerList);

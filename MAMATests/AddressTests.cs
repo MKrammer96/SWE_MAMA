@@ -12,7 +12,7 @@ namespace MAMA.Tests
     public class AddressTests
     {
         [TestMethod()]
-        public void GoodAddressTest()
+        public void GoodAddressTest1()
         {
             string street = "Stelzhamerstraße";
             int housenumber = 23;
@@ -20,7 +20,22 @@ namespace MAMA.Tests
             string country = "Austria";
             int postcode = 4600;
 
-            string shouldBeMyAdress = street + " " + housenumber + "; " + postcode + " " + location + "; " + country;
+            string shouldBeMyAdress = street + " " + housenumber + " - " + postcode + " " + location + " - " + country;
+            Address myTestAdress = new Address(street, housenumber, postcode, location, country);
+
+            Assert.IsTrue(myTestAdress.ConvertAdressToString().Equals(shouldBeMyAdress));
+        }
+
+        [TestMethod()]
+        public void GoodAddressTest2()
+        {
+            string street = "Laurenzhausen";
+            int housenumber = 23;
+            string location = "Wels";
+            string country = "Austria";
+            int postcode = 4600;
+
+            string shouldBeMyAdress = street + " " + housenumber + " - " + postcode + " " + location + " - " + country;
             Address myTestAdress = new Address(street, housenumber, postcode, location, country);
 
             Assert.IsTrue(myTestAdress.ConvertAdressToString().Equals(shouldBeMyAdress));
@@ -35,7 +50,7 @@ namespace MAMA.Tests
             string country = "Austria";
             int postcode = 4600;
 
-            string shouldBeMyAdress = street + " " + housenumber + "; " + postcode + " " + location + "; " + country;
+            string shouldBeMyAdress = street + " " + housenumber + " - " + postcode + " " + location + " - " + country;
             Address myTestAdress = new Address(street, housenumber, postcode, location, country);
 
             Assert.IsFalse(myTestAdress.ConvertAdressToString().Equals(shouldBeMyAdress));
@@ -50,7 +65,7 @@ namespace MAMA.Tests
             string country = "Austria";
             int postcode = 46000;
 
-            string shouldBeMyAdress = street + " " + housenumber + "; " + postcode + " " + location + "; " + country;
+            string shouldBeMyAdress = street + " " + housenumber + " - " + postcode + " " + location + " - " + country;
             Address myTestAdress = new Address(street, housenumber, postcode, location, country);
 
             Assert.IsFalse(myTestAdress.ConvertAdressToString().Equals(shouldBeMyAdress));
@@ -65,7 +80,7 @@ namespace MAMA.Tests
             string country = "Austria";
             int postcode = 4600;
 
-            string shouldBeMyAdress = street + " " + housenumber + "; " + postcode + " " + location + "; " + country;
+            string shouldBeMyAdress = street + " " + housenumber + " - " + postcode + " " + location + " - " + country;
             Address myTestAdress = new Address(street, housenumber, postcode, location, country);
 
             Assert.IsFalse(myTestAdress.ConvertAdressToString().Equals(shouldBeMyAdress));
@@ -80,7 +95,7 @@ namespace MAMA.Tests
             string country = "Austria";
             int postcode = 4600;
 
-            string shouldBeMyAdress = street + " " + housenumber + "; " + postcode + " " + location + "; " + country;
+            string shouldBeMyAdress = street + " " + housenumber + " - " + postcode + " " + location + " - " + country;
             Address myTestAdress = new Address(street, housenumber, postcode, location, country);
 
             Assert.IsFalse(myTestAdress.ConvertAdressToString().Equals(shouldBeMyAdress));
@@ -95,7 +110,7 @@ namespace MAMA.Tests
             string country = "-1";
             int postcode = 4600;
 
-            string shouldBeMyAdress = street + " " + housenumber + "; " + postcode + " " + location + "; " + country;
+            string shouldBeMyAdress = street + " " + housenumber + " - " + postcode + " " + location + " - " + country;
             Address myTestAdress = new Address(street, housenumber, postcode, location, country);
 
             Assert.IsFalse(myTestAdress.ConvertAdressToString().Equals(shouldBeMyAdress));
@@ -110,7 +125,7 @@ namespace MAMA.Tests
             string country = null;
             int postcode = 0;
 
-            string shouldBeMyAdress = street + " " + housenumber + "; " + postcode + " " + location + "; " + country;
+            string shouldBeMyAdress = street + " " + housenumber + " - " + postcode + " " + location + " - " + country;
             Address myTestAdress = new Address(street, housenumber, postcode, location, country);
 
             Assert.IsFalse(myTestAdress.ConvertAdressToString().Equals(shouldBeMyAdress));
@@ -119,7 +134,7 @@ namespace MAMA.Tests
         [TestMethod()]
         public void ConvertStringToAddressTest1()
         {
-            string AddressAsString = "Stelzhamerstraße 23; 4600 Wels; Austria";
+            string AddressAsString = "Stelzhamerstraße 23 - 4600 Wels - Austria";
 
             Address testAddress = Address.ConvertStringToAddress(AddressAsString);
 
@@ -131,7 +146,7 @@ namespace MAMA.Tests
         [TestMethod()]
         public void ConvertStringToAddressTest2()
         {
-            string AddressAsString = "Bad Schallerbach 1; 1000 Test; Vereinigtes Königreich";
+            string AddressAsString = "Bad Schallerbach 1 - 1000 Test - Vereinigtes Königreich";
 
             Address testAddress = Address.ConvertStringToAddress(AddressAsString);
 
@@ -143,7 +158,7 @@ namespace MAMA.Tests
         [TestMethod()]
         public void ConvertStringToAddressTest3()
         {
-            string AddressAsString = "Bad Schallerbach 1; 9999 Ort mit Leerzeichen; Vereinigtes Königreich";
+            string AddressAsString = "Bad Schallerbach 1 - 9999 Ort mit Leerzeichen - Vereinigtes Königreich";
 
             Address testAddress = Address.ConvertStringToAddress(AddressAsString);
 
@@ -155,10 +170,10 @@ namespace MAMA.Tests
         [TestMethod()]
         public void ConvertStringToAddressTest4()
         {
-            string AddressAsStringBefore = " Straße mit Leerzeichen 1;  9999  Postleitzahl mit Leerzeichen; Vereinigtes Königreich";
+            string AddressAsStringBefore = " Straße mit Leerzeichen 1 -  9999 Postleitzahl mit Leerzeichen - Vereinigtes Königreich";
             
             // Should be robust against " " before postcode
-            string AddressAsString = " Straße mit Leerzeichen 1; 9999  Postleitzahl mit Leerzeichen; Vereinigtes Königreich";
+            string AddressAsString = " Straße mit Leerzeichen 1 - 9999 Postleitzahl mit Leerzeichen - Vereinigtes Königreich";
 
             Address testAddress = Address.ConvertStringToAddress(AddressAsStringBefore);
 
