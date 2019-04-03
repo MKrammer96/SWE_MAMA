@@ -121,7 +121,7 @@ namespace MAMA
         /// add a new customer to list
         /// </summary>
         /// <param name="customer"></param>
-        public void AddCustomer(string firstName, string lastName, string strE_MailAddress, float moneyBalance, Address address)
+        public void AddCustomer(string firstName, string lastName, EMailAddress eMailAddress, float moneyBalance, Address address)
         {
             if (CustomerList == null)
             {
@@ -129,7 +129,7 @@ namespace MAMA
             }
 
             int customerNumber = CheckCustomerNumberorFindOne(CustomerList.Count+1);
-            EMailAddress eMailAddress = new EMailAddress(strE_MailAddress);
+            
             
             if (eMailAddress.getEmailAddress() == String.Empty || CheckEMailforUnique(eMailAddress) == false)
             {
@@ -138,7 +138,7 @@ namespace MAMA
             }
             else
             {
-                Customer customer = new Customer(firstName,lastName,strE_MailAddress,customerNumber,moneyBalance,DateTime.Now,address);
+                Customer customer = new Customer(firstName,lastName, eMailAddress, customerNumber,moneyBalance,DateTime.Now,address);
                 CustomerList.Add(customer);
                 _mainView.UpdateDataGridViewOverview(CustomerList);
                 _mainView.UpdateDatagridViewFullList(CustomerList);

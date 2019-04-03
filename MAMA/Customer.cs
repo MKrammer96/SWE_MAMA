@@ -40,23 +40,27 @@ namespace MAMA
         /// <param name="customerNumber">Usernumber</param>
         /// <param name="moneyBalance">Money Balance</param>
         /// <param name="DateOfChange">Date of change</param>
-        /// <param name="street">Street</param>
-        /// <param name="housenumber">Housenumber</param>
-        /// <param name="postcode">Postcode</param>
-        /// <param name="location">Location</param>
-        /// <param name="country">Country</param>
-        public Customer(string firstName, string lastName, string eMailAddress, int customerNumber, float moneyBalance, DateTime DateOfChange, Address address)
+        /// <param name="address">address</param>
+        public Customer(string firstName, string lastName, EMailAddress eMailAddress, int customerNumber, float moneyBalance, DateTime DateOfChange, Address address)
         {
             _MoneyBalance = moneyBalance;
             _customerNumber = customerNumber;
             _dateOfCreate = DateTime.Now;
             _DateOfChange = DateOfChange;
-            _eMail = new EMailAddress(eMailAddress);
+            _eMail = eMailAddress;
             _firstName = firstName;
             _lastName = lastName;
             _adress = address;
         }
 
+        /// <summary>
+        /// Adds a Adress to a customer
+        /// </summary>
+        /// <param name="street">Street</param>
+        /// <param name="housenumber">housenumber</param>
+        /// <param name="postcode">postcode</param>
+        /// <param name="location">location</param>
+        /// <param name="country">country</param>
         public void AddAddressToCustomer(string street, int housenumber, int postcode, string location, string country)
         {
             _adress = new Address(street, housenumber, postcode, location, country);

@@ -109,8 +109,8 @@ namespace MAMA
                 {
                     Address address = new Address(TextBoxAddStreet.Text,int.Parse(TextBoxAddStreetNumber.Text), 
                         int.Parse(TextBoxAddPostcode.Text), TextBoxAddCity.Text, TextBoxAddCountry.Text);
-
-                    _controller.AddCustomer(TextBoxAddFirstName.Text,TextBoxAddLastName.Text,TextBoxAddE_Mail.Text,float.Parse(TextBoxAddNewAmount.Text), address);
+                    EMailAddress mailAdress = new EMailAddress(TextBoxAddE_Mail.Text);
+                    _controller.AddCustomer(TextBoxAddFirstName.Text,TextBoxAddLastName.Text, mailAdress, float.Parse(TextBoxAddNewAmount.Text), address);
                     ClearTextBoxesAddNewCustomer();
 
                 }
@@ -150,7 +150,7 @@ namespace MAMA
 
 
                 }
-                // Bug found
+                
                 else if (btn == ButtonAddNewAmount)
                 {
                     if (_currentEditCustomer != null && ButtonSaveNewBalance.Enabled == true)
