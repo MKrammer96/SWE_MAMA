@@ -185,9 +185,9 @@ namespace MAMA
         /// Returns the address in Format: street + housenumber; postcode + location; country
         /// </summary>
         /// <returns></returns>
-        public string[] getAddress()
+        public string ConvertAdressToString()
         {
-            string[] adress = new string []{_street, _housenumber.ToString(), _postcode.ToString(), _location, _country};
+            string adress = _street + " " + _housenumber.ToString() + "; " + _postcode.ToString() + " " + _location + "; " + _country;
 
             return adress;
         }

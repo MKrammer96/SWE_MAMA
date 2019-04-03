@@ -23,7 +23,7 @@ namespace MAMA.Tests
             string shouldBeMyAdress = street + " " + housenumber + "; " + postcode + " " + location + "; " + country;
             Address myTestAdress = new Address(street, housenumber, postcode, location, country);
 
-            Assert.IsTrue(myTestAdress.getAddress().Equals(shouldBeMyAdress));
+            Assert.IsTrue(myTestAdress.ConvertAdressToString().Equals(shouldBeMyAdress));
         }
 
         [TestMethod()]
@@ -38,7 +38,7 @@ namespace MAMA.Tests
             string shouldBeMyAdress = street + " " + housenumber + "; " + postcode + " " + location + "; " + country;
             Address myTestAdress = new Address(street, housenumber, postcode, location, country);
 
-            Assert.IsFalse(myTestAdress.getAddress().Equals(shouldBeMyAdress));
+            Assert.IsFalse(myTestAdress.ConvertAdressToString().Equals(shouldBeMyAdress));
         }
 
         [TestMethod()]
@@ -53,7 +53,7 @@ namespace MAMA.Tests
             string shouldBeMyAdress = street + " " + housenumber + "; " + postcode + " " + location + "; " + country;
             Address myTestAdress = new Address(street, housenumber, postcode, location, country);
 
-            Assert.IsFalse(myTestAdress.getAddress().Equals(shouldBeMyAdress));
+            Assert.IsFalse(myTestAdress.ConvertAdressToString().Equals(shouldBeMyAdress));
         }
 
         [TestMethod()]
@@ -68,7 +68,7 @@ namespace MAMA.Tests
             string shouldBeMyAdress = street + " " + housenumber + "; " + postcode + " " + location + "; " + country;
             Address myTestAdress = new Address(street, housenumber, postcode, location, country);
 
-            Assert.IsFalse(myTestAdress.getAddress().Equals(shouldBeMyAdress));
+            Assert.IsFalse(myTestAdress.ConvertAdressToString().Equals(shouldBeMyAdress));
         }
 
         [TestMethod()]
@@ -83,7 +83,7 @@ namespace MAMA.Tests
             string shouldBeMyAdress = street + " " + housenumber + "; " + postcode + " " + location + "; " + country;
             Address myTestAdress = new Address(street, housenumber, postcode, location, country);
 
-            Assert.IsFalse(myTestAdress.getAddress().Equals(shouldBeMyAdress));
+            Assert.IsFalse(myTestAdress.ConvertAdressToString().Equals(shouldBeMyAdress));
         }
 
         [TestMethod()]
@@ -98,7 +98,7 @@ namespace MAMA.Tests
             string shouldBeMyAdress = street + " " + housenumber + "; " + postcode + " " + location + "; " + country;
             Address myTestAdress = new Address(street, housenumber, postcode, location, country);
 
-            Assert.IsFalse(myTestAdress.getAddress().Equals(shouldBeMyAdress));
+            Assert.IsFalse(myTestAdress.ConvertAdressToString().Equals(shouldBeMyAdress));
         }
 
         [TestMethod()]
@@ -113,7 +113,7 @@ namespace MAMA.Tests
             string shouldBeMyAdress = street + " " + housenumber + "; " + postcode + " " + location + "; " + country;
             Address myTestAdress = new Address(street, housenumber, postcode, location, country);
 
-            Assert.IsFalse(myTestAdress.getAddress().Equals(shouldBeMyAdress));
+            Assert.IsFalse(myTestAdress.ConvertAdressToString().Equals(shouldBeMyAdress));
         }
 
         [TestMethod()]
@@ -123,7 +123,7 @@ namespace MAMA.Tests
 
             Address testAddress = Address.ConvertStringToAddress(AddressAsString);
 
-            string compareString = testAddress.getAddress();
+            string compareString = testAddress.ConvertAdressToString();
 
             Assert.AreEqual(AddressAsString, compareString);
         }
@@ -135,7 +135,7 @@ namespace MAMA.Tests
 
             Address testAddress = Address.ConvertStringToAddress(AddressAsString);
 
-            string compareString = testAddress.getAddress();
+            string compareString = testAddress.ConvertAdressToString();
 
             Assert.AreEqual(AddressAsString, compareString);
         }
@@ -147,7 +147,7 @@ namespace MAMA.Tests
 
             Address testAddress = Address.ConvertStringToAddress(AddressAsString);
 
-            string compareString = testAddress.getAddress();
+            string compareString = testAddress.ConvertAdressToString();
 
             Assert.AreEqual(AddressAsString, compareString);
         }
@@ -162,7 +162,7 @@ namespace MAMA.Tests
 
             Address testAddress = Address.ConvertStringToAddress(AddressAsStringBefore);
 
-            string compareString = testAddress.getAddress();
+            string compareString = testAddress.ConvertAdressToString();
 
             Assert.AreEqual(AddressAsString, compareString);
         }
