@@ -29,7 +29,7 @@ namespace MAMA
             try
             {
                 csvFileWriter = new StreamWriter(path);
-                string header = "CustomerID;FirstName;LastName;E-Mail;DateofChange;MoneyBalance";
+                string header = "CustomerID;FirstName;LastName;E-Mail;DateofChange;MoneyBalance;Address";
 
                 dataToWrite.Add(header);
 
@@ -43,8 +43,9 @@ namespace MAMA
                     string eMailAddress = myCustomer._eMail.getEmailAddress();
                     string dateOfChange = myCustomer._DateOfChange.ToString();
                     string moneyBalance = Convert.ToString(myCustomer._MoneyBalance);
+                    string address = myCustomer._adress.ConvertAdressToString();
 
-                    string text = Convert.ToString(customerNumber) + ";" + firstName + ";" + lastName + ";" + eMailAddress + ";" + dateOfChange + ";" + moneyBalance;
+                    string text = Convert.ToString(customerNumber) + ";" + firstName + ";" + lastName + ";" + eMailAddress + ";" + dateOfChange + ";" + moneyBalance + ";" + address;
                     dataToWrite.Add(text);
                 }
 
@@ -108,15 +109,18 @@ namespace MAMA
                     int customerNumber = Convert.ToInt16(data[0]);
                     string firstName = data[1];
                     string lastName = data[2];
-                    string eMailAddress = data[3].ToString();                    
+                    string eMailAddressString = data[3].ToString();
+                    EMailAddress eMailAddress = new EMailAddress(eMailAddressString);
                     DateTime DateOfChange = Convert.ToDateTime(data[4]);
                     string moneyBalanceAsString = data[5];
                     float moneyBalance;
                     float.TryParse(moneyBalanceAsString, out moneyBalance);
 
-                    string address = data[6];
 
-                    Customer myCustomer = new Customer(firstName, lastName, eMailAddress, customerNumber, moneyBalance, DateOfChange);
+                    Address address = Address.ConvertStringToAddress(data[6]);
+                    
+
+                    Customer myCustomer = new Customer(firstName, lastName, eMailAddress, customerNumber, moneyBalance, DateOfChange, address);
 
                     customerData.Add(myCustomer);
                 }
