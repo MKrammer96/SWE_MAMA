@@ -640,6 +640,7 @@ namespace MAMA
             LabelE_MailAddressEditBalance.Text = customer._eMail.getEmailAddress();
             LabelDateofChangeEditBalance.Text = customer._DateOfChange.ToString();
             LabelCurrentBalanceShow.Text = customer._MoneyBalance.ToString();
+
             if (customer._adress != null)
             {
                 LabelStreetEditBalance.Text = customer._adress._street;
@@ -663,7 +664,7 @@ namespace MAMA
             TextBoxLastNameEditItems.Text = customer._lastName;
             if (customer._adress != null)
             {
-                TextBoxAddStreet.Text = customer._adress._street;
+                TextBoxStreetEditItems.Text = customer._adress._street;
                 TextBoxEditStreetNumberItems.Text = customer._adress._housenumber.ToString();
                 TextBoxPostcodeEditItems.Text = customer._adress._postcode.ToString();
                 TextBoxCityEditItems.Text = customer._adress._location;

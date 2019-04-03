@@ -28,7 +28,9 @@ namespace MAMA
             
             try
             {
-                csvFileWriter = new StreamWriter(path);
+                //char sharpS = '�';
+                csvFileWriter = new StreamWriter(path,false,Encoding.Default);
+                
                 string header = "CustomerID;FirstName;LastName;E-Mail;DateofChange;MoneyBalance;Address";
 
                 dataToWrite.Add(header);
@@ -44,6 +46,7 @@ namespace MAMA
                     string dateOfChange = myCustomer._DateOfChange.ToString();
                     string moneyBalance = Convert.ToString(myCustomer._MoneyBalance);
                     string address = myCustomer._adress.ConvertAdressToString();
+                    //address = address.Replace('ß', sharpS);
 
                     string text = Convert.ToString(customerNumber) + ";" + firstName + ";" + lastName + ";" + eMailAddress + ";" + dateOfChange + ";" + moneyBalance + ";" + address;
                     dataToWrite.Add(text);
@@ -80,7 +83,7 @@ namespace MAMA
             StreamReader myReader = StreamReader.Null;
             try
             {
-                myReader = new StreamReader(path,Encoding.Unicode);
+                myReader = new StreamReader(path,Encoding.Default);
                 string textLine = string.Empty;
                 string[] splitLine;
                 List<string[]> customerDataAsString = new List<string[]>();
@@ -89,12 +92,15 @@ namespace MAMA
                 if (File.Exists(path))
                 {
                     myReader = new StreamReader(path);
+                    //char sharpS = '�';
 
                     while (!myReader.EndOfStream)
                     {
                         textLine = myReader.ReadLine();
                         if (textLine != "")
                         {
+                            //textLine = textLine.Replace(sharpS, 'ß');
+
                             splitLine = textLine.Split(';');
                             customerDataAsString.Add(splitLine);
                         }

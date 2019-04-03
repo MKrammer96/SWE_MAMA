@@ -29,11 +29,11 @@ namespace MAMA.Tests
         [TestMethod()]
         public void GoodAddressTest2()
         {
-            string street = "Laurenzhausen";
-            int housenumber = 23;
-            string location = "Wels";
+            string street = "Golfplatzstraße";
+            int housenumber = 5;
+            string location = "Feldkirchen an der Donau";
             string country = "Austria";
-            int postcode = 4600;
+            int postcode = 4101;
 
             string shouldBeMyAdress = street + " " + housenumber + " - " + postcode + " " + location + " - " + country;
             Address myTestAdress = new Address(street, housenumber, postcode, location, country);
