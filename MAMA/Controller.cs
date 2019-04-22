@@ -19,9 +19,13 @@ namespace MAMA
         private LoginView _loginView;
 
         private string _filePathOfOpenedList = string.Empty;
+        private string _filePathofLogFile = string.Empty;
+
+        private List<Customer> _deletedCustomerList;
 
 
         public List<Customer> CustomerList;
+
 
         /// <summary>
         /// Constructor of the class
@@ -98,6 +102,24 @@ namespace MAMA
             {
                 _csvHandler.ExportToCSV(_filePathOfOpenedList, CustomerList);
             }
+            else
+            {
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                //Stream myStream;
+                string filepath = string.Empty;
+                saveFileDialog1.Filter = "CSV files (*.csv)|*.csv";
+                saveFileDialog1.FilterIndex = 2;
+                saveFileDialog1.RestoreDirectory = true;
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+
+                    filepath = saveFileDialog1.FileName;
+                    SaveNewCustomerList(filepath);
+
+                }
+
+            }
         }
 
         /// <summary>
@@ -145,6 +167,55 @@ namespace MAMA
         /// <param name="customertoDelete"></param>
         public void DeletCustomer(Customer customertoDelete)
         {
+            //CreateNewLogFile
+            if (_filePathofLogFile == string.Empty || _deletedCustomerList == null)
+            {
+                string message = "Is there an existing File of the deleted Customers?";
+                string caption = message;
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result;
+
+                result = MessageBox.Show(message, message, buttons);
+                if (result == DialogResult.Yes)
+                {
+                    OpenFileDialog openFileDialog1 = new OpenFileDialog();
+                    string filepath = string.Empty;
+                    openFileDialog1.Filter = "CSV files (*.csv)|*.csv";
+                    openFileDialog1.FilterIndex = 2;
+                    openFileDialog1.RestoreDirectory = true;
+
+                    if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        _filePathofLogFile = openFileDialog1.FileName;
+                        _deletedCustomerList = _csvHandler.readCSV(_filePathofLogFile);
+                    }
+                }
+                else
+                {
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                    //Stream myStream;
+                    string filepath = string.Empty;
+                    saveFileDialog1.Filter = "CSV files (*.csv)|*.csv";
+                    saveFileDialog1.FilterIndex = 2;
+                    saveFileDialog1.RestoreDirectory = true;
+
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        _filePathofLogFile = saveFileDialog1.FileName;
+                        _deletedCustomerList = new List<Customer>();
+                    }
+                }
+
+
+            }
+            customertoDelete._DateOfChange = DateTime.Now;
+            _deletedCustomerList.Add(customertoDelete);
+            if (_filePathofLogFile != string.Empty)
+            {
+                _csvHandler.ExportToCSV(_filePathofLogFile, _deletedCustomerList);
+            }
+            
+            //updateCustomerList
             for (int i = 0; i < CustomerList.Count; i++)
             {
                 if (CustomerList[i]._customerNumber == customertoDelete._customerNumber)
@@ -152,6 +223,7 @@ namespace MAMA
                     CustomerList.RemoveAt(i);
                     _mainView.UpdateDatagridViewFullList(CustomerList);
                     _mainView.UpdateDataGridViewOverview(CustomerList);
+                    _mainView.ClearCurrentCustomer();
                     return;
                 }
             }

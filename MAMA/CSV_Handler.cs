@@ -25,10 +25,11 @@ namespace MAMA
         {
             List<string> dataToWrite = new List<string>();
             StreamWriter csvFileWriter = StreamWriter.Null;
+            string fullpath = Path.GetFullPath(path);
             
             try
             {
-                csvFileWriter = new StreamWriter(path,false,Encoding.Unicode);
+                csvFileWriter = new StreamWriter(fullpath,false,Encoding.Unicode);
                 
                 string header = "CustomerID;FirstName;LastName;E-Mail;DateofChange;MoneyBalance;Address";
 
@@ -70,7 +71,7 @@ namespace MAMA
                 csvFileWriter.Close();
             }
         }
-
+        
         /// <summary>
         /// Returns the Customer-Data. Format: CustomerNumber;FirstName;LastName;EMail;DateOfChange;MoneyBalance;Address
         /// </summary>

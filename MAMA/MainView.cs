@@ -93,6 +93,15 @@ namespace MAMA
                 DataGridViewAllCustomers.Rows[number].Cells[5].Value = customers[i]._MoneyBalance;
             }
         }
+        
+        /// <summary>
+        /// deletes the selected Customer and the Textboxes
+        /// </summary>
+        public void ClearCurrentCustomer()
+        {
+            _currentEditCustomer = null;
+            ClearTextBoxesEditBalanceItems();
+        }
 
         //finished
         private void ButtonClickedMainTab(object sender, EventArgs e) 
@@ -121,7 +130,7 @@ namespace MAMA
             }
         }
 
-        // change to version 2
+        // finished
         private void ButtonClickedEditItemsTab(object sender, EventArgs e)
         {
             if (sender.GetType() == typeof(Button))
@@ -200,7 +209,7 @@ namespace MAMA
                 {
                     if (_currentEditCustomer._MoneyBalance == 0)
                     {
-
+                        _controller.DeletCustomer(_currentEditCustomer);
                     }
                     else
                     {
