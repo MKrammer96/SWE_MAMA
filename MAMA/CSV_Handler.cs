@@ -90,8 +90,6 @@ namespace MAMA
 
                 if (File.Exists(path))
                 {
-                    myReader = new StreamReader(path);
-
                     while (!myReader.EndOfStream)
                     {
                         textLine = myReader.ReadLine();

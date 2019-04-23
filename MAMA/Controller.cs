@@ -165,13 +165,13 @@ namespace MAMA
         /// Delete the selected customer from the list
         /// </summary>
         /// <param name="customertoDelete"></param>
-        public void DeletCustomer(Customer customertoDelete)
+        public void DeleteCustomer(Customer customertoDelete)
         {
             //CreateNewLogFile
             if (_filePathofLogFile == string.Empty || _deletedCustomerList == null)
             {
                 string message = "Is there an existing File of the deleted Customers?";
-                string caption = message;
+                //string caption = message;
                 MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                 DialogResult result;
 
@@ -189,6 +189,8 @@ namespace MAMA
                         _filePathofLogFile = openFileDialog1.FileName;
                         _deletedCustomerList = _csvHandler.readCSV(_filePathofLogFile);
                     }
+
+                    //openFileDialog1.Dispose();
                 }
                 else
                 {
@@ -204,10 +206,11 @@ namespace MAMA
                         _filePathofLogFile = saveFileDialog1.FileName;
                         _deletedCustomerList = new List<Customer>();
                     }
+
+                    //saveFileDialog1.Dispose();
                 }
-
-
             }
+
             customertoDelete._DateOfChange = DateTime.Now;
             _deletedCustomerList.Add(customertoDelete);
             if (_filePathofLogFile != string.Empty)

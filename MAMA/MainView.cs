@@ -209,11 +209,11 @@ namespace MAMA
                 {
                     if (_currentEditCustomer._MoneyBalance == 0)
                     {
-                        _controller.DeletCustomer(_currentEditCustomer);
+                        _controller.DeleteCustomer(_currentEditCustomer);
                     }
                     else
                     {
-                        MessageBox.Show("The MoneyBalance of the customer needs to 0 EURO");
+                        MessageBox.Show("The MoneyBalance of the customer needs to be 0 EURO");
                     }
                 }
 
